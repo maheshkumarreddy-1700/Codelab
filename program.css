@@ -1,0 +1,1995 @@
+/* ============================================================
+   CODELAB PROGRAM PAGE
+   HTML • CSS • JAVASCRIPT PRACTICAL LAB
+============================================================ */
+
+
+/* ============================================================
+   01. VARIABLES
+============================================================ */
+
+:root {
+
+    --program-bg: #080a0f;
+    --program-sidebar: #0b0e14;
+    --program-panel: #10141c;
+    --program-panel-hover: #151a23;
+
+    --program-text: #f3f5f8;
+    --program-text-secondary: #a8b0bf;
+    --program-text-muted: #687386;
+
+    --program-border: rgba(255, 255, 255, 0.08);
+    --program-border-hover: rgba(255, 255, 255, 0.16);
+
+    --program-accent: #7c5cff;
+    --program-accent-light: #9d86ff;
+
+    --program-cyan: #28d7ff;
+    --program-green: #42e695;
+    --program-yellow: #ffd166;
+    --program-red: #ff647c;
+
+    --program-gradient:
+        linear-gradient(
+            135deg,
+            #7c5cff,
+            #28d7ff
+        );
+
+    --program-code-bg: #090c11;
+
+    --program-radius: 14px;
+
+    --program-container: 1400px;
+
+    --program-transition: 0.25s ease;
+}
+
+
+/* ============================================================
+   02. RESET
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--program-bg);
+
+    color: var(--program-text);
+
+    font-family: "Inter", sans-serif;
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   03. SCROLLBAR
+============================================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--program-bg);
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #303746;
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--program-accent);
+}
+
+
+/* ============================================================
+   04. TOP NAVIGATION
+============================================================ */
+
+.program-navbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    height: 72px;
+
+    border-bottom: 1px solid var(--program-border);
+
+    background:
+        rgba(8, 10, 15, 0.88);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.program-nav-container {
+
+    width: min(
+        calc(100% - 32px),
+        var(--program-container)
+    );
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+/* ============================================================
+   05. PROGRAM LOGO
+============================================================ */
+
+.program-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.program-logo-symbol {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: var(--program-gradient);
+
+    color: white;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 13px;
+}
+
+.program-logo-highlight {
+    color: var(--program-accent-light);
+}
+
+
+/* ============================================================
+   06. BREADCRUMB
+============================================================ */
+
+.program-breadcrumb {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    color: var(--program-text-muted);
+
+    font-size: 11px;
+}
+
+.program-breadcrumb a {
+
+    transition:
+        color var(--program-transition);
+}
+
+.program-breadcrumb a:hover {
+    color: var(--program-text);
+}
+
+.program-breadcrumb .current {
+    color: var(--program-text-secondary);
+}
+
+.breadcrumb-arrow {
+    color: #444c5b;
+}
+
+
+/* ============================================================
+   07. NAV ACTIONS
+============================================================ */
+
+.program-nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.program-nav-button {
+
+    height: 36px;
+
+    padding: 0 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 8px;
+
+    background: var(--program-panel);
+
+    color: var(--program-text-secondary);
+
+    font-size: 11px;
+
+    transition: var(--program-transition);
+}
+
+.program-nav-button:hover {
+
+    color: white;
+
+    border-color: var(--program-accent);
+
+    background: rgba(124, 92, 255, 0.1);
+}
+
+
+/* ============================================================
+   08. MAIN LAYOUT
+============================================================ */
+
+.program-layout {
+
+    width: min(
+        calc(100% - 32px),
+        var(--program-container)
+    );
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        245px
+        minmax(0, 1fr)
+        260px;
+
+    min-height: calc(100vh - 72px);
+}
+
+
+/* ============================================================
+   09. LEFT SIDEBAR
+============================================================ */
+
+.program-sidebar {
+
+    position: sticky;
+
+    top: 72px;
+
+    height: calc(100vh - 72px);
+
+    overflow-y: auto;
+
+    padding: 28px 18px 40px 0;
+
+    border-right: 1px solid var(--program-border);
+}
+
+.sidebar-heading {
+
+    margin-bottom: 18px;
+
+    color: var(--program-text-muted);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================================================
+   SIDEBAR CATEGORY
+============================================================ */
+
+.sidebar-category {
+
+    margin-bottom: 25px;
+}
+
+.sidebar-category-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 8px 10px;
+
+    color: var(--program-text-secondary);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.sidebar-category-title span {
+
+    color: var(--program-text-muted);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+}
+
+
+/* ============================================================
+   SIDEBAR LINKS
+============================================================ */
+
+.sidebar-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.sidebar-link {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 10px;
+
+    border-radius: 7px;
+
+    color: var(--program-text-muted);
+
+    font-size: 11px;
+
+    transition: var(--program-transition);
+}
+
+.sidebar-link:hover {
+
+    color: var(--program-text);
+
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.sidebar-link.active {
+
+    color: var(--program-accent-light);
+
+    background:
+        rgba(124, 92, 255, 0.1);
+}
+
+.sidebar-link.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    width: 2px;
+    height: 18px;
+
+    border-radius: 3px;
+
+    background: var(--program-accent);
+}
+
+.sidebar-number {
+
+    width: 22px;
+
+    color: #4f5868;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+}
+
+
+/* ============================================================
+   10. MAIN CONTENT
+============================================================ */
+
+.program-main {
+
+    min-width: 0;
+
+    padding: 55px 55px 100px;
+}
+
+
+/* ============================================================
+   PROGRAM HEADER
+============================================================ */
+
+.program-header {
+
+    max-width: 900px;
+
+    margin-bottom: 45px;
+}
+
+.program-category {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    color: var(--program-accent-light);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+}
+
+.program-category::before {
+
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--program-accent);
+
+    box-shadow:
+        0 0 10px var(--program-accent);
+}
+
+.program-title {
+
+    font-size: clamp(
+        36px,
+        4vw,
+        56px
+    );
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    font-weight: 800;
+}
+
+.program-description {
+
+    max-width: 750px;
+
+    margin-top: 18px;
+
+    color: var(--program-text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* ============================================================
+   PROGRAM META
+============================================================ */
+
+.program-meta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+.meta-item {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 10px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 6px;
+
+    background: var(--program-panel);
+
+    color: var(--program-text-muted);
+
+    font-size: 9px;
+}
+
+.meta-item strong {
+    color: var(--program-text-secondary);
+}
+
+
+/* ============================================================
+   11. CONTENT SECTIONS
+============================================================ */
+
+.program-section {
+
+    margin-bottom: 45px;
+}
+
+.program-section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+.program-section-number {
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 7px;
+
+    background: var(--program-panel);
+
+    color: var(--program-accent-light);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+}
+
+.program-section h2 {
+
+    font-size: 18px;
+
+    letter-spacing: -0.3px;
+}
+
+.program-section-text {
+
+    color: var(--program-text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.85;
+}
+
+
+/* ============================================================
+   12. AIM BOX
+============================================================ */
+
+.aim-box {
+
+    padding: 20px;
+
+    border-left: 3px solid var(--program-accent);
+
+    border-radius: 0 var(--program-radius) var(--program-radius) 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(124, 92, 255, 0.08),
+            transparent
+        );
+}
+
+.aim-box p {
+
+    color: var(--program-text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* ============================================================
+   13. CODE BLOCK
+============================================================ */
+
+.code-block {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: var(--program-radius);
+
+    background: var(--program-code-bg);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ============================================================
+   CODE HEADER
+============================================================ */
+
+.code-header {
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    border-bottom: 1px solid var(--program-border);
+
+    background: #0d1016;
+}
+
+.code-language {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--program-text-muted);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.code-language::before {
+
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--program-accent);
+}
+
+
+/* ============================================================
+   COPY BUTTON
+============================================================ */
+
+.copy-code {
+
+    height: 28px;
+
+    padding: 0 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: var(--program-text-muted);
+
+    font-size: 9px;
+
+    transition: var(--program-transition);
+}
+
+.copy-code:hover {
+
+    color: white;
+
+    border-color: var(--program-accent);
+
+    background:
+        rgba(124, 92, 255, 0.1);
+}
+
+.copy-code.copied {
+
+    color: var(--program-green);
+
+    border-color: var(--program-green);
+}
+
+
+/* ============================================================
+   CODE AREA
+============================================================ */
+
+.code-body {
+
+    overflow-x: auto;
+
+    padding: 22px 0;
+}
+
+.code-body pre {
+
+    margin: 0;
+
+    color: #cbd2dd;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 12px;
+
+    line-height: 1.9;
+
+    tab-size: 4;
+}
+
+.code-line {
+
+    display: block;
+
+    min-width: max-content;
+
+    padding: 0 25px;
+}
+
+.code-line:hover {
+
+    background:
+        rgba(255, 255, 255, 0.025);
+}
+
+.line-number {
+
+    display: inline-block;
+
+    width: 38px;
+
+    margin-right: 18px;
+
+    color: #394251;
+
+    text-align: right;
+
+    user-select: none;
+}
+
+
+/* ============================================================
+   CODE SYNTAX
+============================================================ */
+
+.token-keyword {
+    color: #c792ea;
+}
+
+.token-string {
+    color: #c3e88d;
+}
+
+.token-function {
+    color: #82aaff;
+}
+
+.token-number {
+    color: #f78c6c;
+}
+
+.token-comment {
+    color: #596273;
+}
+
+.token-tag {
+    color: #f07178;
+}
+
+.token-attribute {
+    color: #ffcb6b;
+}
+
+.token-value {
+    color: #c3e88d;
+}
+
+
+/* ============================================================
+   14. RUN AREA
+============================================================ */
+
+.run-panel {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px 15px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 10px;
+
+    background: var(--program-panel);
+}
+
+.run-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--program-text-muted);
+
+    font-size: 10px;
+}
+
+.run-status {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--program-green);
+
+    box-shadow:
+        0 0 8px var(--program-green);
+}
+
+.run-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 14px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: var(--program-gradient);
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    transition: var(--program-transition);
+}
+
+.run-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(124, 92, 255, 0.25);
+}
+
+
+/* ============================================================
+   15. OUTPUT WINDOW
+============================================================ */
+
+.output-window {
+
+    overflow: hidden;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: var(--program-radius);
+
+    background: #080b10;
+}
+
+.output-header {
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    border-bottom: 1px solid var(--program-border);
+
+    background: #0d1016;
+}
+
+.output-title {
+
+    color: var(--program-text-muted);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.output-clear {
+
+    border: 0;
+
+    background: transparent;
+
+    color: #596273;
+
+    font-size: 9px;
+}
+
+.output-clear:hover {
+    color: var(--program-text);
+}
+
+.output-body {
+
+    min-height: 150px;
+
+    padding: 22px;
+
+    color: var(--program-green);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    white-space: pre-wrap;
+}
+
+.output-placeholder {
+
+    color: #3d4655;
+}
+
+
+/* ============================================================
+   16. RESULT / PREVIEW
+============================================================ */
+
+.preview-window {
+
+    overflow: hidden;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: var(--program-radius);
+
+    background: white;
+
+    color: #111;
+}
+
+.preview-header {
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    background: #f2f4f7;
+
+    border-bottom: 1px solid #e2e5ea;
+}
+
+.preview-dots {
+
+    display: flex;
+
+    gap: 5px;
+}
+
+.preview-dots span {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #c5cbd4;
+}
+
+.preview-url {
+
+    color: #858e9d;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 8px;
+}
+
+.preview-body {
+
+    min-height: 250px;
+
+    padding: 25px;
+
+    background: white;
+
+    color: #111;
+}
+
+
+/* ============================================================
+   17. INFORMATION TABLE
+============================================================ */
+
+.info-table-wrapper {
+
+    overflow-x: auto;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: var(--program-radius);
+}
+
+.info-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 500px;
+}
+
+.info-table th {
+
+    padding: 12px 15px;
+
+    border-bottom: 1px solid var(--program-border);
+
+    background: var(--program-panel);
+
+    color: var(--program-text-muted);
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+.info-table td {
+
+    padding: 13px 15px;
+
+    border-bottom: 1px solid var(--program-border);
+
+    color: var(--program-text-secondary);
+
+    font-size: 11px;
+}
+
+.info-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.info-table tr:hover td {
+
+    background:
+        rgba(255,255,255,0.02);
+}
+
+
+/* ============================================================
+   18. NOTE / WARNING / TIP
+============================================================ */
+
+.note-box,
+.warning-box,
+.tip-box {
+
+    padding: 18px 20px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+.note-box {
+
+    border: 1px solid rgba(40, 215, 255, 0.15);
+
+    background:
+        rgba(40, 215, 255, 0.05);
+}
+
+.warning-box {
+
+    border: 1px solid rgba(255, 209, 102, 0.15);
+
+    background:
+        rgba(255, 209, 102, 0.05);
+}
+
+.tip-box {
+
+    border: 1px solid rgba(66, 230, 149, 0.15);
+
+    background:
+        rgba(66, 230, 149, 0.05);
+}
+
+.note-title,
+.warning-title,
+.tip-title {
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.note-title {
+    color: var(--program-cyan);
+}
+
+.warning-title {
+    color: var(--program-yellow);
+}
+
+.tip-title {
+    color: var(--program-green);
+}
+
+
+/* ============================================================
+   19. RIGHT SIDEBAR
+============================================================ */
+
+.program-right-sidebar {
+
+    position: sticky;
+
+    top: 72px;
+
+    height: calc(100vh - 72px);
+
+    overflow-y: auto;
+
+    padding: 45px 0 40px 25px;
+
+    border-left: 1px solid var(--program-border);
+}
+
+.right-sidebar-title {
+
+    margin-bottom: 15px;
+
+    color: var(--program-text-muted);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.toc {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.toc a {
+
+    padding: 7px 9px;
+
+    border-left: 1px solid transparent;
+
+    color: var(--program-text-muted);
+
+    font-size: 10px;
+
+    transition: var(--program-transition);
+}
+
+.toc a:hover {
+
+    color: var(--program-text);
+
+    border-left-color:
+        var(--program-accent);
+}
+
+.toc a.active {
+
+    color: var(--program-accent-light);
+
+    border-left-color:
+        var(--program-accent);
+}
+
+
+/* ============================================================
+   20. PROGRESS CARD
+============================================================ */
+
+.progress-card {
+
+    margin-top: 35px;
+
+    padding: 16px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 12px;
+
+    background: var(--program-panel);
+}
+
+.progress-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+.progress-title {
+
+    color: var(--program-text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.progress-value {
+
+    color: var(--program-accent-light);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+}
+
+.progress-bar {
+
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #242a35;
+}
+
+.progress-fill {
+
+    width: 65%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: var(--program-gradient);
+}
+
+
+/* ============================================================
+   21. RELATED PROGRAMS
+============================================================ */
+
+.related-programs {
+
+    margin-top: 35px;
+}
+
+.related-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid var(--program-border);
+
+    color: var(--program-text-muted);
+
+    font-size: 10px;
+
+    transition: var(--program-transition);
+}
+
+.related-item:last-child {
+    border-bottom: 0;
+}
+
+.related-item:hover {
+
+    padding-left: 4px;
+
+    color: var(--program-text);
+}
+
+.related-number {
+
+    color: #424a59;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 8px;
+}
+
+
+/* ============================================================
+   22. PREVIOUS / NEXT NAVIGATION
+============================================================ */
+
+.program-navigation {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 60px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--program-border);
+}
+
+.program-nav-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 17px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 11px;
+
+    background: var(--program-panel);
+
+    transition: var(--program-transition);
+}
+
+.program-nav-card:hover {
+
+    border-color:
+        var(--program-border-hover);
+
+    transform: translateY(-3px);
+}
+
+.program-nav-card.next {
+    text-align: right;
+}
+
+.program-nav-label {
+
+    color: var(--program-text-muted);
+
+    font-size: 8px;
+
+    font-family: "JetBrains Mono", monospace;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.program-nav-title {
+
+    color: var(--program-text);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   23. MARKDOWN / TEXT CONTENT
+============================================================ */
+
+.program-content ul,
+.program-content ol {
+
+    margin: 12px 0 12px 20px;
+
+    color: var(--program-text-secondary);
+
+    font-size: 13px;
+}
+
+.program-content li {
+
+    margin-bottom: 7px;
+}
+
+.program-content strong {
+    color: var(--program-text);
+}
+
+.program-content code {
+
+    padding: 2px 5px;
+
+    border-radius: 4px;
+
+    background: #171c25;
+
+    color: var(--program-accent-light);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   24. SEARCH
+============================================================ */
+
+.program-search {
+
+    position: relative;
+
+    margin-bottom: 25px;
+}
+
+.program-search input {
+
+    width: 100%;
+
+    height: 38px;
+
+    padding: 0 12px 0 35px;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--program-panel);
+
+    color: var(--program-text);
+
+    font-size: 10px;
+
+    transition: var(--program-transition);
+}
+
+.program-search input::placeholder {
+    color: #535c6c;
+}
+
+.program-search input:focus {
+
+    border-color:
+        var(--program-accent);
+
+    box-shadow:
+        0 0 0 3px rgba(124, 92, 255, 0.08);
+}
+
+.search-icon {
+
+    position: absolute;
+
+    left: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--program-text-muted);
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   25. BACK TO TOP
+============================================================ */
+
+.back-to-top {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--program-border);
+
+    border-radius: 10px;
+
+    background: var(--program-panel);
+
+    color: var(--program-text-secondary);
+
+    font-size: 14px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(10px);
+
+    transition: var(--program-transition);
+
+    z-index: 500;
+}
+
+.back-to-top.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+
+    color: white;
+
+    border-color:
+        var(--program-accent);
+
+    background:
+        var(--program-accent);
+}
+
+
+/* ============================================================
+   26. ANIMATIONS
+============================================================ */
+
+@keyframes programFadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+.program-main {
+
+    animation:
+        programFadeIn 0.5s ease both;
+}
+
+
+/* ============================================================
+   27. TABLET
+============================================================ */
+
+@media (max-width: 1150px) {
+
+    .program-layout {
+
+        grid-template-columns:
+            220px
+            minmax(0, 1fr);
+    }
+
+    .program-right-sidebar {
+        display: none;
+    }
+
+    .program-main {
+        padding-left: 45px;
+        padding-right: 20px;
+    }
+}
+
+
+/* ============================================================
+   28. SMALL TABLET
+============================================================ */
+
+@media (max-width: 850px) {
+
+    .program-layout {
+
+        grid-template-columns:
+            190px
+            minmax(0, 1fr);
+    }
+
+    .program-main {
+
+        padding:
+            40px 25px 80px;
+    }
+
+    .program-breadcrumb {
+        display: none;
+    }
+
+    .program-title {
+        font-size: 42px;
+    }
+}
+
+
+/* ============================================================
+   29. MOBILE
+============================================================ */
+
+@media (max-width: 650px) {
+
+    .program-navbar {
+        height: 64px;
+    }
+
+    .program-nav-container {
+
+        width: calc(100% - 24px);
+    }
+
+    .program-layout {
+
+        display: block;
+
+        width: 100%;
+    }
+
+
+    /* Sidebar */
+
+    .program-sidebar {
+
+        position: relative;
+
+        top: auto;
+
+        height: auto;
+
+        max-height: 300px;
+
+        padding: 15px;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--program-border);
+    }
+
+    .sidebar-category {
+
+        margin-bottom: 12px;
+    }
+
+    .sidebar-links {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 3px;
+    }
+
+
+    /* Main */
+
+    .program-main {
+
+        padding:
+            40px 15px 70px;
+    }
+
+    .program-title {
+
+        font-size: 36px;
+
+        letter-spacing: -1.5px;
+    }
+
+    .program-description {
+
+        font-size: 13px;
+    }
+
+
+    /* Code */
+
+    .code-body pre {
+
+        font-size: 10px;
+    }
+
+    .line-number {
+
+        width: 28px;
+
+        margin-right: 10px;
+    }
+
+
+    /* Navigation */
+
+    .program-navigation {
+
+        grid-template-columns: 1fr;
+    }
+
+    .program-nav-card.next {
+        text-align: left;
+    }
+
+
+    /* Run Panel */
+
+    .run-panel {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .run-button {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+}
+
+
+/* ============================================================
+   30. VERY SMALL MOBILE
+============================================================ */
+
+@media (max-width: 400px) {
+
+    .program-logo span:last-child {
+        display: none;
+    }
+
+    .program-nav-actions .program-nav-button span {
+        display: none;
+    }
+
+    .sidebar-links {
+        grid-template-columns: 1fr;
+    }
+
+    .program-title {
+        font-size: 31px;
+    }
+
+    .program-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+/* ============================================================
+   31. PRINT
+============================================================ */
+
+@media print {
+
+    .program-navbar,
+    .program-sidebar,
+    .program-right-sidebar,
+    .program-navigation,
+    .back-to-top,
+    .copy-code,
+    .run-panel {
+
+        display: none !important;
+    }
+
+    .program-layout {
+
+        display: block;
+
+        width: 100%;
+    }
+
+    .program-main {
+
+        padding: 0;
+    }
+
+    body {
+
+        background: white;
+
+        color: black;
+    }
+
+    .code-block {
+
+        border: 1px solid #ccc;
+
+        box-shadow: none;
+    }
+}
+
