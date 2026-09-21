@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 13: Responsive Webpage using CSS Media Queries</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 13</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 13 OF 14</div>
+<h1>Program 13: Responsive Webpage using CSS Media Queries</h1>
+<p class="lead">Demonstrates how a page can adapt its styling for smaller screens using a CSS media query.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create a responsive webpage using CSS media queries.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates how a page can adapt its styling for smaller screens using a CSS media query.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program13.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Responsive Webpage&lt;/title&gt;
+
+    &lt;style&gt;
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;h1&gt;Responsive Webpage&lt;/h1&gt;
+            &lt;p&gt;
+                Resize the browser window to see the media query
+                change the page styling.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Responsive Webpage&lt;/title&gt;
+
+    &lt;style&gt;
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;h1&gt;Responsive Webpage&lt;/h1&gt;
+            &lt;p&gt;
+                Resize the browser window to see the media query
+                change the page styling.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 13 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>A media query applies CSS rules only when its condition is true. Here, the page reduces spacing and heading size when the viewport is 600px wide or less.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Responsive design</span><span class="chip">@media</span><span class="chip">max-width</span><span class="chip">Viewport</span><span class="chip">Mobile layout</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Always include the viewport meta tag when building responsive pages.</p></section>
+
+<div class="navpages"><a href="program12.html">← Program 12</a><a href="program14.html">Program 14 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

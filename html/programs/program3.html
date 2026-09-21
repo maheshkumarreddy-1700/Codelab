@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 3: Tables with Rows, Columns, Borders and Merged Cells</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 3</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 03 OF 14</div>
+<h1>Program 3: Tables with Rows, Columns, Borders and Merged Cells</h1>
+<p class="lead">Demonstrates table structure using rows and cells, together with colspan and rowspan for merged cells.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create a webpage using tables with rows, columns, borders, and merged cells.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates table structure using rows and cells, together with colspan and rowspan for merged cells.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program3.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;HTML Table&lt;/title&gt;
+
+    &lt;style&gt;
+        table, th, td {
+            border: 1px solid #333;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Student Details&lt;/h1&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th colspan=&quot;3&quot;&gt;Student Details&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Course&lt;/th&gt;
+            &lt;th&gt;Year&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Mahesh&lt;/td&gt;
+            &lt;td&gt;Computer Science&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td rowspan=&quot;2&quot;&gt;Student Group&lt;/td&gt;
+            &lt;td&gt;Web Development&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;Practical Lab&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;HTML Table&lt;/title&gt;
+
+    &lt;style&gt;
+        table, th, td {
+            border: 1px solid #333;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Student Details&lt;/h1&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th colspan=&quot;3&quot;&gt;Student Details&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Course&lt;/th&gt;
+            &lt;th&gt;Year&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Mahesh&lt;/td&gt;
+            &lt;td&gt;Computer Science&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td rowspan=&quot;2&quot;&gt;Student Group&lt;/td&gt;
+            &lt;td&gt;Web Development&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;Practical Lab&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 3 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>&lt;table&gt; creates the table, &lt;tr&gt; creates rows, &lt;th&gt; creates headings, and &lt;td&gt; creates data cells. colspan merges columns and rowspan merges rows.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Tables</span><span class="chip">Rows and cells</span><span class="chip">Table headings</span><span class="chip">colspan</span><span class="chip">rowspan</span><span class="chip">Borders</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Use tables for tabular data, not for general webpage layout. Keep table headings meaningful.</p></section>
+
+<div class="navpages"><a href="program2.html">← Program 2</a><a href="program4.html">Program 4 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

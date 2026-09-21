@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 2: Ordered, Unordered and Description Lists</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 2</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 02 OF 14</div>
+<h1>Program 2: Ordered, Unordered and Description Lists</h1>
+<p class="lead">Demonstrates three common HTML list types: ordered lists for sequences, unordered lists for bullet points, and description lists for terms and definitions.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create an HTML page containing ordered, unordered, and description lists.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates three common HTML list types: ordered lists for sequences, unordered lists for bullet points, and description lists for terms and definitions.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program2.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;HTML Lists&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML Lists&lt;/h1&gt;
+
+    &lt;h2&gt;Ordered List&lt;/h2&gt;
+    &lt;ol&gt;
+        &lt;li&gt;HTML&lt;/li&gt;
+        &lt;li&gt;CSS&lt;/li&gt;
+        &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;h2&gt;Unordered List&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Python&lt;/li&gt;
+        &lt;li&gt;C&lt;/li&gt;
+        &lt;li&gt;Java&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Description List&lt;/h2&gt;
+    &lt;dl&gt;
+        &lt;dt&gt;HTML&lt;/dt&gt;
+        &lt;dd&gt;Structures webpages.&lt;/dd&gt;
+
+        &lt;dt&gt;CSS&lt;/dt&gt;
+        &lt;dd&gt;Styles webpages.&lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;HTML Lists&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML Lists&lt;/h1&gt;
+
+    &lt;h2&gt;Ordered List&lt;/h2&gt;
+    &lt;ol&gt;
+        &lt;li&gt;HTML&lt;/li&gt;
+        &lt;li&gt;CSS&lt;/li&gt;
+        &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;h2&gt;Unordered List&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Python&lt;/li&gt;
+        &lt;li&gt;C&lt;/li&gt;
+        &lt;li&gt;Java&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Description List&lt;/h2&gt;
+    &lt;dl&gt;
+        &lt;dt&gt;HTML&lt;/dt&gt;
+        &lt;dd&gt;Structures webpages.&lt;/dd&gt;
+
+        &lt;dt&gt;CSS&lt;/dt&gt;
+        &lt;dd&gt;Styles webpages.&lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 2 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>&lt;ol&gt; creates a numbered list, &lt;ul&gt; creates a bulleted list, and &lt;dl&gt; contains terms (&lt;dt&gt;) and their descriptions (&lt;dd&gt;).</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Ordered list</span><span class="chip">Unordered list</span><span class="chip">Description list</span><span class="chip">List items</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Use ordered lists when sequence matters. Use unordered lists when order does not matter.</p></section>
+
+<div class="navpages"><a href="program1.html">← Program 1</a><a href="program3.html">Program 3 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

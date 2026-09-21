@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 12: CSS Selectors, Colors, Fonts, Margins, Padding and Borders</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 12</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 12 OF 14</div>
+<h1>Program 12: CSS Selectors, Colors, Fonts, Margins, Padding and Borders</h1>
+<p class="lead">Demonstrates universal, element, class and ID selectors along with common CSS styling properties.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create a webpage demonstrating CSS selectors, colors, fonts, margins, padding, and borders.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates universal, element, class and ID selectors along with common CSS styling properties.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program12.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;CSS Styling&lt;/title&gt;
+
+    &lt;style&gt;
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        h1 {
+            color: #6c4cff;
+        }
+
+        .box {
+            margin: 30px;
+            padding: 25px;
+            border: 3px solid #222;
+            background: white;
+        }
+
+        #special {
+            color: #d33;
+            font-weight: bold;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;CSS Selectors and Styling&lt;/h1&gt;
+
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;p id=&quot;special&quot;&gt;
+            This paragraph demonstrates CSS styling.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;CSS Styling&lt;/title&gt;
+
+    &lt;style&gt;
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        h1 {
+            color: #6c4cff;
+        }
+
+        .box {
+            margin: 30px;
+            padding: 25px;
+            border: 3px solid #222;
+            background: white;
+        }
+
+        #special {
+            color: #d33;
+            font-weight: bold;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;CSS Selectors and Styling&lt;/h1&gt;
+
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;p id=&quot;special&quot;&gt;
+            This paragraph demonstrates CSS styling.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 12 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>Selectors decide which elements receive styles. Colors change visual appearance, fonts control typography, margin creates outer space, padding creates inner space, and borders surround an element.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Universal selector</span><span class="chip">Element selector</span><span class="chip">Class selector</span><span class="chip">ID selector</span><span class="chip">color</span><span class="chip">font-family</span><span class="chip">margin</span><span class="chip">padding</span><span class="chip">border</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Prefer classes for reusable styling. Use IDs when an element needs a unique identifier.</p></section>
+
+<div class="navpages"><a href="program11.html">← Program 11</a><a href="program13.html">Program 13 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

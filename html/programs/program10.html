@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 10: College Timetable using HTML Table</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 10</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 10 OF 14</div>
+<h1>Program 10: College Timetable using HTML Table</h1>
+<p class="lead">Demonstrates how a timetable can be represented using table rows, headings, and cells.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create a college timetable using an HTML table.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates how a timetable can be represented using table rows, headings, and cells.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program10.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;College Timetable&lt;/title&gt;
+
+    &lt;style&gt;
+        table {
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #e8e8e8;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;College Timetable&lt;/h1&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Day&lt;/th&gt;
+            &lt;th&gt;9:00 - 10:00&lt;/th&gt;
+            &lt;th&gt;10:00 - 11:00&lt;/th&gt;
+            &lt;th&gt;11:00 - 12:00&lt;/th&gt;
+            &lt;th&gt;1:00 - 2:00&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Monday&lt;/th&gt;
+            &lt;td&gt;DS&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+            &lt;td&gt;HTML&lt;/td&gt;
+            &lt;td&gt;EVS&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Tuesday&lt;/th&gt;
+            &lt;td&gt;Python&lt;/td&gt;
+            &lt;td&gt;CSS&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+            &lt;td&gt;DS&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Wednesday&lt;/th&gt;
+            &lt;td colspan=&quot;2&quot;&gt;HTML Lab&lt;/td&gt;
+            &lt;td&gt;English&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;College Timetable&lt;/title&gt;
+
+    &lt;style&gt;
+        table {
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #e8e8e8;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;College Timetable&lt;/h1&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Day&lt;/th&gt;
+            &lt;th&gt;9:00 - 10:00&lt;/th&gt;
+            &lt;th&gt;10:00 - 11:00&lt;/th&gt;
+            &lt;th&gt;11:00 - 12:00&lt;/th&gt;
+            &lt;th&gt;1:00 - 2:00&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Monday&lt;/th&gt;
+            &lt;td&gt;DS&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+            &lt;td&gt;HTML&lt;/td&gt;
+            &lt;td&gt;EVS&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Tuesday&lt;/th&gt;
+            &lt;td&gt;Python&lt;/td&gt;
+            &lt;td&gt;CSS&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+            &lt;td&gt;DS&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;Wednesday&lt;/th&gt;
+            &lt;td colspan=&quot;2&quot;&gt;HTML Lab&lt;/td&gt;
+            &lt;td&gt;English&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 10 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>A timetable is naturally represented using an HTML table. Rows represent days and columns represent time periods or subjects.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Table layout</span><span class="chip">Rows</span><span class="chip">Columns</span><span class="chip">colspan</span><span class="chip">Table styling</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Keep the timetable readable on small screens; a responsive wrapper can be added for mobile devices.</p></section>
+
+<div class="navpages"><a href="program9.html">← Program 9</a><a href="program11.html">Program 11 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

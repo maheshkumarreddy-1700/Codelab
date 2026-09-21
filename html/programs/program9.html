@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 9: HTML5 Input Types</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 9</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 09 OF 14</div>
+<h1>Program 9: HTML5 Input Types</h1>
+<p class="lead">Demonstrates specialized HTML5 input controls that provide appropriate input behavior and browser validation.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create an HTML page using HTML5 input types such as email, date, number, and password.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates specialized HTML5 input controls that provide appropriate input behavior and browser validation.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program9.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;HTML5 Input Types&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;HTML5 Input Types&lt;/h1&gt;
+
+    &lt;form&gt;
+        &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; required&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;date&quot;&gt;Date:&lt;/label&gt;
+        &lt;input type=&quot;date&quot; id=&quot;date&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;number&quot;&gt;Number:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;number&quot; min=&quot;1&quot; max=&quot;100&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;HTML5 Input Types&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;HTML5 Input Types&lt;/h1&gt;
+
+    &lt;form&gt;
+        &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; required&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;date&quot;&gt;Date:&lt;/label&gt;
+        &lt;input type=&quot;date&quot; id=&quot;date&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;number&quot;&gt;Number:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;number&quot; min=&quot;1&quot; max=&quot;100&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 9 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>HTML5 provides specialized input types. Browsers can offer suitable controls and basic validation based on the selected type.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">email</span><span class="chip">date</span><span class="chip">number</span><span class="chip">password</span><span class="chip">required</span><span class="chip">min and max</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Input type does not replace server-side validation. Validate important data again on the server.</p></section>
+
+<div class="navpages"><a href="program8.html">← Program 8</a><a href="program10.html">Program 10 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

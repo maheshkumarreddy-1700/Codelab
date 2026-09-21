@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 5: Student Registration Form</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 5</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 05 OF 14</div>
+<h1>Program 5: Student Registration Form</h1>
+<p class="lead">Demonstrates text fields, email input, radio buttons, a select menu, and a submit button.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create a student registration form using HTML form elements.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates text fields, email input, radio buttons, a select menu, and a submit button.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program5.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Student Registration&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Student Registration Form&lt;/h1&gt;
+
+    &lt;form&gt;
+        &lt;label for=&quot;name&quot;&gt;Full Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label&gt;Gender:&lt;/label&gt;
+        &lt;input type=&quot;radio&quot; id=&quot;male&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;
+        &lt;label for=&quot;male&quot;&gt;Male&lt;/label&gt;
+
+        &lt;input type=&quot;radio&quot; id=&quot;female&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;
+        &lt;label for=&quot;female&quot;&gt;Female&lt;/label&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;course&quot;&gt;Course:&lt;/label&gt;
+        &lt;select id=&quot;course&quot; name=&quot;course&quot;&gt;
+            &lt;option&gt;B.Tech&lt;/option&gt;
+            &lt;option&gt;BCA&lt;/option&gt;
+            &lt;option&gt;B.Sc&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Register&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Student Registration&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Student Registration Form&lt;/h1&gt;
+
+    &lt;form&gt;
+        &lt;label for=&quot;name&quot;&gt;Full Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label&gt;Gender:&lt;/label&gt;
+        &lt;input type=&quot;radio&quot; id=&quot;male&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;
+        &lt;label for=&quot;male&quot;&gt;Male&lt;/label&gt;
+
+        &lt;input type=&quot;radio&quot; id=&quot;female&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;
+        &lt;label for=&quot;female&quot;&gt;Female&lt;/label&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;label for=&quot;course&quot;&gt;Course:&lt;/label&gt;
+        &lt;select id=&quot;course&quot; name=&quot;course&quot;&gt;
+            &lt;option&gt;B.Tech&lt;/option&gt;
+            &lt;option&gt;BCA&lt;/option&gt;
+            &lt;option&gt;B.Sc&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Register&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 5 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>The &lt;form&gt; element groups user-input controls. Labels identify fields, input elements collect data, radio buttons allow one choice from a group, and select creates a dropdown.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Forms</span><span class="chip">Labels</span><span class="chip">Input elements</span><span class="chip">Radio buttons</span><span class="chip">Select and option</span><span class="chip">Submit button</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Use labels for form controls. In a production form, also add validation and a server-side endpoint.</p></section>
+
+<div class="navpages"><a href="program4.html">← Program 4</a><a href="program6.html">Program 6 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

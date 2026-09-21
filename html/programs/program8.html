@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program 8: Semantic HTML Elements</title>
+<link rel="stylesheet" href="../program.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav">
+<a class="logo" href="../index.html"><span>&lt;/&gt;</span> CodeLab</a>
+<div class="crumb">HTML Lab / Program 8</div>
+<button id="themeToggle" class="btn">☀️</button>
+<a class="btn" href="../index.html">← Lab</a>
+</div>
+</nav>
+
+<div class="layout">
+<aside class="toc">
+<h3>On this page</h3>
+<a href="#aim">Aim</a>
+<a href="#description">Description</a>
+<a href="#code">Source Code</a>
+<a href="#output">Output / Preview</a>
+<a href="#explanation">Explanation</a>
+<a href="#concepts">Key Concepts</a>
+<a href="#notes">Notes</a>
+</aside>
+
+<main class="content">
+<div class="kicker">HTML / PROGRAM 08 OF 14</div>
+<h1>Program 8: Semantic HTML Elements</h1>
+<p class="lead">Demonstrates meaningful page structure using HTML5 semantic elements instead of relying only on generic containers.</p>
+
+<section class="card" id="aim"><h2>Aim</h2><p>To create an HTML page demonstrating semantic elements such as &lt;header&gt;, &lt;nav&gt;, &lt;section&gt;, &lt;article&gt;, and &lt;footer&gt;.</p></section>
+
+<section class="card" id="description"><h2>Description</h2><p>Demonstrates meaningful page structure using HTML5 semantic elements instead of relying only on generic containers.</p></section>
+
+<section class="card" id="code">
+<h2>Complete Source Code</h2>
+<div class="code">
+<div class="code-head"><span>program8.html</span><button class="copy">Copy Code</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Semantic HTML&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;My College Website&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; |
+        &lt;a href=&quot;#&quot;&gt;Courses&lt;/a&gt; |
+        &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;section&gt;
+        &lt;h2&gt;Latest News&lt;/h2&gt;
+
+        &lt;article&gt;
+            &lt;h3&gt;Web Development Workshop&lt;/h3&gt;
+            &lt;p&gt;
+                Students can participate in the upcoming workshop.
+            &lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 My College&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</section>
+
+<section class="card" id="output">
+<h2>Output / Preview</h2>
+<p class="muted">Live preview of the practical where browser security/resources allow it.</p>
+<div class="preview"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Semantic HTML&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;My College Website&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; |
+        &lt;a href=&quot;#&quot;&gt;Courses&lt;/a&gt; |
+        &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;section&gt;
+        &lt;h2&gt;Latest News&lt;/h2&gt;
+
+        &lt;article&gt;
+            &lt;h3&gt;Web Development Workshop&lt;/h3&gt;
+            &lt;p&gt;
+                Students can participate in the upcoming workshop.
+            &lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 My College&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;" title="Program 8 preview"></iframe></div>
+</section>
+
+<section class="card" id="explanation"><h2>Explanation</h2><p>Semantic elements describe the role of content. &lt;header&gt; introduces a page or section, &lt;nav&gt; contains navigation, &lt;section&gt; groups related content, &lt;article&gt; represents independent content, and &lt;footer&gt; contains closing information.</p></section>
+
+<section class="card" id="concepts"><h2>Key Concepts</h2><div class="chips"><span class="chip">Semantic HTML5</span><span class="chip">header</span><span class="chip">nav</span><span class="chip">section</span><span class="chip">article</span><span class="chip">footer</span></div></section>
+
+<section class="card" id="notes"><h2>Notes</h2><p>Semantic HTML improves structure, accessibility, and maintainability.</p></section>
+
+<div class="navpages"><a href="program7.html">← Program 7</a><a href="program9.html">Program 9 →</a></div>
+</main>
+</div>
+
+<footer class="card" style="border-radius:0;margin:0;border-left:0;border-right:0;border-bottom:0;text-align:center">
+© 2026 CodeLab • HTML Practical Laboratory
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>
