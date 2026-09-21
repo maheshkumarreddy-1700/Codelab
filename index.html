@@ -1,720 +1,856 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CSS Lab | CodeLab</title>
+    <meta name="description"
+          content="CodeLab - HTML, CSS and JavaScript Practical Programs and Experiments">
 
-    <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="../program.css">
+    <meta name="author" content="Mahesh Kumar Reddy">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <title>CodeLab | HTML CSS JavaScript Practical Lab</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="program-navbar">
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
 
-        <div class="program-nav-container">
+    <header class="navbar">
 
-            <a href="../index.html" class="program-logo">
-                <span class="logo-symbol">&lt;/&gt;</span>
-                <span>CodeLab</span>
+        <div class="nav-container">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-symbol">◈</span>
+                <span>Code<span class="logo-highlight">Lab</span></span>
             </a>
 
-            <div class="program-breadcrumb">
-                <a href="../index.html">Home</a>
-                <span>/</span>
-                <span>CSS Lab</span>
-            </div>
+            <!-- Navigation -->
+            <nav class="nav-menu">
 
-            <div class="program-nav-actions">
+                <a href="#home" class="nav-link active">
+                    Home
+                </a>
 
-                <button id="themeToggle" class="theme-toggle">
-                    🌙
+                <a href="#labs" class="nav-link">
+                    Labs
+                </a>
+
+                <a href="#learning-path" class="nav-link">
+                    Learning Path
+                </a>
+
+                <a href="#about" class="nav-link">
+                    About
+                </a>
+
+            </nav>
+
+            <!-- Right Controls -->
+            <div class="nav-actions">
+
+                <button
+                    class="theme-button"
+                    id="themeToggle"
+                    aria-label="Toggle dark mode"
+                    title="Toggle theme">
+                    ◐
                 </button>
 
-                <a href="../index.html" class="back-home">
-                    ← Home
+                <a
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-button">
+                    GitHub ↗
                 </a>
 
             </div>
 
         </div>
 
-    </nav>
+    </header>
 
 
-    <!-- HERO -->
-    <section class="program-hero">
+    <!-- =========================================================
+         HERO SECTION
+    ========================================================== -->
 
-        <div class="program-hero-content">
+    <main>
 
-            <div class="program-category">
-                CSS
-            </div>
+        <section class="hero" id="home">
 
-            <h1>
-                CSS Practical Programs
-            </h1>
+            <div class="hero-container">
 
-            <p>
-                Learn how to style, design and build responsive
-                webpages using practical CSS examples and
-                hands-on experiments.
-            </p>
+                <!-- Left Content -->
 
-        </div>
+                <div class="hero-content">
 
-    </section>
+                    <div class="hero-badge">
+                        <span class="status-dot"></span>
+                        HTML • CSS • JAVASCRIPT
+                    </div>
 
+                    <h1>
+                        Learn.
+                        <span>Code.</span>
+                        <br>
+                        Experiment.
+                    </h1>
 
-    <!-- MAIN -->
-    <main class="program-page-container">
-
-        <div class="program-main">
-
-            <!-- INTRODUCTION -->
-            <section class="program-section">
-
-                <h2>CSS Laboratory</h2>
-
-                <p>
-                    This section contains practical CSS programs
-                    covering selectors, colors, backgrounds,
-                    borders, layouts, positioning, responsive
-                    design and more.
-                </p>
-
-            </section>
-
-
-            <!-- PROGRAMS -->
-            <section class="program-section" id="programs">
-
-                <h2>Programs</h2>
-
-                <div class="program-grid">
-
-
-                    <!-- 01 -->
-                    <a href="programs/program1.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            01
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                Inline, Internal and External CSS
-                            </h3>
-
-                            <p>
-                                Create webpages using different
-                                methods of applying CSS.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 02 -->
-                    <a href="programs/program2.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            02
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Selectors
-                            </h3>
-
-                            <p>
-                                Practice universal, element, class,
-                                ID, attribute and grouping selectors.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 03 -->
-                    <a href="programs/program3.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            03
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                Combinator Selectors
-                            </h3>
-
-                            <p>
-                                Use descendant, child, adjacent
-                                sibling and general sibling selectors.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 04 -->
-                    <a href="programs/program4.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            04
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Colors
-                            </h3>
-
-                            <p>
-                                Apply colors to text, backgrounds,
-                                borders and user interface elements.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 05 -->
-                    <a href="programs/program5.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            05
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Backgrounds
-                            </h3>
-
-                            <p>
-                                Work with background images, colors,
-                                positioning, sizing and repetition.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 06 -->
-                    <a href="programs/program6.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            06
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Borders
-                            </h3>
-
-                            <p>
-                                Create different border styles,
-                                widths, colors and rounded corners.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 07 -->
-                    <a href="programs/program7.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            07
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                Box Model
-                            </h3>
-
-                            <p>
-                                Understand margin, border, padding
-                                and content dimensions.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 08 -->
-                    <a href="programs/program8.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            08
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Display
-                            </h3>
-
-                            <p>
-                                Practice block, inline, inline-block
-                                and hidden elements.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 09 -->
-                    <a href="programs/program9.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            09
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Positioning
-                            </h3>
-
-                            <p>
-                                Use static, relative, absolute,
-                                fixed and sticky positioning.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 10 -->
-                    <a href="programs/program10.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            10
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                Flexbox Layout
-                            </h3>
-
-                            <p>
-                                Build flexible layouts using
-                                CSS Flexbox.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 11 -->
-                    <a href="programs/program11.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            11
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Grid
-                            </h3>
-
-                            <p>
-                                Create two-dimensional layouts
-                                using CSS Grid.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 12 -->
-                    <a href="programs/program12.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            12
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                Responsive Web Design
-                            </h3>
-
-                            <p>
-                                Build webpages that adapt to
-                                different screen sizes.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 13 -->
-                    <a href="programs/program13.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            13
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Transitions
-                            </h3>
-
-                            <p>
-                                Add smooth visual transitions
-                                to webpage elements.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 14 -->
-                    <a href="programs/program14.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            14
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Animations
-                            </h3>
-
-                            <p>
-                                Create animated webpage elements
-                                using keyframes.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 15 -->
-                    <a href="programs/program15.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            15
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                Navigation Bar
-                            </h3>
-
-                            <p>
-                                Design a modern navigation bar
-                                using HTML and CSS.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- 16 -->
-                    <a href="programs/program16.html"
-                       class="program-card">
-
-                        <div class="program-number">
-                            16
-                        </div>
-
-                        <div class="program-card-content">
-
-                            <span class="program-tag">
-                                CSS
-                            </span>
-
-                            <h3>
-                                CSS Cards
-                            </h3>
-
-                            <p>
-                                Create stylish content cards
-                                using modern CSS.
-                            </p>
-
-                            <span class="program-link">
-                                Open Program →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                </div>
-
-            </section>
-
-
-            <!-- TIP -->
-
-            <section class="program-section">
-
-                <div class="note-box">
-
-                    <strong>💡 Learning Tip</strong>
-
-                    <p>
-                        Experiment with the CSS properties in
-                        every program. Change colors, spacing,
-                        fonts and layouts to understand how CSS
-                        affects the webpage.
+                    <p class="hero-description">
+                        A modern collection of practical programs designed
+                        to help you learn HTML, CSS and JavaScript through
+                        hands-on experimentation.
                     </p>
 
+                    <div class="hero-buttons">
+
+                        <a href="#labs" class="primary-button">
+                            Explore Labs
+                            <span>→</span>
+                        </a>
+
+                        <a href="#learning-path" class="secondary-button">
+                            Learning Path
+                        </a>
+
+                    </div>
+
+                    <!-- Quick Info -->
+
+                    <div class="hero-info">
+
+                        <div class="info-item">
+                            <strong>100+</strong>
+                            <span>Programs</span>
+                        </div>
+
+                        <div class="info-divider"></div>
+
+                        <div class="info-item">
+                            <strong>3</strong>
+                            <span>Technologies</span>
+                        </div>
+
+                        <div class="info-divider"></div>
+
+                        <div class="info-item">
+                            <strong>∞</strong>
+                            <span>Experiments</span>
+                        </div>
+
+                    </div>
+
                 </div>
 
-            </section>
 
-        </div>
+                <!-- Right Visual -->
 
+                <div class="hero-visual">
 
-        <!-- RIGHT SIDEBAR -->
+                    <div class="code-window">
 
-        <aside class="program-right-sidebar">
+                        <!-- Window Header -->
 
-            <div class="toc-card">
+                        <div class="window-header">
 
-                <h3>
-                    CSS Lab
-                </h3>
+                            <div class="window-controls">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
 
-                <ul>
+                            <div class="window-title">
+                                playground.js
+                            </div>
 
-                    <li>
-                        <a href="#programs">
-                            Programs
-                        </a>
-                    </li>
+                            <div class="window-status">
+                                ●
+                            </div>
 
-                    <li>
-                        <a href="../html/index.html">
-                            ← HTML Lab
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="../javascript/index.html">
-                            JavaScript Lab →
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
+                        </div>
 
 
-            <div class="progress-card">
+                        <!-- Code -->
 
-                <span>
-                    CSS Programs
-                </span>
+                        <div class="code-content">
 
-                <strong>
-                    16 Programs
-                </strong>
+<pre><code><span class="code-keyword">const</span>
+<span class="code-variable">developer</span> = {
+    name: <span class="code-string">"Student"</span>,
+    skills: [
+        <span class="code-string">"HTML"</span>,
+        <span class="code-string">"CSS"</span>,
+        <span class="code-string">"JavaScript"</span>
+    ],
 
-                <div class="progress-bar">
+    <span class="code-function">learn</span>() {
+        <span class="code-keyword">return</span>
+        <span class="code-string">
+        "Keep building 🚀"
+        </span>;
+    }
+};
 
-                    <div class="progress-fill"
-                         style="width: 55%;">
+<span class="code-console">
+&gt; developer.learn()
+"Keep building 🚀"
+</span></code></pre>
+
+                        </div>
+
+                        <!-- Window Footer -->
+
+                        <div class="window-footer">
+
+                            <span>
+                                <span class="live-dot"></span>
+                                Ready
+                            </span>
+
+                            <span>
+                                JavaScript
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Floating Elements -->
+
+                    <div class="floating-card floating-card-one">
+                        <span class="floating-icon">{"<>"}</span>
+                        <div>
+                            <strong>HTML</strong>
+                            <small>Structure</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-two">
+                        <span class="floating-icon">{ }</span>
+                        <div>
+                            <strong>CSS</strong>
+                            <small>Design</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-three">
+                        <span class="floating-icon">JS</span>
+                        <div>
+                            <strong>JavaScript</strong>
+                            <small>Logic</small>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
 
-        </aside>
+        </section>
+
+
+        <!-- =========================================================
+             STATS
+        ========================================================== -->
+
+        <section class="stats-section">
+
+            <div class="stats-container">
+
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">HTML Experiments</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">CSS Experiments</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">JavaScript Programs</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Practical Exercises</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+             LABS SECTION
+        ========================================================== -->
+
+        <section class="labs-section" id="labs">
+
+            <div class="section-container">
+
+                <!-- Section Heading -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">
+                            EXPLORE
+                        </span>
+
+                        <h2>
+                            Choose your <span>lab.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Explore practical programs and experiment
+                        with web development technologies.
+                    </p>
+
+                </div>
+
+
+                <!-- Lab Cards -->
+
+                <div class="lab-grid">
+
+
+                    <!-- HTML -->
+
+                    <article class="lab-card html-card">
+
+                        <div class="lab-card-top">
+
+                            <div class="lab-icon">
+                                &lt;/&gt;
+                            </div>
+
+                            <span class="lab-number">
+                                01
+                            </span>
+
+                        </div>
+
+                        <div class="lab-content">
+
+                            <span class="lab-tag">
+                                MARKUP
+                            </span>
+
+                            <h3>
+                                HTML Lab
+                            </h3>
+
+                            <p>
+                                Build the structure of modern websites
+                                using HTML elements, forms, tables,
+                                media and semantic markup.
+                            </p>
+
+                        </div>
+
+                        <div class="lab-bottom">
+
+                            <span>
+                                15+ Experiments
+                            </span>
+
+                            <a href="html/index.html">
+                                Explore →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CSS -->
+
+                    <article class="lab-card css-card">
+
+                        <div class="lab-card-top">
+
+                            <div class="lab-icon">
+                                #
+                            </div>
+
+                            <span class="lab-number">
+                                02
+                            </span>
+
+                        </div>
+
+                        <div class="lab-content">
+
+                            <span class="lab-tag">
+                                STYLING
+                            </span>
+
+                            <h3>
+                                CSS Lab
+                            </h3>
+
+                            <p>
+                                Learn layouts, colors, animations,
+                                responsive design, selectors,
+                                components and modern UI styling.
+                            </p>
+
+                        </div>
+
+                        <div class="lab-bottom">
+
+                            <span>
+                                30+ Experiments
+                            </span>
+
+                            <a href="css/index.html">
+                                Explore →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- JavaScript -->
+
+                    <article class="lab-card js-card">
+
+                        <div class="lab-card-top">
+
+                            <div class="lab-icon">
+                                JS
+                            </div>
+
+                            <span class="lab-number">
+                                03
+                            </span>
+
+                        </div>
+
+                        <div class="lab-content">
+
+                            <span class="lab-tag">
+                                PROGRAMMING
+                            </span>
+
+                            <h3>
+                                JavaScript Lab
+                            </h3>
+
+                            <p>
+                                Practice programming logic, DOM
+                                manipulation, events, forms,
+                                browser APIs and mini projects.
+                            </p>
+
+                        </div>
+
+                        <div class="lab-bottom">
+
+                            <span>
+                                50+ Experiments
+                            </span>
+
+                            <a href="javascript/index.html">
+                                Explore →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+             LEARNING PATH
+        ========================================================== -->
+
+        <section class="learning-section" id="learning-path">
+
+            <div class="section-container">
+
+                <div class="section-heading centered">
+
+                    <span class="section-label">
+                        LEARNING PATH
+                    </span>
+
+                    <h2>
+                        From <span>structure</span> to interaction.
+                    </h2>
+
+                    <p>
+                        Follow a simple path from HTML fundamentals
+                        to interactive JavaScript applications.
+                    </p>
+
+                </div>
+
+
+                <div class="learning-path">
+
+                    <!-- Step 1 -->
+
+                    <div class="learning-step">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-line"></div>
+
+                        <div class="step-content">
+
+                            <span>
+                                FOUNDATION
+                            </span>
+
+                            <h3>
+                                HTML
+                            </h3>
+
+                            <p>
+                                Learn how webpages are structured
+                                using elements and semantic markup.
+                            </p>
+
+                            <a href="html/index.html">
+                                Start HTML →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 2 -->
+
+                    <div class="learning-step">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-line"></div>
+
+                        <div class="step-content">
+
+                            <span>
+                                DESIGN
+                            </span>
+
+                            <h3>
+                                CSS
+                            </h3>
+
+                            <p>
+                                Transform plain HTML into attractive,
+                                responsive interfaces.
+                            </p>
+
+                            <a href="css/index.html">
+                                Start CSS →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 3 -->
+
+                    <div class="learning-step">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-content">
+
+                            <span>
+                                INTERACTION
+                            </span>
+
+                            <h3>
+                                JavaScript
+                            </h3>
+
+                            <p>
+                                Add logic, interaction and dynamic
+                                behavior to your webpages.
+                            </p>
+
+                            <a href="javascript/index.html">
+                                Start JavaScript →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+             FEATURES
+        ========================================================== -->
+
+        <section class="features-section">
+
+            <div class="section-container">
+
+                <div class="feature-grid">
+
+                    <div class="feature-intro">
+
+                        <span class="section-label">
+                            WHY CODELAB?
+                        </span>
+
+                        <h2>
+                            Learn by
+                            <span>doing.</span>
+                        </h2>
+
+                        <p>
+                            Every experiment is designed to give you
+                            practical experience rather than just
+                            theoretical knowledge.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-list">
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                ↗
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Practical Programs
+                                </h3>
+
+                                <p>
+                                    Learn through real coding
+                                    examples and experiments.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                ◉
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Organized Learning
+                                </h3>
+
+                                <p>
+                                    Programs are divided into
+                                    clear categories and topics.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                &lt;/&gt;
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Clean Code
+                                </h3>
+
+                                <p>
+                                    Study readable and beginner-friendly
+                                    source code.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                ⚡
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Experiment
+                                </h3>
+
+                                <p>
+                                    Modify the programs and discover
+                                    how the code works.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+             CTA
+        ========================================================== -->
+
+        <section class="cta-section" id="about">
+
+            <div class="cta-container">
+
+                <div class="cta-content">
+
+                    <span class="section-label">
+                        READY TO START?
+                    </span>
+
+                    <h2>
+                        Your next experiment
+                        <span>starts here.</span>
+                    </h2>
+
+                    <p>
+                        Pick a technology and start building.
+                    </p>
+
+                    <a href="#labs" class="primary-button">
+                        Explore All Labs
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+                <div class="cta-decoration">
+                    <span>&lt;</span>
+                    <span>/</span>
+                    <span>&gt;</span>
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
 
-    <footer class="program-footer">
+    <footer class="footer">
 
-        <p>
-            © <span class="current-year"></span>
-            CodeLab. Built for learning.
-        </p>
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="logo">
+                    <span class="logo-symbol">◈</span>
+                    <span>Code<span class="logo-highlight">Lab</span></span>
+                </a>
+
+                <p>
+                    HTML • CSS • JavaScript Practical Laboratory
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#labs">
+                    Labs
+                </a>
+
+                <a href="#learning-path">
+                    Learning Path
+                </a>
+
+                <a href="https://github.com/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 CodeLab
+                </span>
+
+                <span>
+                    Built for learning & experimentation.
+                </span>
+
+            </div>
+
+        </div>
 
     </footer>
 
 
-    <script src="../script.js"></script>
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script src="script.js"></script>
 
 </body>
-
 </html>
+```
