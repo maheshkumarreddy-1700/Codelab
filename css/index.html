@@ -1,0 +1,983 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeLab — 270 CSS Practicals</title>
+
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --surface: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+            --primary: #4f46e5;
+            --primary2: #7c3aed;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system,
+                         BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #312e81,
+                #4f46e5,
+                #7c3aed
+            );
+            color: white;
+            padding: 55px 20px;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        header h1 {
+            margin: 12px 0;
+            font-size: clamp(32px, 6vw, 58px);
+        }
+
+        header p {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        /* SEARCH */
+
+        .search-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(245, 247, 251, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+
+        #search {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            font-size: 16px;
+            outline: none;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        #search:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        /* SECTION */
+
+        .section {
+            margin: 35px 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .count {
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        /* GRID */
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        /* CARD */
+
+        .card {
+            display: block;
+            text-decoration: none;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #a5b4fc;
+            box-shadow: var(--shadow);
+        }
+
+        .number {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .open {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        /* NO RESULTS */
+
+        #noResults {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--muted);
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 50px;
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+            header {
+                padding: 40px 15px;
+            }
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <div class="brand">
+            CodeLab • CSS Practicals
+        </div>
+
+        <h1>270 CSS Practicals</h1>
+
+        <p>
+            Complete collection of HTML5 and CSS3 practical programs
+            covering CSS fundamentals, layouts, responsive design,
+            SaaS interfaces, dashboards, AI/ML interfaces and modern
+            web components.
+        </p>
+
+    </div>
+</header>
+
+
+<main class="container">
+
+    <div class="search-container">
+        <input
+            type="text"
+            id="search"
+            placeholder="🔍 Search practicals..."
+            oninput="searchPracticals()"
+        >
+    </div>
+
+
+    <!-- ==================== 1 - 30 ==================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>CSS Foundation & Core UI</h2>
+            <span class="count">1–30</span>
+        </div>
+
+        <div class="grid">
+
+            <a class="card" href="programs/css-01.html">
+                <span class="number">CSS 01</span>
+                <h3>Inline, Internal & External CSS</h3>
+                <p>Demonstrate three CSS application methods.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-02.html">
+                <span class="number">CSS 02</span>
+                <h3>CSS Selectors</h3>
+                <p>Universal, element, class, ID, attribute and grouping selectors.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-03.html">
+                <span class="number">CSS 03</span>
+                <h3>Combinator Selectors</h3>
+                <p>Descendant, child, adjacent and general sibling selectors.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-04.html">
+                <span class="number">CSS 04</span>
+                <h3>CSS Colors</h3>
+                <p>Apply colors to text, backgrounds, borders and UI elements.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-05.html">
+                <span class="number">CSS 05</span>
+                <h3>CSS Backgrounds</h3>
+                <p>Images, colors, positioning, sizing, repeat and attachment.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-06.html">
+                <span class="number">CSS 06</span>
+                <h3>CSS Borders</h3>
+                <p>Border styles, widths, colors and border-radius.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-07.html">
+                <span class="number">CSS 07</span>
+                <h3>CSS Gradients</h3>
+                <p>Create linear and radial gradients.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-08.html">
+                <span class="number">CSS 08</span>
+                <h3>CSS Font Properties</h3>
+                <p>Font family, size, weight, style and variant.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-09.html">
+                <span class="number">CSS 09</span>
+                <h3>CSS Text Properties</h3>
+                <p>Alignment, decoration, transformation, spacing and line-height.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-10.html">
+                <span class="number">CSS 10</span>
+                <h3>CSS Box Model</h3>
+                <p>Content, padding, border and margin.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-11.html">
+                <span class="number">CSS 11</span>
+                <h3>Width, Height & Constraints</h3>
+                <p>Width, height, min-width, max-width, min-height and max-height.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-12.html">
+                <span class="number">CSS 12</span>
+                <h3>CSS Box Sizing</h3>
+                <p>Compare content-box and border-box.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-13.html">
+                <span class="number">CSS 13</span>
+                <h3>CSS Display Properties</h3>
+                <p>Block, inline, inline-block, flex, grid and none.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-14.html">
+                <span class="number">CSS 14</span>
+                <h3>CSS Visibility & Opacity</h3>
+                <p>Visibility hidden and opacity properties.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-15.html">
+                <span class="number">CSS 15</span>
+                <h3>CSS Overflow</h3>
+                <p>Overflow, overflow-x and overflow-y.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-16.html">
+                <span class="number">CSS 16</span>
+                <h3>Border Radius Shapes</h3>
+                <p>Rounded cards, circles, pills and custom shapes.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-17.html">
+                <span class="number">CSS 17</span>
+                <h3>CSS Shadows</h3>
+                <p>Box-shadow and text-shadow.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-18.html">
+                <span class="number">CSS 18</span>
+                <h3>CSS Variables</h3>
+                <p>Custom properties for reusable design values.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-19.html">
+                <span class="number">CSS 19</span>
+                <h3>Inheritance, Specificity & Cascade</h3>
+                <p>Demonstrate inheritance, specificity and cascade.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-20.html">
+                <span class="number">CSS 20</span>
+                <h3>CSS Math Functions</h3>
+                <p>Use calc(), min(), max() and clamp().</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-21.html">
+                <span class="number">CSS 21</span>
+                <h3>CSS Positioning</h3>
+                <p>Static, relative, absolute, fixed and sticky positioning.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-22.html">
+                <span class="number">CSS 22</span>
+                <h3>CSS Z-Index</h3>
+                <p>Demonstrate stacking order using z-index.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-23.html">
+                <span class="number">CSS 23</span>
+                <h3>Float & Clear</h3>
+                <p>Use float and clear for content positioning.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-24.html">
+                <span class="number">CSS 24</span>
+                <h3>Cursor & Pointer Interactions</h3>
+                <p>Different cursor styles and pointer interactions.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-25.html">
+                <span class="number">CSS 25</span>
+                <h3>CSS Outline</h3>
+                <p>Outline and outline-offset.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-26.html">
+                <span class="number">CSS 26</span>
+                <h3>Margin, Padding & Spacing</h3>
+                <p>Margin, padding, gap and spacing utilities.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-27.html">
+                <span class="number">CSS 27</span>
+                <h3>Percentages, Viewport Units & rem</h3>
+                <p>Percentage, vw, vh and rem units.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-28.html">
+                <span class="number">CSS 28</span>
+                <h3>em, rem, vw, vh & Percentage</h3>
+                <p>Compare common CSS length units.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-29.html">
+                <span class="number">CSS 29</span>
+                <h3>Object Fit & Object Position</h3>
+                <p>Control image fitting inside fixed dimensions.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+            <a class="card" href="programs/css-30.html">
+                <span class="number">CSS 30</span>
+                <h3>CSS Filters</h3>
+                <p>Blur, grayscale, brightness, contrast and opacity.</p>
+                <span class="open">Open Practical →</span>
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== 31 - 100 ==================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>CSS Components & SaaS UI</h2>
+            <span class="count">31–100</span>
+        </div>
+
+        <div class="grid">
+
+            <a class="card" href="programs/css-31.html"><span class="number">CSS 31</span><h3>Badges, Labels, Tags & Chips</h3><p>Modern CSS badge components.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-32.html"><span class="number">CSS 32</span><h3>User Avatars & Avatar Groups</h3><p>Create avatar components.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-33.html"><span class="number">CSS 33</span><h3>Dividers & Section Separators</h3><p>Create modern dividers.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-34.html"><span class="number">CSS 34</span><h3>Alert & Notification Components</h3><p>Alert UI components.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-35.html"><span class="number">CSS 35</span><h3>Toast Notifications</h3><p>Toast notification components.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-36.html"><span class="number">CSS 36</span><h3>Tooltip Components</h3><p>CSS tooltip interfaces.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-37.html"><span class="number">CSS 37</span><h3>Popover Components</h3><p>Popover interface design.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-38.html"><span class="number">CSS 38</span><h3>Modal & Dialog Components</h3><p>Modal and dialog interfaces.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-39.html"><span class="number">CSS 39</span><h3>Confirmation Dialogs</h3><p>Confirmation interfaces.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-40.html"><span class="number">CSS 40</span><h3>Drawer & Slide-Out Panel</h3><p>Slide-out panel UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-41.html"><span class="number">CSS 41</span><h3>Command Palette Interface</h3><p>Command palette design.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-42.html"><span class="number">CSS 42</span><h3>Accordion Component</h3><p>Expandable accordion UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-43.html"><span class="number">CSS 43</span><h3>Empty-State Component</h3><p>Empty state design.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-44.html"><span class="number">CSS 44</span><h3>Error-State Component</h3><p>Error state design.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-45.html"><span class="number">CSS 45</span><h3>Success-State Component</h3><p>Success state UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-46.html"><span class="number">CSS 46</span><h3>Loading-State Component</h3><p>Loading indicators.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-47.html"><span class="number">CSS 47</span><h3>Skeleton Loading</h3><p>Skeleton loading UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-48.html"><span class="number">CSS 48</span><h3>Progress Bar</h3><p>Progress bar component.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-49.html"><span class="number">CSS 49</span><h3>Progress Stepper</h3><p>Multi-step progress UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-50.html"><span class="number">CSS 50</span><h3>Timeline & Activity History</h3><p>Timeline component.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-51.html"><span class="number">CSS 51</span><h3>Login Form</h3><p>Modern login form.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-52.html"><span class="number">CSS 52</span><h3>Signup Form</h3><p>Modern signup form.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-53.html"><span class="number">CSS 53</span><h3>Forgot-Password Form</h3><p>Password recovery form.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-54.html"><span class="number">CSS 54</span><h3>Reset-Password Form</h3><p>Password reset interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-55.html"><span class="number">CSS 55</span><h3>Registration Form</h3><p>Registration interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-56.html"><span class="number">CSS 56</span><h3>Contact Form</h3><p>Contact form UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-57.html"><span class="number">CSS 57</span><h3>Multi-Step Form</h3><p>Multi-step form interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-58.html"><span class="number">CSS 58</span><h3>Form Validation & Error Messages</h3><p>Form validation UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-59.html"><span class="number">CSS 59</span><h3>SaaS Dashboard</h3><p>SaaS dashboard interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-60.html"><span class="number">CSS 60</span><h3>Admin Dashboard</h3><p>Administrative dashboard.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-61.html"><span class="number">CSS 61</span><h3>Analytics Dashboard</h3><p>Analytics dashboard UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-62.html"><span class="number">CSS 62</span><h3>KPI Analytics Dashboard</h3><p>KPI dashboard interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-63.html"><span class="number">CSS 63</span><h3>Revenue Analytics Dashboard</h3><p>Revenue analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-64.html"><span class="number">CSS 64</span><h3>Sales Analytics Dashboard</h3><p>Sales analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-65.html"><span class="number">CSS 65</span><h3>User Analytics</h3><p>User analytics dashboard.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-66.html"><span class="number">CSS 66</span><h3>Customer Analytics</h3><p>Customer analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-67.html"><span class="number">CSS 67</span><h3>Product Analytics</h3><p>Product analytics dashboard.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-68.html"><span class="number">CSS 68</span><h3>Marketing Analytics</h3><p>Marketing analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-69.html"><span class="number">CSS 69</span><h3>Financial Analytics</h3><p>Financial analytics dashboard.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-70.html"><span class="number">CSS 70</span><h3>Real-Time Analytics</h3><p>Real-time analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-71.html"><span class="number">CSS 71</span><h3>Real-Time Analytics Widgets</h3><p>Analytics dashboard widgets.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-72.html"><span class="number">CSS 72</span><h3>AI/ML Insights Dashboard</h3><p>AI and ML insights.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-73.html"><span class="number">CSS 73</span><h3>AI Model Performance Dashboard</h3><p>AI model performance UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-74.html"><span class="number">CSS 74</span><h3>Machine Learning Experiment Tracker</h3><p>ML experiment interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-75.html"><span class="number">CSS 75</span><h3>AI Prediction Results Dashboard</h3><p>AI prediction results.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-76.html"><span class="number">CSS 76</span><h3>Data Visualization Dashboard</h3><p>Data visualization UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-77.html"><span class="number">CSS 77</span><h3>Interactive Charts Dashboard</h3><p>Interactive chart interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-78.html"><span class="number">CSS 78</span><h3>Customer Retention Dashboard</h3><p>Retention analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-79.html"><span class="number">CSS 79</span><h3>Subscription Analytics Dashboard</h3><p>Subscription analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-80.html"><span class="number">CSS 80</span><h3>Churn Analytics Dashboard</h3><p>Churn analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-81.html"><span class="number">CSS 81</span><h3>Conversion Funnel Dashboard</h3><p>Conversion funnel.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-82.html"><span class="number">CSS 82</span><h3>Marketing Campaign Dashboard</h3><p>Campaign analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-83.html"><span class="number">CSS 83</span><h3>Support Analytics Dashboard</h3><p>Support analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-84.html"><span class="number">CSS 84</span><h3>Operations Dashboard</h3><p>Operations dashboard.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-85.html"><span class="number">CSS 85</span><h3>Project Management Dashboard</h3><p>Project management UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-86.html"><span class="number">CSS 86</span><h3>Team Performance Dashboard</h3><p>Team analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-87.html"><span class="number">CSS 87</span><h3>Task Management Dashboard</h3><p>Task management UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-88.html"><span class="number">CSS 88</span><h3>Invoice & Billing Dashboard</h3><p>Billing interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-89.html"><span class="number">CSS 89</span><h3>Expense Analytics Dashboard</h3><p>Expense analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-90.html"><span class="number">CSS 90</span><h3>Cloud Usage Dashboard</h3><p>Cloud usage analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-91.html"><span class="number">CSS 91</span><h3>System Monitoring Dashboard</h3><p>System monitoring.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-92.html"><span class="number">CSS 92</span><h3>API Usage Dashboard</h3><p>API usage analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-93.html"><span class="number">CSS 93</span><h3>Security Analytics Dashboard</h3><p>Security analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-94.html"><span class="number">CSS 94</span><h3>User Activity Dashboard</h3><p>User activity analytics.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-95.html"><span class="number">CSS 95</span><h3>Responsive SaaS Dashboard</h3><p>Responsive dashboard UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-96.html"><span class="number">CSS 96</span><h3>Dark Mode SaaS Dashboard</h3><p>Dark SaaS interface.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-97.html"><span class="number">CSS 97</span><h3>Mobile-First Analytics Dashboard</h3><p>Mobile-first dashboard.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-98.html"><span class="number">CSS 98</span><h3>AI Assistant SaaS Interface</h3><p>AI assistant UI.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-99.html"><span class="number">CSS 99</span><h3>Responsive Data Table Dashboard</h3><p>Responsive data table.</p><span class="open">Open Practical →</span></a>
+
+            <a class="card" href="programs/css-100.html"><span class="number">CSS 100</span><h3>Modern SaaS Settings Page</h3><p>SaaS settings interface.</p><span class="open">Open Practical →</span></a>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== 101 - 200 ==================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>SaaS Analytics, AI/ML & Settings</h2>
+            <span class="count">101–200</span>
+        </div>
+
+        <div class="grid" id="practicals101">
+
+            <!-- These cards are generated from the JavaScript list below -->
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== 201 - 270 ==================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Billing, Responsive Design & Final SaaS Projects</h2>
+            <span class="count">201–270</span>
+        </div>
+
+        <div class="grid" id="practicals201">
+
+            <!-- These cards are generated from the JavaScript list below -->
+
+        </div>
+
+    </section>
+
+
+    <div id="noResults">
+        <h2>No practicals found</h2>
+        <p>Try searching for another practical number or topic.</p>
+    </div>
+
+</main>
+
+
+<footer>
+    <strong>CodeLab</strong>
+    <br>
+    270 HTML5 + CSS3 Practical Programs
+    <br><br>
+    CSS • Flexbox • Grid • Responsive Design • SaaS • AI/ML
+</footer>
+
+
+<script>
+
+const practicals101to200 = [
+
+"SaaS usage analytics",
+"Conversion funnel dashboard",
+"Retention and cohort analytics dashboard",
+"Revenue chart dashboard",
+"Line chart analytics component",
+"Bar chart analytics component",
+"Area chart analytics component",
+"Pie and donut chart analytics component",
+"Heatmap analytics component",
+"Data visualization cards",
+"Analytics date-range filter",
+"Analytics filter and sorting panel",
+"Customizable dashboard widgets",
+"Customizable analytics dashboard",
+"Analytics report and export interface",
+"AI assistant interface",
+"AI chat interface",
+"AI chat sidebar",
+"AI command bar",
+"AI-powered search interface",
+"AI search results",
+"AI prompt input interface",
+"AI prompt suggestions",
+"AI response card",
+"AI-generated content card",
+"AI summary card",
+"AI recommendation card",
+"AI insight card",
+"AI copilot interface",
+"AI autocomplete interface",
+"AI smart suggestions",
+"AI content generator",
+"AI document summarizer",
+"AI data analysis interface",
+"Natural-language query interface",
+"Ask Your Data interface",
+"Text-to-chart analytics interface",
+"AI report generator",
+"AI-powered analytics dashboard",
+"AI prediction card",
+"AI forecasting dashboard",
+"Anomaly detection dashboard",
+"AI confidence score component",
+"AI sources and citations component",
+"AI explanation and reasoning interface",
+"AI agent dashboard",
+"AI agent list",
+"AI agent profile",
+"AI agent status monitoring",
+"AI agent task queue",
+"AI agent activity log",
+"AI agent execution history",
+"AI agent execution timeline",
+"AI agent workflow",
+"AI agent builder",
+"AI agent configuration settings",
+"AI agent permissions management",
+"AI agent approval interface",
+"Human-in-the-loop AI workflow",
+"AI agent error and retry interface",
+"AI agent monitoring",
+"Multi-agent workflow management",
+"Automation workflow builder",
+"Trigger and action workflow",
+"ML prediction dashboard",
+"ML forecast chart",
+"ML probability score component",
+"ML confidence score component",
+"ML risk score dashboard",
+"Recommendation engine interface",
+"ML anomaly alert",
+"ML outlier detection interface",
+"ML classification result",
+"ML prediction comparison dashboard",
+"ML model performance dashboard",
+"ML model metrics",
+"ML model version management",
+"ML model monitoring",
+"ML data drift monitoring",
+"ML feature importance visualization",
+"ML prediction explanation",
+"ML experiment dashboard",
+"Account settings",
+"Profile settings",
+"Team management",
+"User management",
+"Role and permission management",
+"Organization settings",
+"API key management",
+"API usage analytics",
+"Integrations management",
+"Webhook management",
+"Developer settings",
+"Security settings",
+"Two-factor authentication settings",
+"Active sessions and device management",
+"Audit log",
+"SaaS pricing plans",
+"Pricing plan comparison",
+"Subscription management"
+
+];
+
+
+const practicals201to270 = [
+
+"Subscription Upgrade And Downgrade",
+"A SaaS Billing Dashboard",
+"Payment Method Management",
+"Invoice Management",
+"Invoice Details",
+"Usage-Based Billing",
+"Usage And Consumption Meters",
+"AI Token And Credit Usage",
+"AI Spending Limits",
+"Billing Alerts",
+"A Responsive Flexbox Layout",
+"A Responsive CSS Grid Layout",
+"A Responsive SaaS Dashboard",
+"A Responsive Data Table",
+"Responsive SaaS Cards",
+"A Responsive SaaS Form",
+"A Responsive Analytics Dashboard",
+"Responsive Charts And Data Visualization",
+"A Responsive Pricing Page",
+"A Responsive Login Page",
+"A Responsive Signup Page",
+"A Mobile-First SaaS Layout",
+"A Mobile Bottom Navigation",
+"A Sticky SaaS Header",
+"A Fixed SaaS Sidebar",
+"A Responsive SaaS Footer",
+"A Responsive Photo And Media Gallery",
+"CSS Hover Effects And Micro-Interactions",
+"Animated SaaS Cards And Components",
+"A CSS Sliding Card Animation",
+"A CSS-Only Modal And Popup Interface",
+"A Dark-Mode SaaS Interface Using CSS Variables",
+"A Light And Dark Theme Switcher",
+"Responsive SaaS Typography",
+"A Glassmorphism SaaS Interface",
+"A Gradient-Based SaaS Interface",
+"A SaaS Command Palette With Keyboard Shortcuts",
+"An AI Notification Center",
+"A SaaS User Profile Menu",
+"A SaaS Onboarding Workflow",
+"A SaaS Help And Support Interface",
+"A SaaS Documentation Interface",
+"A SaaS Search And Filter Interface",
+"A SaaS Calendar And Scheduling Interface",
+"A SaaS File Management Interface",
+"A SaaS Collaboration And Team Workspace",
+"Final SaaS Webpage Projects",
+"A Complete SaaS Landing Page",
+"A SaaS Login Page",
+"A SaaS Signup Page",
+"A SaaS Onboarding Page",
+"A Complete SaaS Dashboard",
+"A Complete Analytics Dashboard",
+"An AI-Powered SaaS Dashboard",
+"An AI Agent Management Dashboard",
+"A SaaS User Management System",
+"A SaaS Team Management System",
+"A SaaS Account Settings Page",
+"A SaaS Security Settings Page",
+"A SaaS Integrations Page",
+"A SaaS Billing Management Page",
+"A SaaS Pricing Page",
+"A SaaS Checkout Page",
+"A SaaS Invoice Management Page",
+"A SaaS Help Center",
+"A SaaS Documentation Website",
+"A SaaS Blog And News Website",
+"A SaaS 404 Error Page",
+"A SaaS 500 Error Page",
+"A Complete Responsive SaaS Website"
+
+];
+
+
+/* Create 101–200 cards */
+
+function createCards(startNumber, items, containerId) {
+
+    const container = document.getElementById(containerId);
+
+    items.forEach((title, index) => {
+
+        const number = startNumber + index;
+
+        const card = document.createElement("a");
+
+        card.className = "card";
+
+        card.href = `programs/css-${number}.html`;
+
+        card.innerHTML = `
+            <span class="number">CSS ${number}</span>
+            <h3>${title}</h3>
+            <p>Modern HTML5 and CSS3 practical project.</p>
+            <span class="open">Open Practical →</span>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+createCards(
+    101,
+    practicals101to200,
+    "practicals101"
+);
+
+
+createCards(
+    201,
+    practicals201to270,
+    "practicals201"
+);
+
+
+/* SEARCH */
+
+function searchPracticals() {
+
+    const query =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    let visible = 0;
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        if (text.includes(query)) {
+
+            card.style.display = "block";
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    document.getElementById("noResults").style.display =
+        visible === 0 ? "block" : "none";
+
+}
+
+</script>
+
+</body>
+</html>
+```
