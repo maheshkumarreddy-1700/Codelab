@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 172 — ML outlier detection interface</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 172</h1><p class="subtitle">ML outlier detection interface</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><span>Agent status</span><strong>Running</strong><span class="up">Healthy</span></div><div class="metric"><span>Tasks today</span><strong>128</strong></div><div class="metric"><span>Success rate</span><strong>96.4%</strong></div></div><div class="panel" style="margin-top:14px"><b>Recent activity</b><p>09:42 — Task completed</p><p>09:38 — Approval requested</p><p>09:31 — Workflow started</p></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 172: ML outlier detection interface --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Agent status&lt;/span&gt;&lt;strong&gt;Running&lt;/strong&gt;&lt;span class=&quot;up&quot;&gt;Healthy&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Tasks today&lt;/span&gt;&lt;strong&gt;128&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Success rate&lt;/span&gt;&lt;strong&gt;96.4%&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;panel&quot; style=&quot;margin-top:14px&quot;&gt;&lt;b&gt;Recent activity&lt;/b&gt;&lt;p&gt;09:42 — Task completed&lt;/p&gt;&lt;p&gt;09:38 — Approval requested&lt;/p&gt;&lt;p&gt;09:31 — Workflow started&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-171.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-173.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 197 — Audit log</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 197</h1><p class="subtitle">Audit log</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><table class="table"><tr><th>Time</th><th>User</th><th>Action</th></tr><tr><td>10:42</td><td>Admin</td><td>Updated settings</td></tr><tr><td>10:18</td><td>Mahesh</td><td>Created API key</td></tr></table></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 197: Audit log --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;table class=&quot;table&quot;&gt;&lt;tr&gt;&lt;th&gt;Time&lt;/th&gt;&lt;th&gt;User&lt;/th&gt;&lt;th&gt;Action&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;10:42&lt;/td&gt;&lt;td&gt;Admin&lt;/td&gt;&lt;td&gt;Updated settings&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;10:18&lt;/td&gt;&lt;td&gt;Mahesh&lt;/td&gt;&lt;td&gt;Created API key&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-196.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-198.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 199 — Pricing plan comparison</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 199</h1><p class="subtitle">Pricing plan comparison</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><b>Starter</b><p>10 users</p><p>5 GB storage</p></div><div class="metric"><b>Pro</b><p>50 users</p><p>100 GB storage</p></div><div class="metric"><b>Enterprise</b><p>Unlimited users</p><p>Custom storage</p></div></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 199: Pricing plan comparison --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;b&gt;Starter&lt;/b&gt;&lt;p&gt;10 users&lt;/p&gt;&lt;p&gt;5 GB storage&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;b&gt;Pro&lt;/b&gt;&lt;p&gt;50 users&lt;/p&gt;&lt;p&gt;100 GB storage&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;b&gt;Enterprise&lt;/b&gt;&lt;p&gt;Unlimited users&lt;/p&gt;&lt;p&gt;Custom storage&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-198.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-200.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

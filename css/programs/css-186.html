@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 186 — User management</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 186</h1><p class="subtitle">User management</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><span>Prediction</span><strong>82.6%</strong></div><div class="metric"><span>Confidence</span><strong>94%</strong></div><div class="metric"><span>Risk score</span><strong>Low</strong><span class="up">Stable</span></div></div><div class="progress" style="margin-top:15px"><span style="width:82%"></span></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 186: User management --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Prediction&lt;/span&gt;&lt;strong&gt;82.6%&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Confidence&lt;/span&gt;&lt;strong&gt;94%&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Risk score&lt;/span&gt;&lt;strong&gt;Low&lt;/strong&gt;&lt;span class=&quot;up&quot;&gt;Stable&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;progress&quot; style=&quot;margin-top:15px&quot;&gt;&lt;span style=&quot;width:82%&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-185.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-187.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

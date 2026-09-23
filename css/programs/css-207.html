@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical 207: Usage And Consumption Meters | CodeLab</title><link rel="stylesheet" href="../program.css">
+</head>
+<body>
+<header class="topbar"><nav class="nav"><a class="brand" href="../index.html">Code<span>Lab</span> · SaaS 201–270</a><a class="btn secondary" href="../index.html">All Practicals</a></nav></header>
+<main class="container">
+<section class="hero">
+<span class="badge">Practical 207</span>
+<h1>Practical 207: Usage And Consumption Meters</h1>
+<p>Create a webpage for usage and consumption meters. This practical demonstrates a polished, responsive SaaS interface using HTML5 and CSS3.</p>
+</section>
+<section class="grid">
+<div class="card"><span class="muted">Current Plan</span><div class="metric">Pro</div><span class="muted">$49 / month</span></div><div class="card"><span class="muted">Next Invoice</span><div class="metric">Oct 01</div><span class="muted">$128.40</span></div><div class="card"><span class="muted">Usage</span><div class="metric">72%</div><span class="muted">of monthly allowance</span></div><div class="card"><span class="muted">Payment</span><div class="metric">•••• 4242</div><span class="muted">Visa • Expires 09/28</span></div>
+        <div class="card wide"><h3>Usage trend</h3><div class="bar-chart"><i style='height:35px'></i><i style='height:52px'></i><i style='height:69px'></i><i style='height:86px'></i><i style='height:103px'></i><i style='height:120px'></i><i style='height:137px'></i><i style='height:154px'></i><i style='height:51px'></i></div></div>
+        <div class="card"><h3>Billing actions</h3><div class="stack"><button class="btn" onclick="alert('Action completed')">Manage billing</button><button class="btn secondary" onclick="alert('Invoice opened')">View invoice</button></div></div>
+<div class="card full">
+<div class="codebar"><h3>Starter Source Code</h3><button class="btn" onclick="copyCode()">Copy Code</button></div>
+<pre id="source" class="code">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Practical 207: Usage And Consumption Meters&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../program.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;section class=&quot;hero&quot;&gt;
+      &lt;span class=&quot;badge&quot;&gt;CodeLab SaaS&lt;/span&gt;
+      &lt;h1&gt;Practical 207: Usage And Consumption Meters&lt;/h1&gt;
+      &lt;p&gt;Create a webpage for usage and consumption meters. Built with semantic HTML5, responsive CSS3, Flexbox, Grid and reusable SaaS components.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section class=&quot;grid&quot;&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;h2&gt;Primary component&lt;/h2&gt;
+        &lt;p class=&quot;muted&quot;&gt;Replace this area with your real product data and API integrations.&lt;/p&gt;
+        &lt;button class=&quot;btn&quot;&gt;Primary action&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;h2&gt;Responsive design&lt;/h2&gt;
+        &lt;p class=&quot;muted&quot;&gt;The shared stylesheet adapts automatically for tablet and mobile screens.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+</section>
+<div class="pillnav"><a href="css-206.html">← Previous</a><a href="../index.html">All 201–270</a><a href="css-208.html">Next →</a></div>
+</main>
+<footer class="footer">CodeLab · SaaS Practicals 201–270</footer>
+<dialog id="modal"><div style="padding:24px;min-width:min(420px,90vw)"><h3>CSS-only style modal</h3><p class="muted">A reusable modal surface for SaaS actions.</p><button class="btn" onclick="document.querySelector('#modal').close()">Close</button></div></dialog>
+<script>
+function copyCode() {
+  navigator.clipboard.writeText(document.getElementById('source').innerText);
+  alert('Code copied to clipboard!');
+}
+function toggleTheme(){
+  document.body.style.background = document.body.style.background === 'rgb(17, 24, 39)' ? 'var(--bg)' : '#111827';
+  document.body.style.color = document.body.style.color === 'rgb(255, 255, 255)' ? 'var(--text)' : '#fff';
+}
+</script>
+</body></html>

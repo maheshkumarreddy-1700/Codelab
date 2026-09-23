@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 198 — SaaS pricing plans</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 198</h1><p class="subtitle">SaaS pricing plans</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><span>Starter</span><strong>₹499</strong><button class="btn">Choose</button></div><div class="metric"><span>Pro</span><strong>₹1,499</strong><button class="btn">Choose</button></div><div class="metric"><span>Enterprise</span><strong>Custom</strong><button class="btn">Contact</button></div></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 198: SaaS pricing plans --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Starter&lt;/span&gt;&lt;strong&gt;₹499&lt;/strong&gt;&lt;button class=&quot;btn&quot;&gt;Choose&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Pro&lt;/span&gt;&lt;strong&gt;₹1,499&lt;/strong&gt;&lt;button class=&quot;btn&quot;&gt;Choose&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Enterprise&lt;/span&gt;&lt;strong&gt;Custom&lt;/strong&gt;&lt;button class=&quot;btn&quot;&gt;Contact&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-197.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-199.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>
