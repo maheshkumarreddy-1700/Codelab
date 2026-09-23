@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 31 — CSS badges, labels, tags, and chips</title><link rel="stylesheet" href="../program.css"></head>
+<body><header><div class="header-inner"><h1>Practical 31: CSS badges, labels, tags, and chips</h1><p>Codelab — CSS / Modern SaaS UI Practical</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">A simple, beginner-friendly implementation of this practical.</p><div class="grid"><span class="badge">New</span><span class="badge" style="background:#dcfce7;color:#166534">Active</span><span class="badge" style="background:#fee2e2;color:#991b1b">Urgent</span><span class="badge" style="background:#fef3c7;color:#92400e">Beta</span></div></section>
+<section class="card"><h2>Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 31: CSS badges, labels, tags, and chips --&gt;
+&lt;div class="demo"&gt;
+&lt;div class="grid"&gt;&lt;span class="badge"&gt;New&lt;/span&gt;&lt;span class="badge" style="background:#dcfce7;color:#166534"&gt;Active&lt;/span&gt;&lt;span class="badge" style="background:#fee2e2;color:#991b1b"&gt;Urgent&lt;/span&gt;&lt;span class="badge" style="background:#fef3c7;color:#92400e"&gt;Beta&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><span></span><a class="secondary" href="../index.html">All Practicals</a><a href="css-32.html">Next →</a></div>
+</main><script>
+function showToast(){document.getElementById('toast')?.classList.add('show');setTimeout(()=>document.getElementById('toast')?.classList.remove('show'),2500)}
+function openModal(){document.getElementById('modal')?.classList.add('show')}
+function closeModal(){document.getElementById('modal')?.classList.remove('show')}
+function copyCode(){navigator.clipboard.writeText(document.getElementById('code').innerText).then(()=>{const b=document.querySelector('.copy');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy Code',1200)})}
+</script></body></html>

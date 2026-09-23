@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 110 — Data visualization cards</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 110</h1><p class="subtitle">Data visualization cards</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="row"><input type="date" value="2026-01-01"><span>to</span><input type="date" value="2026-09-23"><button class="btn">Apply</button><button class="btn secondary">Export</button></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 110: Data visualization cards --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;input type=&quot;date&quot; value=&quot;2026-01-01&quot;&gt;&lt;span&gt;to&lt;/span&gt;&lt;input type=&quot;date&quot; value=&quot;2026-09-23&quot;&gt;&lt;button class=&quot;btn&quot;&gt;Apply&lt;/button&gt;&lt;button class=&quot;btn secondary&quot;&gt;Export&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-109.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-111.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

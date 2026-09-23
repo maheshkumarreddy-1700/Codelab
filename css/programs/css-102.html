@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 102 — Conversion funnel dashboard</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 102</h1><p class="subtitle">Conversion funnel dashboard</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><span>Visitors</span><strong>100K</strong></div><div class="metric"><span>Signups</span><strong>18K</strong></div><div class="metric"><span>Trials</span><strong>9.2K</strong></div><div class="metric"><span>Paid</span><strong>4.6K</strong></div></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 102: Conversion funnel dashboard --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Visitors&lt;/span&gt;&lt;strong&gt;100K&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Signups&lt;/span&gt;&lt;strong&gt;18K&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Trials&lt;/span&gt;&lt;strong&gt;9.2K&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Paid&lt;/span&gt;&lt;strong&gt;4.6K&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-101.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-103.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

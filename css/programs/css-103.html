@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 103 — Retention and cohort analytics dashboard</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 103</h1><p class="subtitle">Retention and cohort analytics dashboard</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><span>Month 1</span><strong>82%</strong></div><div class="metric"><span>Month 3</span><strong>64%</strong></div><div class="metric"><span>Month 6</span><strong>48%</strong></div></div><div class="heat" style="margin-top:15px"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 103: Retention and cohort analytics dashboard --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Month 1&lt;/span&gt;&lt;strong&gt;82%&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Month 3&lt;/span&gt;&lt;strong&gt;64%&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Month 6&lt;/span&gt;&lt;strong&gt;48%&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;heat&quot; style=&quot;margin-top:15px&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a href="css-102.html">← Previous</a><a class="all" href="../index.html">All Practicals</a><a href="css-104.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>

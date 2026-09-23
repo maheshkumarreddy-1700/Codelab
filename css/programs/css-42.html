@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 42 — Accordion component</title><link rel="stylesheet" href="../program.css"></head>
+<body><header><div class="header-inner"><h1>Practical 42: Accordion component</h1><p>Codelab — CSS / Modern SaaS UI Practical</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">A simple, beginner-friendly implementation of this practical.</p><details open><summary>What is SaaS?</summary><p class="muted">Software delivered through the internet, commonly by subscription.</p></details></section>
+<section class="card"><h2>Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 42: Accordion component --&gt;
+&lt;div class="demo"&gt;
+&lt;details open&gt;&lt;summary&gt;What is SaaS?&lt;/summary&gt;&lt;p class="muted"&gt;Software delivered through the internet, commonly by subscription.&lt;/p&gt;&lt;/details&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><a class="secondary" href="css-41.html">← Previous</a><a class="secondary" href="../index.html">All Practicals</a><a href="css-43.html">Next →</a></div>
+</main><script>
+function showToast(){document.getElementById('toast')?.classList.add('show');setTimeout(()=>document.getElementById('toast')?.classList.remove('show'),2500)}
+function openModal(){document.getElementById('modal')?.classList.add('show')}
+function closeModal(){document.getElementById('modal')?.classList.remove('show')}
+function copyCode(){navigator.clipboard.writeText(document.getElementById('code').innerText).then(()=>{const b=document.querySelector('.copy');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy Code',1200)})}
+</script></body></html>

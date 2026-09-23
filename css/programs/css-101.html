@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 101 — SaaS usage analytics</title><link rel="stylesheet" href="../program.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">CodeLab • SaaS UI</div><h1>Practical 101</h1><p class="subtitle">SaaS usage analytics</p></div></header>
+<main class="container">
+<section class="card"><h2>Live Demo</h2><p class="muted">Responsive practical implementation.</p><div class="grid"><div class="metric"><span>Monthly Active Users</span><strong>48,620</strong><span class="up">+14.2%</span></div><div class="metric"><span>Sessions</span><strong>128K</strong><span class="up">+8.1%</span></div><div class="metric"><span>Avg. usage</span><strong>24m</strong><span class="up">+5.7%</span></div></div></section>
+<section class="card"><h2>Source Code</h2><div class="code-wrap"><button class="copy" onclick="copyCode()">Copy Code</button><pre id="code">&lt;!-- Practical 101: SaaS usage analytics --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div class=&quot;grid&quot;&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Monthly Active Users&lt;/span&gt;&lt;strong&gt;48,620&lt;/strong&gt;&lt;span class=&quot;up&quot;&gt;+14.2%&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Sessions&lt;/span&gt;&lt;strong&gt;128K&lt;/strong&gt;&lt;span class=&quot;up&quot;&gt;+8.1%&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;span&gt;Avg. usage&lt;/span&gt;&lt;strong&gt;24m&lt;/strong&gt;&lt;span class=&quot;up&quot;&gt;+5.7%&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+<div class="nav"><span></span><a class="all" href="../index.html">All Practicals</a><a href="css-102.html">Next →</a></div>
+</main>
+<script>
+function copyCode(){
+ const el=document.getElementById('code');
+ navigator.clipboard.writeText(el.innerText).then(()=>{
+  const b=document.querySelector('.copy'); b.textContent='Copied!';
+  setTimeout(()=>b.textContent='Copy Code',1200);
+ });
+}
+</script>
+</body></html>
