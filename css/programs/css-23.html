@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 23 - Float & Clear | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.float-box{float:left;width:150px;height:100px;margin:0 20px 10px 0;padding:30px;background:#dbeafe;text-align:center;font-weight:bold}.clear-box{clear:both;padding:12px;background:#dcfce7}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">23</span><h1>Float & Clear</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>Float & Clear</h2><p>Use float to position content and clear to stop wrapping.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="float-demo"><div class="float-box">FLOAT</div><p>Text wraps around the floated box. This demonstrates float layout behavior.</p><div class="clear-box">clear: both</div><p>Content after the clear starts below the float.</p></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.float-box{float:left;width:150px;height:100px;margin:0 20px 10px 0;padding:30px;background:#dbeafe;text-align:center;font-weight:bold}.clear-box{clear:both;padding:12px;background:#dcfce7}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-22.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-24.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

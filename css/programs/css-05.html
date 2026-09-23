@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 05 - CSS Backgrounds | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.background{min-height:300px;padding:50px;color:white;border-radius:14px;background-color:#1e293b;background-image:linear-gradient(#0008,#0008),url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80");background-position:center;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">05</span><h1>CSS Backgrounds</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Backgrounds</h2><p>Use background images, colors, positioning, sizing, repeat and attachment.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="background"><h2>Background image</h2><p>Cover, center, no-repeat and fixed attachment.</p></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.background{min-height:300px;padding:50px;color:white;border-radius:14px;background-color:#1e293b;background-image:linear-gradient(#0008,#0008),url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&amp;fit=crop&amp;w=1200&amp;q=80");background-position:center;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-04.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-06.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

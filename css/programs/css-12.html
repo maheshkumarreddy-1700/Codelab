@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 12 - CSS Box Sizing | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.sizing{width:250px;padding:30px;border:10px solid #2563eb;background:#dbeafe}.content-box{box-sizing:content-box}.border-box{box-sizing:border-box}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">12</span><h1>CSS Box Sizing</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Box Sizing</h2><p>Compare content-box and border-box.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="sizing content-box">content-box<br>250px + padding + border</div><div class="sizing border-box">border-box<br>250px includes padding + border</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.sizing{width:250px;padding:30px;border:10px solid #2563eb;background:#dbeafe}.content-box{box-sizing:content-box}.border-box{box-sizing:border-box}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-11.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-13.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

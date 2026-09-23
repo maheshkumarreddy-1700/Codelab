@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 22 - CSS Z-Index | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.stack{position:relative;height:280px}.layer{position:absolute;width:180px;height:140px;padding:25px;border-radius:12px;color:white;font-weight:bold}.one{left:30px;top:30px;background:#2563eb;z-index:1}.two{left:120px;top:70px;background:#dc2626;z-index:3}.three{left:210px;top:110px;background:#16a34a;z-index:2}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">22</span><h1>CSS Z-Index</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Z-Index</h2><p>Demonstrate stacking order using z-index.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="stack"><div class="layer one">Layer 1</div><div class="layer two">Layer 2</div><div class="layer three">Layer 3</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.stack{position:relative;height:280px}.layer{position:absolute;width:180px;height:140px;padding:25px;border-radius:12px;color:white;font-weight:bold}.one{left:30px;top:30px;background:#2563eb;z-index:1}.two{left:120px;top:70px;background:#dc2626;z-index:3}.three{left:210px;top:110px;background:#16a34a;z-index:2}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-21.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-23.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

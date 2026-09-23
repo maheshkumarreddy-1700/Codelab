@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 03 - Combinator Selectors | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.combo p{padding:10px}.combo>p{border-left:5px solid #2563eb}.combo h3+p{background:#fef3c7}.combo h3~p{color:#7c3aed}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">03</span><h1>Combinator Selectors</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>Combinator Selectors</h2><p>Demonstrate descendant, child, adjacent sibling and general sibling selectors.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="combo"><h3>Heading</h3><p>Child paragraph</p><div><p>Descendant paragraph</p></div><p>General sibling</p></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.combo p{padding:10px}.combo&gt;p{border-left:5px solid #2563eb}.combo h3+p{background:#fef3c7}.combo h3~p{color:#7c3aed}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-02.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-04.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

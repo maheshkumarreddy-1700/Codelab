@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 19 - Inheritance, Specificity & Cascade | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.parent{font-family:Georgia;color:#475569}.parent p{color:#2563eb}.message{color:#16a34a!important}#priority{color:#dc2626}.parent .message{font-weight:700}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">19</span><h1>Inheritance, Specificity & Cascade</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>Inheritance, Specificity & Cascade</h2><p>Demonstrate inheritance, specificity and cascade.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="parent"><p class="message" id="priority">This paragraph demonstrates cascade priority.</p><p class="inherited">This text inherits the parent font.</p></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.parent{font-family:Georgia;color:#475569}.parent p{color:#2563eb}.message{color:#16a34a!important}#priority{color:#dc2626}.parent .message{font-weight:700}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-18.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-20.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 04 - CSS Colors | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.text{color:#dc2626}.bg{background:#dbeafe}.border{border:4px solid #16a34a}button{padding:14px;border:0;border-radius:8px;background:#7c3aed;color:white}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">04</span><h1>CSS Colors</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Colors</h2><p>Apply colors to text, backgrounds, borders and UI elements.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="demo-card text">Text color</div><div class="demo-card bg">Background</div><div class="demo-card border">Border</div><button>UI element</button></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.text{color:#dc2626}.bg{background:#dbeafe}.border{border:4px solid #16a34a}button{padding:14px;border:0;border-radius:8px;background:#7c3aed;color:white}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-03.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-05.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

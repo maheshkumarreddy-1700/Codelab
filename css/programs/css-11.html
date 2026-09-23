@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 11 - Width, Height & Constraints | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.size{width:80%;height:180px;min-width:220px;max-width:700px;min-height:120px;max-height:220px;margin:auto;padding:30px;background:#dbeafe;border:4px solid #2563eb;border-radius:12px}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">11</span><h1>Width, Height & Constraints</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>Width, Height & Constraints</h2><p>Use width, height, min-width, max-width, min-height and max-height.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="size">Resize the browser to see the constraints.</div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.size{width:80%;height:180px;min-width:220px;max-width:700px;min-height:120px;max-height:220px;margin:auto;padding:30px;background:#dbeafe;border:4px solid #2563eb;border-radius:12px}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-10.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-12.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

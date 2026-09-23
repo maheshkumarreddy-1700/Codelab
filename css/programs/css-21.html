@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 21 - CSS Positioning | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.position-area{position:relative;min-height:450px;padding:20px;border:2px solid #cbd5e1}.position-area>div{padding:12px;margin:8px;background:#dbeafe}.relative{position:relative;left:25px}.absolute{position:absolute;right:20px;top:80px;background:#fef3c7!important}.sticky{position:sticky;top:10px;background:#dcfce7!important;z-index:2}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">21</span><h1>CSS Positioning</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Positioning</h2><p>Demonstrate static, relative, absolute, fixed and sticky positioning.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="position-area"><div class="static">Static</div><div class="relative">Relative</div><div class="absolute">Absolute</div><div class="sticky">Sticky</div><p style="height:300px">Scroll to observe sticky behavior.</p></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.position-area{position:relative;min-height:450px;padding:20px;border:2px solid #cbd5e1}.position-area&gt;div{padding:12px;margin:8px;background:#dbeafe}.relative{position:relative;left:25px}.absolute{position:absolute;right:20px;top:80px;background:#fef3c7!important}.sticky{position:sticky;top:10px;background:#dcfce7!important;z-index:2}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-20.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-22.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

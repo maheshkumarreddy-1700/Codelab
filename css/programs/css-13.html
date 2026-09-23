@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 13 - CSS Display Properties | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.display>*{padding:10px;margin:5px;background:#dbeafe}.block{display:block}.inline{display:inline}.inlineblock{display:inline-block}.flex{display:flex;gap:10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.none{display:none}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">13</span><h1>CSS Display Properties</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Display Properties</h2><p>Demonstrate block, inline, inline-block, flex, grid and none.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="display"><div class="block">Block</div><span class="inline">Inline</span><span class="inlineblock">Inline-block</span><div class="flex"><span>Flex A</span><span>Flex B</span></div><div class="grid"><span>Grid 1</span><span>Grid 2</span></div><div class="none">Hidden</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.display&gt;*{padding:10px;margin:5px;background:#dbeafe}.block{display:block}.inline{display:inline}.inlineblock{display:inline-block}.flex{display:flex;gap:10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.none{display:none}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-12.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-14.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

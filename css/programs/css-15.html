@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 15 - CSS Overflow | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.overflow,.overflow-x{width:260px;height:140px;padding:15px;border:3px solid #2563eb;overflow:auto}.overflow-x{overflow-x:auto;overflow-y:hidden}.overflow-x{white-space:nowrap}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">15</span><h1>CSS Overflow</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Overflow</h2><p>Use overflow, overflow-x and overflow-y.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="overflow">Lots of content that requires scrolling when it exceeds the box dimensions.</div><div class="overflow-x">THIS_IS_A_LONG_HORIZONTAL_LINE_FOR_OVERFLOW_TESTING</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.overflow,.overflow-x{width:260px;height:140px;padding:15px;border:3px solid #2563eb;overflow:auto}.overflow-x{overflow-x:auto;overflow-y:hidden}.overflow-x{white-space:nowrap}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-14.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-16.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

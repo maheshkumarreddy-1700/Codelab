@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 29 - Object Fit & Object Position | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.demo-card img{width:100%;height:220px;object-fit:cover;object-position:center;border-radius:8px}.demo-card img.contain{object-fit:contain;object-position:top;background:#cbd5e1}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">29</span><h1>Object Fit & Object Position</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>Object Fit & Object Position</h2><p>Control how images fit inside fixed dimensions.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="demo-card"><h3>cover / center</h3><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Landscape"></div><div class="demo-card"><h3>contain / top</h3><img class="contain" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Landscape"></div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.demo-card img{width:100%;height:220px;object-fit:cover;object-position:center;border-radius:8px}.demo-card img.contain{object-fit:contain;object-position:top;background:#cbd5e1}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-28.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-30.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

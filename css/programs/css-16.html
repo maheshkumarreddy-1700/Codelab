@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 16 - Border Radius Shapes | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.shape{display:grid;place-items:center;background:#2563eb;color:white;font-weight:bold}.card{height:120px;border-radius:20px}.circle{width:120px;height:120px;border-radius:50%;margin:auto}.pill{padding:18px 35px;border-radius:999px}.custom{height:120px;border-radius:10px 45px 10px 45px}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">16</span><h1>Border Radius Shapes</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>Border Radius Shapes</h2><p>Create rounded cards, circles, pills and custom shapes.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="shape card">Card</div><div class="shape circle">Circle</div><div class="shape pill">Pill</div><div class="shape custom">Custom</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.shape{display:grid;place-items:center;background:#2563eb;color:white;font-weight:bold}.card{height:120px;border-radius:20px}.circle{width:120px;height:120px;border-radius:50%;margin:auto}.pill{padding:18px 35px;border-radius:999px}.custom{height:120px;border-radius:10px 45px 10px 45px}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-15.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-17.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

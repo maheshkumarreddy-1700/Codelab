@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 28 - em, rem, vw, vh & Percentage | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.unit-grid{display:flex;flex-wrap:wrap;align-items:center;gap:20px}.unit{background:#dbeafe;border:2px solid #2563eb;display:grid;place-items:center;font-weight:bold}.em{width:8em;height:4em}.rem{width:8rem;height:4rem}.vw{width:10vw;height:80px}.vh{width:120px;height:10vh}.percent{width:50%;height:80px}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">28</span><h1>em, rem, vw, vh & Percentage</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>em, rem, vw, vh & Percentage</h2><p>Compare common CSS length units.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="unit-grid"><div class="unit em">2em</div><div class="unit rem">2rem</div><div class="unit vw">10vw</div><div class="unit vh">10vh</div><div class="unit percent">50%</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.unit-grid{display:flex;flex-wrap:wrap;align-items:center;gap:20px}.unit{background:#dbeafe;border:2px solid #2563eb;display:grid;place-items:center;font-weight:bold}.em{width:8em;height:4em}.rem{width:8rem;height:4rem}.vw{width:10vw;height:80px}.vh{width:120px;height:10vh}.percent{width:50%;height:80px}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-27.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-29.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

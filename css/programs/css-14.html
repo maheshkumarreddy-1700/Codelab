@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 14 - CSS Visibility & Opacity | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.hidden{visibility:hidden}.half{opacity:.5}.low{opacity:.2}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">14</span><h1>CSS Visibility & Opacity</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Visibility & Opacity</h2><p>Demonstrate visibility:hidden and opacity.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="demo-card visible">Visible</div><div class="demo-card hidden">Hidden</div><div class="demo-card half">Opacity 0.5</div><div class="demo-card low">Opacity 0.2</div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.hidden{visibility:hidden}.half{opacity:.5}.low{opacity:.2}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-13.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-15.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

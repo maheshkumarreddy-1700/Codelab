@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 30 - CSS Filters | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.filter{padding:12px;background:#f1f5f9;border-radius:12px;text-align:center}.filter img{width:100%;height:170px;object-fit:cover;border-radius:8px;display:block;margin-bottom:10px}.blur{filter:blur(4px)}.gray{filter:grayscale(1)}.bright{filter:brightness(1.5)}.contrast{filter:contrast(1.8)}.faded{filter:opacity(.35)}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">30</span><h1>CSS Filters</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Filters</h2><p>Demonstrate blur, grayscale, brightness, contrast and opacity.</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="demo-grid"><div class="filter"><img class="blur" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80"><b>Blur</b></div><div class="filter"><img class="gray" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80"><b>Grayscale</b></div><div class="filter"><img class="bright" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80"><b>Brightness</b></div><div class="filter"><img class="contrast" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80"><b>Contrast</b></div><div class="filter"><img class="faded" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80"><b>Opacity</b></div></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.filter{padding:12px;background:#f1f5f9;border-radius:12px;text-align:center}.filter img{width:100%;height:170px;object-fit:cover;border-radius:8px;display:block;margin-bottom:10px}.blur{filter:blur(4px)}.gray{filter:grayscale(1)}.bright{filter:brightness(1.5)}.contrast{filter:contrast(1.8)}.faded{filter:opacity(.35)}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-29.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><span></span></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>

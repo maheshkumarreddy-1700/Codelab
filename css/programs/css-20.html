@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 20 - CSS Math Functions | CodeLab</title><link rel="stylesheet" href="../program.css">
+<style>.math{width:min(90%,800px);padding:max(20px,3vw);margin:auto;background:#dbeafe}.math h2{font-size:clamp(1.5rem,4vw,3rem)}.math p{width:calc(100% - 20px)}</style></head>
+<body>
+<header class="program-header"><div><span class="program-number">20</span><h1>CSS Math Functions</h1></div><a href="../index.html" class="back-btn">← Back to CSS Programs</a></header>
+<main class="program-container">
+<section class="program-intro"><span class="program-category">CSS Foundation & Core UI</span><h2>CSS Math Functions</h2><p>Use calc(), min(), max() and clamp().</p></section>
+<section class="content-section"><h2>Demonstration</h2><div class="math"><h2>Responsive Math</h2><p>This panel uses min, max, calc and clamp.</p></div></section>
+<section class="code-section"><div class="code-header"><h2>Code</h2><button class="copy-btn" onclick="copyCode()">Copy Code</button></div><pre id="codeBlock"><code>.math{width:min(90%,800px);padding:max(20px,3vw);margin:auto;background:#dbeafe}.math h2{font-size:clamp(1.5rem,4vw,3rem)}.math p{width:calc(100% - 20px)}</code></pre></section>
+<div class="program-navigation"><a class="demo-button" href="css-19.html">← Previous</a><a class="demo-button" href="../index.html">All Programs</a><a class="demo-button" href="css-21.html">Next →</a></div>
+</main>
+<script>function copyCode(){navigator.clipboard.writeText(document.getElementById('codeBlock').innerText);const b=document.querySelector('.copy-btn');b.innerText='Copied!';setTimeout(()=>b.innerText='Copy Code',1500)}</script>
+</body></html>
