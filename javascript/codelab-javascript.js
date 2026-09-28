@@ -1,0 +1,1 @@
+function copyCode(btn){const code=document.getElementById("jsCode").textContent;navigator.clipboard.writeText(code).then(()=>{const old=btn.textContent;btn.textContent="✓ Copied";setTimeout(()=>btn.textContent=old,1400)}).catch(()=>btn.textContent="Copy failed")}
