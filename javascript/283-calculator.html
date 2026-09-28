@@ -1,0 +1,432 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 283 | Calculator | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 283</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 283</div><h1>Calculator</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to calculator.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;PR 01 - Digital Calculator | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .calc-container {
+      max-width: 380px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .screen-display {
+      background: #020617;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      text-align: right;
+      min-height: 85px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .calc-history {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 0.85rem;
+      color: #64748b;
+      min-height: 20px;
+    }
+    .calc-current {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f8fafc;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+    }
+    .calc-btn {
+      height: 55px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 1.25rem;
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .calc-btn:hover {
+      background: #334155;
+    }
+    .calc-btn:active {
+      transform: scale(0.95);
+    }
+    .btn-op {
+      background: #1e3a5f;
+      color: #38bdf8;
+      border-color: #0284c7;
+    }
+    .btn-op:hover {
+      background: #0284c7;
+      color: #fff;
+    }
+    .btn-eq {
+      background: #38bdf8;
+      color: #020617;
+      border-color: #38bdf8;
+      font-weight: 800;
+    }
+    .btn-eq:hover {
+      background: #7dd3fc;
+    }
+    .btn-clear {
+      background: #7f1d1d;
+      color: #fca5a5;
+      border-color: #ef4444;
+    }
+    .btn-clear:hover {
+      background: #ef4444;
+      color: #fff;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Projects&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;PR 01 - Digital Calculator&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Mini Project • Project 01&lt;/div&gt;
+      &lt;h1&gt;Interactive Digital Calculator&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        A full-featured digital calculator supporting chained arithmetic calculations (+, -, *, /), 
+        percentage calculations, decimal handling, backspace, and physical keyboard event integration.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🧮&lt;/span&gt; Desktop Calculator Studio
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Keyboard Enabled&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;calc-container&quot;&gt;
+          &lt;div class=&quot;screen-display&quot;&gt;
+            &lt;div id=&quot;calcHistory&quot; class=&quot;calc-history&quot;&gt;&lt;/div&gt;
+            &lt;div id=&quot;calcScreen&quot; class=&quot;calc-current&quot;&gt;0&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;calc-buttons&quot;&gt;
+            &lt;button class=&quot;calc-btn btn-clear&quot; onclick=&quot;clearAll()&quot;&gt;AC&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;deleteChar()&quot;&gt;⌫&lt;/button&gt;
+            &lt;button class=&quot;calc-btn btn-op&quot; onclick=&quot;appendOperator(&#x27;%&#x27;)&quot;&gt;%&lt;/button&gt;
+            &lt;button class=&quot;calc-btn btn-op&quot; onclick=&quot;appendOperator(&#x27;/&#x27;)&quot;&gt;÷&lt;/button&gt;
+
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;7&#x27;)&quot;&gt;7&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;8&#x27;)&quot;&gt;8&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;9&#x27;)&quot;&gt;9&lt;/button&gt;
+            &lt;button class=&quot;calc-btn btn-op&quot; onclick=&quot;appendOperator(&#x27;*&#x27;)&quot;&gt;×&lt;/button&gt;
+
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;4&#x27;)&quot;&gt;4&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;5&#x27;)&quot;&gt;5&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;6&#x27;)&quot;&gt;6&lt;/button&gt;
+            &lt;button class=&quot;calc-btn btn-op&quot; onclick=&quot;appendOperator(&#x27;-&#x27;)&quot;&gt;-&lt;/button&gt;
+
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;1&#x27;)&quot;&gt;1&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;2&#x27;)&quot;&gt;2&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;3&#x27;)&quot;&gt;3&lt;/button&gt;
+            &lt;button class=&quot;calc-btn btn-op&quot; onclick=&quot;appendOperator(&#x27;+&#x27;)&quot;&gt;+&lt;/button&gt;
+
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendNum(&#x27;0&#x27;)&quot; style=&quot;grid-column: span 2;&quot;&gt;0&lt;/button&gt;
+            &lt;button class=&quot;calc-btn&quot; onclick=&quot;appendDot()&quot;&gt;.&lt;/button&gt;
+            &lt;button class=&quot;calc-btn btn-eq&quot; onclick=&quot;calculateResult()&quot;&gt;=&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;let currentInput = &quot;0&quot;;
+let previousInput = &quot;&quot;;
+let operation = null;
+
+function appendNum(num) {
+  if (currentInput === &quot;0&quot;) currentInput = num;
+  else currentInput += num;
+  updateScreen();
+}
+
+function appendOperator(op) {
+  if (operation !== null) calculateResult();
+  previousInput = currentInput;
+  operation = op;
+  currentInput = &quot;0&quot;;
+}
+
+function calculateResult() {
+  const prev = parseFloat(previousInput);
+  const curr = parseFloat(currentInput);
+  let result = 0;
+
+  switch (operation) {
+    case &#x27;+&#x27;: result = prev + curr; break;
+    case &#x27;-&#x27;: result = prev - curr; break;
+    case &#x27;*&#x27;: result = prev * curr; break;
+    case &#x27;/&#x27;: result = curr === 0 ? &quot;Error&quot; : prev / curr; break;
+    case &#x27;%&#x27;: result = prev % curr; break;
+  }
+
+  currentInput = String(result);
+  operation = null;
+  updateScreen();
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;index.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; Projects Curriculum Index&lt;/a&gt;
+      &lt;a href=&quot;digital-clock-app.html&quot; class=&quot;nav-next&quot;&gt;PR 02: World Clock App &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let currentInput = &quot;0&quot;;
+    let previousInput = &quot;&quot;;
+    let operation = null;
+
+    const screen = document.getElementById(&quot;calcScreen&quot;);
+    const history = document.getElementById(&quot;calcHistory&quot;);
+
+    function updateScreen() {
+      screen.textContent = currentInput;
+      if (operation) {
+        history.textContent = `${previousInput} ${operation}`;
+      } else {
+        history.textContent = &quot;&quot;;
+      }
+    }
+
+    function appendNum(num) {
+      if (currentInput === &quot;0&quot; || currentInput === &quot;Error&quot;) {
+        currentInput = num;
+      } else {
+        currentInput += num;
+      }
+      updateScreen();
+    }
+
+    function appendDot() {
+      if (!currentInput.includes(&quot;.&quot;)) {
+        currentInput += &quot;.&quot;;
+        updateScreen();
+      }
+    }
+
+    function appendOperator(op) {
+      if (operation !== null &amp;&amp; currentInput !== &quot;0&quot;) {
+        calculateResult();
+      }
+      previousInput = currentInput;
+      operation = op;
+      currentInput = &quot;0&quot;;
+      updateScreen();
+    }
+
+    function deleteChar() {
+      if (currentInput.length &gt; 1) {
+        currentInput = currentInput.slice(0, -1);
+      } else {
+        currentInput = &quot;0&quot;;
+      }
+      updateScreen();
+    }
+
+    function clearAll() {
+      currentInput = &quot;0&quot;;
+      previousInput = &quot;&quot;;
+      operation = null;
+      updateScreen();
+    }
+
+    function calculateResult() {
+      if (operation === null || previousInput === &quot;&quot;) return;
+
+      const prev = parseFloat(previousInput);
+      const curr = parseFloat(currentInput);
+      let res = 0;
+
+      switch (operation) {
+        case &#x27;+&#x27;: res = prev + curr; break;
+        case &#x27;-&#x27;: res = prev - curr; break;
+        case &#x27;*&#x27;: res = prev * curr; break;
+        case &#x27;/&#x27;: res = (curr === 0) ? &quot;Error&quot; : prev / curr; break;
+        case &#x27;%&#x27;: res = (prev * curr) / 100; break;
+      }
+
+      history.textContent = `${previousInput} ${operation} ${currentInput} =`;
+      currentInput = typeof res === &quot;number&quot; ? String(Math.round(res * 100000) / 100000) : res;
+      operation = null;
+      previousInput = &quot;&quot;;
+      screen.textContent = currentInput;
+    }
+
+    // Keyboard support
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if (e.key &gt;= &quot;0&quot; &amp;&amp; e.key &lt;= &quot;9&quot;) appendNum(e.key);
+      else if (e.key === &quot;.&quot;) appendDot();
+      else if ([&quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;].includes(e.key)) appendOperator(e.key);
+      else if (e.key === &quot;Enter&quot; || e.key === &quot;=&quot;) calculateResult();
+      else if (e.key === &quot;Backspace&quot;) deleteChar();
+      else if (e.key === &quot;Escape&quot;) clearAll();
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let currentInput = &quot;0&quot;;
+    let previousInput = &quot;&quot;;
+    let operation = null;
+
+    const screen = document.getElementById(&quot;calcScreen&quot;);
+    const history = document.getElementById(&quot;calcHistory&quot;);
+
+    function updateScreen() {
+      screen.textContent = currentInput;
+      if (operation) {
+        history.textContent = `${previousInput} ${operation}`;
+      } else {
+        history.textContent = &quot;&quot;;
+      }
+    }
+
+    function appendNum(num) {
+      if (currentInput === &quot;0&quot; || currentInput === &quot;Error&quot;) {
+        currentInput = num;
+      } else {
+        currentInput += num;
+      }
+      updateScreen();
+    }
+
+    function appendDot() {
+      if (!currentInput.includes(&quot;.&quot;)) {
+        currentInput += &quot;.&quot;;
+        updateScreen();
+      }
+    }
+
+    function appendOperator(op) {
+      if (operation !== null &amp;&amp; currentInput !== &quot;0&quot;) {
+        calculateResult();
+      }
+      previousInput = currentInput;
+      operation = op;
+      currentInput = &quot;0&quot;;
+      updateScreen();
+    }
+
+    function deleteChar() {
+      if (currentInput.length &gt; 1) {
+        currentInput = currentInput.slice(0, -1);
+      } else {
+        currentInput = &quot;0&quot;;
+      }
+      updateScreen();
+    }
+
+    function clearAll() {
+      currentInput = &quot;0&quot;;
+      previousInput = &quot;&quot;;
+      operation = null;
+      updateScreen();
+    }
+
+    function calculateResult() {
+      if (operation === null || previousInput === &quot;&quot;) return;
+
+      const prev = parseFloat(previousInput);
+      const curr = parseFloat(currentInput);
+      let res = 0;
+
+      switch (operation) {
+        case &#x27;+&#x27;: res = prev + curr; break;
+        case &#x27;-&#x27;: res = prev - curr; break;
+        case &#x27;*&#x27;: res = prev * curr; break;
+        case &#x27;/&#x27;: res = (curr === 0) ? &quot;Error&quot; : prev / curr; break;
+        case &#x27;%&#x27;: res = (prev * curr) / 100; break;
+      }
+
+      history.textContent = `${previousInput} ${operation} ${currentInput} =`;
+      currentInput = typeof res === &quot;number&quot; ? String(Math.round(res * 100000) / 100000) : res;
+      operation = null;
+      previousInput = &quot;&quot;;
+      screen.textContent = currentInput;
+    }
+
+    // Keyboard support
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if (e.key &gt;= &quot;0&quot; &amp;&amp; e.key &lt;= &quot;9&quot;) appendNum(e.key);
+      else if (e.key === &quot;.&quot;) appendDot();
+      else if ([&quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;].includes(e.key)) appendOperator(e.key);
+      else if (e.key === &quot;Enter&quot; || e.key === &quot;=&quot;) calculateResult();
+      else if (e.key === &quot;Backspace&quot;) deleteChar();
+      else if (e.key === &quot;Escape&quot;) clearAll();
+    });</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="282-bmi-calculator.html"><small>← Previous</small>Bmi calculator</a><a class="nav-btn" href="284-cascading-dropdown.html"><small>Next →</small>Cascading dropdown</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

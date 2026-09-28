@@ -1,0 +1,358 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 277 | Arrow key mover | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 277</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 277</div><h1>Arrow key mover</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to arrow key mover.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;EV 09 - Keyboard Arrow Character Mover | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .game-arena {
+      position: relative;
+      height: 360px;
+      background: #020617;
+      border: 2px solid #334155;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+    }
+    .grid-lines {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .game-avatar {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      background: #38bdf8;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      user-select: none;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+      transition: transform 0.08s linear;
+    }
+    .collectible-coin {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: #f59e0b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      box-shadow: 0 0 12px #f59e0b;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { transform: scale(0.9); }
+      to { transform: scale(1.15); }
+    }
+    .d-pad-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .d-pad-row {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .d-btn {
+      width: 50px;
+      height: 50px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #fff;
+      font-size: 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .d-btn:active {
+      background: #38bdf8;
+      color: #000;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Events&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;EV 09 - Keyboard Arrow Character Mover&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Event Handling • Program 09&lt;/div&gt;
+      &lt;h1&gt;Keyboard Arrow &amp; WASD 2D Character Controller&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Capture continuous keyboard events (Arrow keys &amp; WASD) to move a 2D game sprite inside an arena 
+        boundary with boundary clamping, score tracking, and coin collision detection.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🎮&lt;/span&gt; 2D Sprite Playground
+        &lt;/div&gt;
+        &lt;div style=&quot;display: flex; gap: 1rem; align-items: center;&quot;&gt;
+          &lt;span class=&quot;badge badge-warning&quot;&gt;Score: &lt;strong id=&quot;scoreVal&quot;&gt;0&lt;/strong&gt;&lt;/span&gt;
+          &lt;span class=&quot;badge badge-primary&quot;&gt;Pos: (&lt;span id=&quot;xPosVal&quot;&gt;150&lt;/span&gt;, &lt;span id=&quot;yPosVal&quot;&gt;150&lt;/span&gt;)&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div id=&quot;gameArena&quot; class=&quot;game-arena&quot;&gt;
+          &lt;div class=&quot;grid-lines&quot;&gt;&lt;/div&gt;
+          &lt;div id=&quot;avatar&quot; class=&quot;game-avatar&quot; style=&quot;left: 150px; top: 150px;&quot;&gt;🤖&lt;/div&gt;
+          &lt;div id=&quot;coin&quot; class=&quot;collectible-coin&quot; style=&quot;left: 300px; top: 80px;&quot;&gt;🪙&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div style=&quot;display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;&quot;&gt;
+          &lt;div style=&quot;color: #94a3b8; font-size: 0.85rem;&quot;&gt;
+            ⌨️ &lt;strong&gt;Controls:&lt;/strong&gt; Use &lt;strong&gt;Arrow Keys&lt;/strong&gt; or &lt;strong&gt;W, A, S, D&lt;/strong&gt; on your keyboard, or click the on-screen D-Pad.
+          &lt;/div&gt;
+
+          &lt;!-- Virtual D-Pad --&gt;
+          &lt;div class=&quot;d-pad-layout&quot;&gt;
+            &lt;button class=&quot;d-btn&quot; onclick=&quot;move(&#x27;up&#x27;)&quot;&gt;⬆️&lt;/button&gt;
+            &lt;div class=&quot;d-pad-row&quot;&gt;
+              &lt;button class=&quot;d-btn&quot; onclick=&quot;move(&#x27;left&#x27;)&quot;&gt;⬅️&lt;/button&gt;
+              &lt;button class=&quot;d-btn&quot; onclick=&quot;move(&#x27;down&#x27;)&quot;&gt;⬇️&lt;/button&gt;
+              &lt;button class=&quot;d-btn&quot; onclick=&quot;move(&#x27;right&#x27;)&quot;&gt;➡️&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;let posX = 150, posY = 150;
+const STEP = 20;
+const avatar = document.getElementById(&quot;avatar&quot;);
+
+window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+  switch (e.key) {
+    case &quot;ArrowUp&quot;:
+    case &quot;w&quot;:
+    case &quot;W&quot;:
+      posY -= STEP;
+      e.preventDefault();
+      break;
+    case &quot;ArrowDown&quot;:
+    case &quot;s&quot;:
+    case &quot;S&quot;:
+      posY += STEP;
+      e.preventDefault();
+      break;
+    case &quot;ArrowLeft&quot;:
+    case &quot;a&quot;:
+    case &quot;A&quot;:
+      posX -= STEP;
+      e.preventDefault();
+      break;
+    case &quot;ArrowRight&quot;:
+    case &quot;d&quot;:
+    case &quot;D&quot;:
+      posX += STEP;
+      e.preventDefault();
+      break;
+  }
+  updatePosition();
+});&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;drag-and-drop.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; EV 08: Drag &amp; Drop&lt;/a&gt;
+      &lt;a href=&quot;click-counters.html&quot; class=&quot;nav-next&quot;&gt;EV 10: Click Speed Test &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let posX = 150, posY = 150;
+    let score = 0;
+    const STEP = 25;
+    const avatar = document.getElementById(&quot;avatar&quot;);
+    const coin = document.getElementById(&quot;coin&quot;);
+    const arena = document.getElementById(&quot;gameArena&quot;);
+    const scoreVal = document.getElementById(&quot;scoreVal&quot;);
+    const xPosVal = document.getElementById(&quot;xPosVal&quot;);
+    const yPosVal = document.getElementById(&quot;yPosVal&quot;);
+
+    function spawnCoin() {
+      const maxX = arena.clientWidth - 40;
+      const maxY = arena.clientHeight - 40;
+      const randX = Math.floor(Math.random() * (maxX - 20) + 20);
+      const randY = Math.floor(Math.random() * (maxY - 20) + 20);
+      coin.style.left = `${randX}px`;
+      coin.style.top = `${randY}px`;
+    }
+
+    function checkCollision() {
+      const aRect = avatar.getBoundingClientRect();
+      const cRect = coin.getBoundingClientRect();
+
+      if (!(aRect.right &lt; cRect.left || 
+            aRect.left &gt; cRect.right || 
+            aRect.bottom &lt; cRect.top || 
+            aRect.top &gt; cRect.bottom)) {
+        score += 10;
+        scoreVal.textContent = score;
+        spawnCoin();
+      }
+    }
+
+    function update() {
+      const maxX = arena.clientWidth - 44;
+      const maxY = arena.clientHeight - 44;
+
+      posX = Math.max(0, Math.min(maxX, posX));
+      posY = Math.max(0, Math.min(maxY, posY));
+
+      avatar.style.left = `${posX}px`;
+      avatar.style.top = `${posY}px`;
+      xPosVal.textContent = posX;
+      yPosVal.textContent = posY;
+
+      checkCollision();
+    }
+
+    function move(dir) {
+      if (dir === &#x27;up&#x27;) posY -= STEP;
+      if (dir === &#x27;down&#x27;) posY += STEP;
+      if (dir === &#x27;left&#x27;) posX -= STEP;
+      if (dir === &#x27;right&#x27;) posX += STEP;
+      update();
+    }
+
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if ([&quot;ArrowUp&quot;, &quot;KeyW&quot;, &quot;w&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;up&#x27;); }
+      if ([&quot;ArrowDown&quot;, &quot;KeyS&quot;, &quot;s&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;down&#x27;); }
+      if ([&quot;ArrowLeft&quot;, &quot;KeyA&quot;, &quot;a&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;left&#x27;); }
+      if ([&quot;ArrowRight&quot;, &quot;KeyD&quot;, &quot;d&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;right&#x27;); }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let posX = 150, posY = 150;
+    let score = 0;
+    const STEP = 25;
+    const avatar = document.getElementById(&quot;avatar&quot;);
+    const coin = document.getElementById(&quot;coin&quot;);
+    const arena = document.getElementById(&quot;gameArena&quot;);
+    const scoreVal = document.getElementById(&quot;scoreVal&quot;);
+    const xPosVal = document.getElementById(&quot;xPosVal&quot;);
+    const yPosVal = document.getElementById(&quot;yPosVal&quot;);
+
+    function spawnCoin() {
+      const maxX = arena.clientWidth - 40;
+      const maxY = arena.clientHeight - 40;
+      const randX = Math.floor(Math.random() * (maxX - 20) + 20);
+      const randY = Math.floor(Math.random() * (maxY - 20) + 20);
+      coin.style.left = `${randX}px`;
+      coin.style.top = `${randY}px`;
+    }
+
+    function checkCollision() {
+      const aRect = avatar.getBoundingClientRect();
+      const cRect = coin.getBoundingClientRect();
+
+      if (!(aRect.right &lt; cRect.left || 
+            aRect.left &gt; cRect.right || 
+            aRect.bottom &lt; cRect.top || 
+            aRect.top &gt; cRect.bottom)) {
+        score += 10;
+        scoreVal.textContent = score;
+        spawnCoin();
+      }
+    }
+
+    function update() {
+      const maxX = arena.clientWidth - 44;
+      const maxY = arena.clientHeight - 44;
+
+      posX = Math.max(0, Math.min(maxX, posX));
+      posY = Math.max(0, Math.min(maxY, posY));
+
+      avatar.style.left = `${posX}px`;
+      avatar.style.top = `${posY}px`;
+      xPosVal.textContent = posX;
+      yPosVal.textContent = posY;
+
+      checkCollision();
+    }
+
+    function move(dir) {
+      if (dir === &#x27;up&#x27;) posY -= STEP;
+      if (dir === &#x27;down&#x27;) posY += STEP;
+      if (dir === &#x27;left&#x27;) posX -= STEP;
+      if (dir === &#x27;right&#x27;) posX += STEP;
+      update();
+    }
+
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if ([&quot;ArrowUp&quot;, &quot;KeyW&quot;, &quot;w&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;up&#x27;); }
+      if ([&quot;ArrowDown&quot;, &quot;KeyS&quot;, &quot;s&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;down&#x27;); }
+      if ([&quot;ArrowLeft&quot;, &quot;KeyA&quot;, &quot;a&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;left&#x27;); }
+      if ([&quot;ArrowRight&quot;, &quot;KeyD&quot;, &quot;d&quot;].includes(e.key)) { e.preventDefault(); move(&#x27;right&#x27;); }
+    });</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="276-array-sum-average.html"><small>← Previous</small>Array sum average</a><a class="nav-btn" href="278-async-promises.html"><small>Next →</small>Async promises</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

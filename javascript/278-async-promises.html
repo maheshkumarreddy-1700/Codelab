@@ -1,0 +1,196 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 278 | Async promises | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 278</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 278</div><h1>Async promises</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to async promises.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Promises &amp; Async/Await | JS-18&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;nav-brand&quot;&gt;
+        &lt;div class=&quot;brand-icon&quot; style=&quot;background: linear-gradient(135deg, #f59e0b, #d97706);&quot;&gt;
+          &lt;span&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;span&gt;JS Basics&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;nav&gt;
+        &lt;ul class=&quot;nav-links&quot;&gt;
+          &lt;li&gt;&lt;a href=&quot;../../index.html&quot; class=&quot;nav-link&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;../../html/index.html&quot; class=&quot;nav-link&quot;&gt;HTML&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;../../css/index.html&quot; class=&quot;nav-link&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;../index.html&quot; class=&quot;nav-link active&quot;&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main class=&quot;main-wrapper&quot;&gt;
+    &lt;nav class=&quot;breadcrumb-bar&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt;
+      &lt;span class=&quot;breadcrumb-separator&quot;&gt;&amp;rarr;&lt;/span&gt;
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;span class=&quot;breadcrumb-separator&quot;&gt;&amp;rarr;&lt;/span&gt;
+      &lt;a href=&quot;index.html&quot;&gt;Basics&lt;/a&gt;
+      &lt;span class=&quot;breadcrumb-separator&quot;&gt;&amp;rarr;&lt;/span&gt;
+      &lt;span class=&quot;breadcrumb-current&quot;&gt;JS-18: Async/Await &amp;amp; Promises&lt;/span&gt;
+    &lt;/nav&gt;
+
+    &lt;section class=&quot;exp-header-card&quot;&gt;
+      &lt;div class=&quot;exp-meta-row&quot;&gt;
+        &lt;span class=&quot;exp-id-tag&quot; style=&quot;background: #ca8a04;&quot;&gt;JS-18&lt;/span&gt;
+        &lt;span class=&quot;exp-cat-tag&quot;&gt;Async&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;h1 class=&quot;exp-heading&quot;&gt;Asynchronous JavaScript: Promises &amp;amp; Async/Await&lt;/h1&gt;
+      &lt;p class=&quot;exp-description&quot;&gt;
+        Demonstrates non-blocking asynchronous event loop processing: Promise lifecycle states (Pending &amp;rarr; Fulfilled / Rejected), error handling via try/catch, and sequential synchronous-style execution via `async` and `await`.
+      &lt;/p&gt;
+      &lt;div class=&quot;objective-box&quot;&gt;
+        &lt;div class=&quot;objective-title&quot;&gt;&lt;span&gt;🎯&lt;/span&gt; Practical Laboratory Objective&lt;/div&gt;
+        &lt;div class=&quot;objective-text&quot;&gt;
+          Understand why JavaScript&#x27;s single-threaded runtime relies on non-blocking async promises for network I/O, avoiding browser UI freezing.
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Live Demonstration --&gt;
+    &lt;section class=&quot;demo-section-wrapper&quot;&gt;
+      &lt;div class=&quot;demo-section-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;&lt;span&gt;⚡&lt;/span&gt; Live Asynchronous Task Runner&lt;/div&gt;
+        &lt;span class=&quot;demo-live-badge&quot;&gt;Working Demo&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot; style=&quot;background: #ffffff;&quot;&gt;
+        &lt;div class=&quot;demo-controls-row&quot;&gt;
+          &lt;button class=&quot;demo-btn&quot; onclick=&quot;runAsyncSuccess()&quot;&gt;🚀 Run Async Fetch (Success Case)&lt;/button&gt;
+          &lt;button class=&quot;demo-btn demo-btn-danger&quot; onclick=&quot;runAsyncFailure()&quot;&gt;⚠️ Run Async Fetch (Simulated Error)&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;demo-output-box&quot;&gt;
+          &lt;div class=&quot;demo-output-header&quot;&gt;Asynchronous Execution Log:&lt;/div&gt;
+          &lt;div class=&quot;demo-output-result&quot; id=&quot;res-async&quot; style=&quot;font-size: 0.9rem; font-family: var(--font-mono); line-height: 1.8;&quot;&gt;
+            Ready to initiate asynchronous promise...
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Source Code Section --&gt;
+    &lt;section class=&quot;source-section-wrapper&quot;&gt;
+      &lt;div class=&quot;source-header&quot;&gt;
+        &lt;div class=&quot;source-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab-btn active&quot; data-tab=&quot;js&quot;&gt;JavaScript Source Code&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;source-actions&quot;&gt;
+          &lt;button class=&quot;copy-code-btn&quot; type=&quot;button&quot;&gt;Copy Code&lt;/button&gt;
+          &lt;button class=&quot;toggle-code-btn&quot; type=&quot;button&quot;&gt;Hide Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-content-container&quot;&gt;
+        &lt;div class=&quot;code-pane active&quot; data-tab=&quot;js&quot;&gt;
+&lt;pre&gt;// 1. Promise Creator with Asynchronous Delay
+function fetchStudentData(shouldSucceed) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      if (shouldSucceed) {
+        resolve({ id: 101, name: &quot;Shaik Roshan&quot;, role: &quot;Developer&quot; });
+      } else {
+        reject(new Error(&quot;503 Network Timeout Server Error&quot;));
+      }
+    }, 1500);
+  });
+}
+
+// 2. Async/Await Consumer with Try/Catch
+async function handleRequest() {
+  try {
+    const data = await fetchStudentData(true);
+    console.log(&quot;Received payload:&quot;, data);
+  } catch (error) {
+    console.error(&quot;Caught error:&quot;, error.message);
+  }
+}&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Bottom Navigation --&gt;
+    &lt;nav class=&quot;exp-nav-bar&quot;&gt;
+      &lt;a href=&quot;es6-classes.html&quot; class=&quot;nav-btn nav-btn-prev&quot;&gt;&amp;larr; Previous (JS-17)&lt;/a&gt;
+      &lt;a href=&quot;index.html&quot; class=&quot;nav-btn nav-btn-hub&quot;&gt;All Basics Programs&lt;/a&gt;
+      &lt;a href=&quot;../dom/index.html&quot; class=&quot;nav-btn nav-btn-next&quot;&gt;Next Category: DOM Manipulation &amp;rarr;&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/main&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function simulateFetch(succeed) {
+      return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+          if (succeed) {
+            resolve({ rollNo: &quot;23CS01&quot;, name: &quot;Shaik Roshan&quot;, status: &quot;Active Student&quot;, recordsVerified: 150 });
+          } else {
+            reject(new Error(&quot;404 Remote Academic Record Not Found&quot;));
+          }
+        }, 1200);
+      });
+    }
+
+    async function runAsyncSuccess() {
+      const res = document.getElementById(&#x27;res-async&#x27;);
+      res.innerHTML = `[${new Date().toLocaleTimeString()}] ⏳ [PENDING] Dispatching async request to endpoint...&lt;br&gt;`;
+      try {
+        const payload = await simulateFetch(true);
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] &lt;span style=&quot;color: #16a34a; font-weight: 700;&quot;&gt;✅ [RESOLVED] Successfully fetched data:&lt;/span&gt;&lt;br&gt;` +
+          `&amp;gt; Student: ${payload.name} (${payload.rollNo})&lt;br&gt;&amp;gt; Status: ${payload.status} (${payload.recordsVerified} experiments verified)`;
+      } catch (err) {
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] ❌ [REJECTED] ${err.message}`;
+      }
+    }
+
+    async function runAsyncFailure() {
+      const res = document.getElementById(&#x27;res-async&#x27;);
+      res.innerHTML = `[${new Date().toLocaleTimeString()}] ⏳ [PENDING] Dispatching async request...&lt;br&gt;`;
+      try {
+        await simulateFetch(false);
+      } catch (err) {
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] &lt;span style=&quot;color: #ef4444; font-weight: 700;&quot;&gt;❌ [REJECTED] Handled in catch block:&lt;/span&gt; ${err.message}`;
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function simulateFetch(succeed) {
+      return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+          if (succeed) {
+            resolve({ rollNo: &quot;23CS01&quot;, name: &quot;Shaik Roshan&quot;, status: &quot;Active Student&quot;, recordsVerified: 150 });
+          } else {
+            reject(new Error(&quot;404 Remote Academic Record Not Found&quot;));
+          }
+        }, 1200);
+      });
+    }
+
+    async function runAsyncSuccess() {
+      const res = document.getElementById(&#x27;res-async&#x27;);
+      res.innerHTML = `[${new Date().toLocaleTimeString()}] ⏳ [PENDING] Dispatching async request to endpoint...&lt;br&gt;`;
+      try {
+        const payload = await simulateFetch(true);
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] &lt;span style=&quot;color: #16a34a; font-weight: 700;&quot;&gt;✅ [RESOLVED] Successfully fetched data:&lt;/span&gt;&lt;br&gt;` +
+          `&amp;gt; Student: ${payload.name} (${payload.rollNo})&lt;br&gt;&amp;gt; Status: ${payload.status} (${payload.recordsVerified} experiments verified)`;
+      } catch (err) {
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] ❌ [REJECTED] ${err.message}`;
+      }
+    }
+
+    async function runAsyncFailure() {
+      const res = document.getElementById(&#x27;res-async&#x27;);
+      res.innerHTML = `[${new Date().toLocaleTimeString()}] ⏳ [PENDING] Dispatching async request...&lt;br&gt;`;
+      try {
+        await simulateFetch(false);
+      } catch (err) {
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] &lt;span style=&quot;color: #ef4444; font-weight: 700;&quot;&gt;❌ [REJECTED] Handled in catch block:&lt;/span&gt; ${err.message}`;
+      }
+    }</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="277-arrow-key-mover.html"><small>← Previous</small>Arrow key mover</a><a class="nav-btn" href="279-attributes-manipulation.html"><small>Next →</small>Attributes manipulation</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

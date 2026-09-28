@@ -1,0 +1,297 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 280 | Auto save draft | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 280</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 280</div><h1>Auto save draft</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to auto save draft.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;ST 09 - Form Auto-Save Draft Engine | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .draft-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .draft-title-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .draft-textarea {
+      width: 100%;
+      height: 180px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      resize: vertical;
+      margin-bottom: 1rem;
+    }
+    .draft-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .save-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Storage&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;ST 09 - Auto-Save Draft Engine&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Web Storage • Program 09&lt;/div&gt;
+      &lt;h1&gt;Form Auto-Save Draft with Debounce&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Automatically serialize and save form articles to &lt;code&gt;localStorage&lt;/code&gt; 500ms after the user stops typing (debouncing). 
+        Guarantees zero data loss if the browser unexpectedly closes or crashes.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;✍️&lt;/span&gt; Lab Assignment Editor
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot; id=&quot;syncBadge&quot;&gt;Auto-Save Enabled&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;draft-card&quot;&gt;
+          &lt;input type=&quot;text&quot; id=&quot;draftTitle&quot; class=&quot;draft-title-input&quot; placeholder=&quot;Assignment Title (e.g. DOM Traversal Analysis)&quot; oninput=&quot;queueAutoSave()&quot;&gt;
+          &lt;textarea id=&quot;draftBody&quot; class=&quot;draft-textarea&quot; placeholder=&quot;Start writing your lab report... notice the auto-save indicator below as you type!&quot; oninput=&quot;queueAutoSave()&quot;&gt;&lt;/textarea&gt;
+
+          &lt;div class=&quot;draft-status-bar&quot;&gt;
+            &lt;div class=&quot;save-indicator&quot;&gt;
+              &lt;span id=&quot;saveDot&quot; style=&quot;color: #10b981;&quot;&gt;●&lt;/span&gt;
+              &lt;span id=&quot;saveStatus&quot;&gt;Draft saved to LocalStorage&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div style=&quot;display: flex; gap: 0.5rem;&quot;&gt;
+              &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;publishReport()&quot;&gt;Publish Report&lt;/button&gt;
+              &lt;button class=&quot;btn btn-secondary&quot; onclick=&quot;discardDraft()&quot;&gt;Discard Draft&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;let debounceTimer = null;
+
+function queueAutoSave() {
+  saveStatus.textContent = &quot;Saving changes...&quot;;
+  saveDot.style.color = &quot;#f59e0b&quot;; // yellow while typing
+
+  // Debounce: Wait 500ms after last keystroke before writing to disk
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(saveToStorage, 500);
+}
+
+function saveToStorage() {
+  const draft = {
+    title: titleInput.value,
+    body: bodyInput.value,
+    updatedAt: new Date().toLocaleTimeString()
+  };
+
+  localStorage.setItem(&quot;lab_assignment_draft&quot;, JSON.stringify(draft));
+  saveStatus.textContent = `Draft saved at ${draft.updatedAt}`;
+  saveDot.style.color = &quot;#10b981&quot;; // green
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;storage-comparison.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; ST 08: Storage Comparison&lt;/a&gt;
+      &lt;a href=&quot;persistent-cart.html&quot; class=&quot;nav-next&quot;&gt;ST 10: Persistent Shopping Cart &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let debounceTimer = null;
+    const titleInp = document.getElementById(&quot;draftTitle&quot;);
+    const bodyInp = document.getElementById(&quot;draftBody&quot;);
+    const saveStatus = document.getElementById(&quot;saveStatus&quot;);
+    const saveDot = document.getElementById(&quot;saveDot&quot;);
+
+    function queueAutoSave() {
+      saveStatus.textContent = &quot;Saving draft...&quot;;
+      saveDot.style.color = &quot;#f59e0b&quot;;
+
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(executeSave, 600);
+    }
+
+    function executeSave() {
+      const data = {
+        title: titleInp.value,
+        body: bodyInp.value,
+        timestamp: new Date().toLocaleTimeString([], { hour: &#x27;2-digit&#x27;, minute: &#x27;2-digit&#x27;, second: &#x27;2-digit&#x27; })
+      };
+
+      localStorage.setItem(&quot;lab_editor_draft&quot;, JSON.stringify(data));
+      saveStatus.textContent = `Draft auto-saved at ${data.timestamp}`;
+      saveDot.style.color = &quot;#10b981&quot;;
+    }
+
+    function restoreDraft() {
+      const saved = localStorage.getItem(&quot;lab_editor_draft&quot;);
+      if (saved) {
+        try {
+          const obj = JSON.parse(saved);
+          titleInp.value = obj.title || &quot;&quot;;
+          bodyInp.value = obj.body || &quot;&quot;;
+          saveStatus.textContent = `Draft restored from ${obj.timestamp || &#x27;previous session&#x27;}`;
+        } catch (e) {}
+      } else {
+        titleInp.value = &quot;Experiment 12: JavaScript Web Storage Architecture&quot;;
+        bodyInp.value = &quot;Web Storage APIs allow web applications to store data locally within the user&#x27;s browser. Unlike cookies, the storage limit is substantially larger and information is never transferred to the server.&quot;;
+        executeSave();
+      }
+    }
+
+    function discardDraft() {
+      if (confirm(&quot;Discard this draft permanently?&quot;)) {
+        localStorage.removeItem(&quot;lab_editor_draft&quot;);
+        titleInp.value = &quot;&quot;;
+        bodyInp.value = &quot;&quot;;
+        saveStatus.textContent = &quot;Draft discarded&quot;;
+        saveDot.style.color = &quot;#94a3b8&quot;;
+      }
+    }
+
+    function publishReport() {
+      alert(&quot;🎉 Assignment report published successfully!&quot;);
+    }
+
+    restoreDraft();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let debounceTimer = null;
+    const titleInp = document.getElementById(&quot;draftTitle&quot;);
+    const bodyInp = document.getElementById(&quot;draftBody&quot;);
+    const saveStatus = document.getElementById(&quot;saveStatus&quot;);
+    const saveDot = document.getElementById(&quot;saveDot&quot;);
+
+    function queueAutoSave() {
+      saveStatus.textContent = &quot;Saving draft...&quot;;
+      saveDot.style.color = &quot;#f59e0b&quot;;
+
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(executeSave, 600);
+    }
+
+    function executeSave() {
+      const data = {
+        title: titleInp.value,
+        body: bodyInp.value,
+        timestamp: new Date().toLocaleTimeString([], { hour: &#x27;2-digit&#x27;, minute: &#x27;2-digit&#x27;, second: &#x27;2-digit&#x27; })
+      };
+
+      localStorage.setItem(&quot;lab_editor_draft&quot;, JSON.stringify(data));
+      saveStatus.textContent = `Draft auto-saved at ${data.timestamp}`;
+      saveDot.style.color = &quot;#10b981&quot;;
+    }
+
+    function restoreDraft() {
+      const saved = localStorage.getItem(&quot;lab_editor_draft&quot;);
+      if (saved) {
+        try {
+          const obj = JSON.parse(saved);
+          titleInp.value = obj.title || &quot;&quot;;
+          bodyInp.value = obj.body || &quot;&quot;;
+          saveStatus.textContent = `Draft restored from ${obj.timestamp || &#x27;previous session&#x27;}`;
+        } catch (e) {}
+      } else {
+        titleInp.value = &quot;Experiment 12: JavaScript Web Storage Architecture&quot;;
+        bodyInp.value = &quot;Web Storage APIs allow web applications to store data locally within the user&#x27;s browser. Unlike cookies, the storage limit is substantially larger and information is never transferred to the server.&quot;;
+        executeSave();
+      }
+    }
+
+    function discardDraft() {
+      if (confirm(&quot;Discard this draft permanently?&quot;)) {
+        localStorage.removeItem(&quot;lab_editor_draft&quot;);
+        titleInp.value = &quot;&quot;;
+        bodyInp.value = &quot;&quot;;
+        saveStatus.textContent = &quot;Draft discarded&quot;;
+        saveDot.style.color = &quot;#94a3b8&quot;;
+      }
+    }
+
+    function publishReport() {
+      alert(&quot;🎉 Assignment report published successfully!&quot;);
+    }
+
+    restoreDraft();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="279-attributes-manipulation.html"><small>← Previous</small>Attributes manipulation</a><a class="nav-btn" href="281-bg-color-picker.html"><small>Next →</small>Bg color picker</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

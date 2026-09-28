@@ -1,0 +1,275 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 289 | Digital clock app | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 289</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 289</div><h1>Digital clock app</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to digital clock app.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;PR 02 - World Timezone Digital Clock | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .world-clocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .clock-zone-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .clock-zone-card:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+    }
+    .zone-flag {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+    }
+    .zone-city {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .zone-offset {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+    .zone-time {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: #020617;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+      margin-bottom: 0.5rem;
+    }
+    .zone-date {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Projects&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;PR 02 - World Timezone Clock&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Mini Project • Project 02&lt;/div&gt;
+      &lt;h1&gt;World Timezone Synchronized Digital Clock&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Display synchronized live world clocks for global financial hubs using the 
+        &lt;code&gt;Intl.DateTimeFormat&lt;/code&gt; API and custom UTC offset calculations.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🌍&lt;/span&gt; Global Financial Centers
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Live Ticking&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;world-clocks-grid&quot;&gt;
+          
+          &lt;!-- New Delhi --&gt;
+          &lt;div class=&quot;clock-zone-card&quot; style=&quot;border-top: 4px solid #f97316;&quot;&gt;
+            &lt;div class=&quot;zone-flag&quot;&gt;🇮🇳&lt;/div&gt;
+            &lt;div class=&quot;zone-city&quot;&gt;New Delhi / Mumbai&lt;/div&gt;
+            &lt;div class=&quot;zone-offset&quot;&gt;IST (UTC +5:30)&lt;/div&gt;
+            &lt;div class=&quot;zone-time&quot; id=&quot;timeIst&quot;&gt;--:--:--&lt;/div&gt;
+            &lt;div class=&quot;zone-date&quot; id=&quot;dateIst&quot;&gt;--&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- London --&gt;
+          &lt;div class=&quot;clock-zone-card&quot; style=&quot;border-top: 4px solid #3b82f6;&quot;&gt;
+            &lt;div class=&quot;zone-flag&quot;&gt;🇬🇧&lt;/div&gt;
+            &lt;div class=&quot;zone-city&quot;&gt;London (GMT / BST)&lt;/div&gt;
+            &lt;div class=&quot;zone-offset&quot;&gt;UTC +0:00 / +1:00&lt;/div&gt;
+            &lt;div class=&quot;zone-time&quot; id=&quot;timeLondon&quot;&gt;--:--:--&lt;/div&gt;
+            &lt;div class=&quot;zone-date&quot; id=&quot;dateLondon&quot;&gt;--&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- New York --&gt;
+          &lt;div class=&quot;clock-zone-card&quot; style=&quot;border-top: 4px solid #ef4444;&quot;&gt;
+            &lt;div class=&quot;zone-flag&quot;&gt;🇺🇸&lt;/div&gt;
+            &lt;div class=&quot;zone-city&quot;&gt;New York (Wall St)&lt;/div&gt;
+            &lt;div class=&quot;zone-offset&quot;&gt;EDT (UTC -4:00)&lt;/div&gt;
+            &lt;div class=&quot;zone-time&quot; id=&quot;timeNy&quot;&gt;--:--:--&lt;/div&gt;
+            &lt;div class=&quot;zone-date&quot; id=&quot;dateNy&quot;&gt;--&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Tokyo --&gt;
+          &lt;div class=&quot;clock-zone-card&quot; style=&quot;border-top: 4px solid #10b981;&quot;&gt;
+            &lt;div class=&quot;zone-flag&quot;&gt;🇯🇵&lt;/div&gt;
+            &lt;div class=&quot;zone-city&quot;&gt;Tokyo (Shinjuku)&lt;/div&gt;
+            &lt;div class=&quot;zone-offset&quot;&gt;JST (UTC +9:00)&lt;/div&gt;
+            &lt;div class=&quot;zone-time&quot; id=&quot;timeTokyo&quot;&gt;--:--:--&lt;/div&gt;
+            &lt;div class=&quot;zone-date&quot; id=&quot;dateTokyo&quot;&gt;--&lt;/div&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;function getTimeInZone(timeZone) {
+  const now = new Date();
+  
+  // Format localized time string
+  const timeStr = now.toLocaleTimeString(&quot;en-US&quot;, {
+    timeZone,
+    hour12: true,
+    hour: &quot;2-digit&quot;,
+    minute: &quot;2-digit&quot;,
+    second: &quot;2-digit&quot;
+  });
+
+  // Format localized date string
+  const dateStr = now.toLocaleDateString(&quot;en-US&quot;, {
+    timeZone,
+    weekday: &quot;short&quot;,
+    month: &quot;short&quot;,
+    day: &quot;numeric&quot;
+  });
+
+  return { timeStr, dateStr };
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;calculator.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; PR 01: Digital Calculator&lt;/a&gt;
+      &lt;a href=&quot;stopwatch-app.html&quot; class=&quot;nav-next&quot;&gt;PR 03: Sports Stopwatch &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function updateWorldClocks() {
+      const zones = [
+        { id: &quot;Ist&quot;, tz: &quot;Asia/Kolkata&quot; },
+        { id: &quot;London&quot;, tz: &quot;Europe/London&quot; },
+        { id: &quot;Ny&quot;, tz: &quot;America/New_York&quot; },
+        { id: &quot;Tokyo&quot;, tz: &quot;Asia/Tokyo&quot; }
+      ];
+
+      const now = new Date();
+
+      zones.forEach(z =&gt; {
+        const timeStr = now.toLocaleTimeString(&#x27;en-US&#x27;, {
+          timeZone: z.tz,
+          hour12: true,
+          hour: &#x27;2-digit&#x27;,
+          minute: &#x27;2-digit&#x27;,
+          second: &#x27;2-digit&#x27;
+        });
+
+        const dateStr = now.toLocaleDateString(&#x27;en-US&#x27;, {
+          timeZone: z.tz,
+          weekday: &#x27;short&#x27;,
+          month: &#x27;short&#x27;,
+          day: &#x27;numeric&#x27;,
+          year: &#x27;numeric&#x27;
+        });
+
+        document.getElementById(`time${z.id}`).textContent = timeStr;
+        document.getElementById(`date${z.id}`).textContent = dateStr;
+      });
+    }
+
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function updateWorldClocks() {
+      const zones = [
+        { id: &quot;Ist&quot;, tz: &quot;Asia/Kolkata&quot; },
+        { id: &quot;London&quot;, tz: &quot;Europe/London&quot; },
+        { id: &quot;Ny&quot;, tz: &quot;America/New_York&quot; },
+        { id: &quot;Tokyo&quot;, tz: &quot;Asia/Tokyo&quot; }
+      ];
+
+      const now = new Date();
+
+      zones.forEach(z =&gt; {
+        const timeStr = now.toLocaleTimeString(&#x27;en-US&#x27;, {
+          timeZone: z.tz,
+          hour12: true,
+          hour: &#x27;2-digit&#x27;,
+          minute: &#x27;2-digit&#x27;,
+          second: &#x27;2-digit&#x27;
+        });
+
+        const dateStr = now.toLocaleDateString(&#x27;en-US&#x27;, {
+          timeZone: z.tz,
+          weekday: &#x27;short&#x27;,
+          month: &#x27;short&#x27;,
+          day: &#x27;numeric&#x27;,
+          year: &#x27;numeric&#x27;
+        });
+
+        document.getElementById(`time${z.id}`).textContent = timeStr;
+        document.getElementById(`date${z.id}`).textContent = dateStr;
+      });
+    }
+
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="288-currency-converter.html"><small>← Previous</small>Currency converter</a><a class="nav-btn" href="290-digital-clock.html"><small>Next →</small>Digital clock</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

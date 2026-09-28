@@ -1,0 +1,293 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 272 | Age calculator | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 272</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 272</div><h1>Age calculator</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to age calculator.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;FM 10 - Precise Age Calculator | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .calc-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .date-input-wrap {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .date-input-wrap input[type=&quot;date&quot;] {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      color-scheme: dark;
+    }
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .breakdown-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.25rem 0.5rem;
+    }
+    .breakdown-num {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .breakdown-lbl {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    .extra-facts {
+      margin-top: 1.5rem;
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      text-align: left;
+      line-height: 1.6;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Forms&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;FM 10 - Precise Age Calculator&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Form Validation • Program 10&lt;/div&gt;
+      &lt;h1&gt;Precise Age Calculator from Date of Birth&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Calculate exact chronological age in years, months, and days using the JavaScript &lt;code&gt;Date&lt;/code&gt; object, 
+        accounting for leap years and varying month days.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🎂&lt;/span&gt; Chronological Age Engine
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Date Object Math&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;calc-card&quot;&gt;
+          &lt;label style=&quot;color: #94a3b8; font-size: 0.9rem;&quot;&gt;Select Your Date of Birth (DOB):&lt;/label&gt;
+          &lt;div class=&quot;date-input-wrap&quot;&gt;
+            &lt;input type=&quot;date&quot; id=&quot;dobInput&quot; value=&quot;2004-05-15&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;calculateAge()&quot;&gt;Calculate Age&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;breakdown-grid&quot;&gt;
+            &lt;div class=&quot;breakdown-box&quot;&gt;
+              &lt;div id=&quot;resYears&quot; class=&quot;breakdown-num&quot;&gt;21&lt;/div&gt;
+              &lt;div class=&quot;breakdown-lbl&quot;&gt;Years&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;breakdown-box&quot;&gt;
+              &lt;div id=&quot;resMonths&quot; class=&quot;breakdown-num&quot;&gt;4&lt;/div&gt;
+              &lt;div class=&quot;breakdown-lbl&quot;&gt;Months&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;breakdown-box&quot;&gt;
+              &lt;div id=&quot;resDays&quot; class=&quot;breakdown-num&quot;&gt;6&lt;/div&gt;
+              &lt;div class=&quot;breakdown-lbl&quot;&gt;Days&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div id=&quot;extraFacts&quot; class=&quot;extra-facts&quot;&gt;
+            📅 &lt;strong&gt;Total Days Lived:&lt;/strong&gt; ~7,798 days&lt;br&gt;
+            ⏳ &lt;strong&gt;Next Birthday:&lt;/strong&gt; in 7 months, 24 days
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;function calculateAge(birthDateString) {
+  const birthDate = new Date(birthDateString);
+  const today = new Date();
+
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  // Day borrow logic
+  if (days &lt; 0) {
+    months--;
+    const prevMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    days += prevMonthDays;
+  }
+
+  // Month borrow logic
+  if (months &lt; 0) {
+    years--;
+    months += 12;
+  }
+
+  return { years, months, days };
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;multi-step-form.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; FM 09: Multi-Step Form&lt;/a&gt;
+      &lt;a href=&quot;student-grade-calculator.html&quot; class=&quot;nav-next&quot;&gt;FM 11: Grade Calculator &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function calculateAge() {
+      const val = document.getElementById(&quot;dobInput&quot;).value;
+      if (!val) return;
+
+      const birth = new Date(val);
+      const today = new Date();
+
+      if (birth &gt; today) {
+        alert(&quot;Date of birth cannot be in the future!&quot;);
+        return;
+      }
+
+      let years = today.getFullYear() - birth.getFullYear();
+      let months = today.getMonth() - birth.getMonth();
+      let days = today.getDate() - birth.getDate();
+
+      if (days &lt; 0) {
+        months--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months &lt; 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById(&quot;resYears&quot;).textContent = years;
+      document.getElementById(&quot;resMonths&quot;).textContent = months;
+      document.getElementById(&quot;resDays&quot;).textContent = days;
+
+      const diffMs = today - birth;
+      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = totalDays * 24;
+
+      document.getElementById(&quot;extraFacts&quot;).innerHTML = `
+        📅 &lt;strong&gt;Total Days Lived:&lt;/strong&gt; ${totalDays.toLocaleString()} days (${hours.toLocaleString()} hours)&lt;br&gt;
+        🎉 &lt;strong&gt;Day Born:&lt;/strong&gt; ${birth.toLocaleDateString(&#x27;en-US&#x27;, { weekday: &#x27;long&#x27; })}
+      `;
+    }
+
+    calculateAge();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function calculateAge() {
+      const val = document.getElementById(&quot;dobInput&quot;).value;
+      if (!val) return;
+
+      const birth = new Date(val);
+      const today = new Date();
+
+      if (birth &gt; today) {
+        alert(&quot;Date of birth cannot be in the future!&quot;);
+        return;
+      }
+
+      let years = today.getFullYear() - birth.getFullYear();
+      let months = today.getMonth() - birth.getMonth();
+      let days = today.getDate() - birth.getDate();
+
+      if (days &lt; 0) {
+        months--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months &lt; 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById(&quot;resYears&quot;).textContent = years;
+      document.getElementById(&quot;resMonths&quot;).textContent = months;
+      document.getElementById(&quot;resDays&quot;).textContent = days;
+
+      const diffMs = today - birth;
+      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = totalDays * 24;
+
+      document.getElementById(&quot;extraFacts&quot;).innerHTML = `
+        📅 &lt;strong&gt;Total Days Lived:&lt;/strong&gt; ${totalDays.toLocaleString()} days (${hours.toLocaleString()} hours)&lt;br&gt;
+        🎉 &lt;strong&gt;Day Born:&lt;/strong&gt; ${birth.toLocaleDateString(&#x27;en-US&#x27;, { weekday: &#x27;long&#x27; })}
+      `;
+    }
+
+    calculateAge();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="271-accordion-component.html"><small>← Previous</small>Accordion component</a><a class="nav-btn" href="273-arithmetic.html"><small>Next →</small>Arithmetic</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

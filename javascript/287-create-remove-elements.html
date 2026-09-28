@@ -1,0 +1,318 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 287 | Create remove elements | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 287</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 287</div><h1>Create remove elements</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to create remove elements.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;DOM 04 - Create, Append &amp; Remove Elements | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .nodes-container {
+      background: #0f172a;
+      border: 2px dashed #334155;
+      padding: 1.5rem;
+      border-radius: 12px;
+      min-height: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-content: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .node-item {
+      background: #1e293b;
+      border: 1px solid #3b82f6;
+      border-left: 4px solid #3b82f6;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .del-btn {
+      background: #ef4444;
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .input-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .input-bar input {
+      flex: 1;
+      min-width: 240px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;DOM&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;DOM 04 - Create, Append &amp; Remove Elements&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;DOM Manipulation • Program 04&lt;/div&gt;
+      &lt;h1&gt;Create, Append, Prepend &amp; Remove Elements&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Dynamically manage HTML nodes using standard DOM core methods: &lt;code&gt;createElement()&lt;/code&gt;, 
+        &lt;code&gt;appendChild()&lt;/code&gt;, &lt;code&gt;prepend()&lt;/code&gt;, &lt;code&gt;insertBefore()&lt;/code&gt;, and &lt;code&gt;remove()&lt;/code&gt;.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;📦&lt;/span&gt; Node Management Playground
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Interactive Demo&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;input-bar&quot;&gt;
+          &lt;input type=&quot;text&quot; id=&quot;nodeTextInput&quot; placeholder=&quot;Enter node label or card title (e.g. Server Node #4)...&quot;&gt;
+          &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;appendNode()&quot;&gt;Append (End)&lt;/button&gt;
+          &lt;button class=&quot;btn btn-secondary&quot; onclick=&quot;prependNode()&quot;&gt;Prepend (Start)&lt;/button&gt;
+          &lt;button class=&quot;btn btn-secondary&quot; style=&quot;background:#ef4444; color:white;&quot; onclick=&quot;clearAllNodes()&quot;&gt;Clear All&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div style=&quot;font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;&quot;&gt;Container Parent Node (#nodesContainer): &lt;span id=&quot;nodeCount&quot;&gt;3 items&lt;/span&gt;&lt;/div&gt;
+        &lt;div id=&quot;nodesContainer&quot; class=&quot;nodes-container&quot;&gt;
+          &lt;div class=&quot;node-item&quot;&gt;
+            &lt;span&gt;Node #1: Initialization Module&lt;/span&gt;
+            &lt;button class=&quot;del-btn&quot; onclick=&quot;this.parentElement.remove(); updateCount();&quot;&gt;&amp;times;&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;node-item&quot;&gt;
+            &lt;span&gt;Node #2: Database Listener&lt;/span&gt;
+            &lt;button class=&quot;del-btn&quot; onclick=&quot;this.parentElement.remove(); updateCount();&quot;&gt;&amp;times;&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;node-item&quot;&gt;
+            &lt;span&gt;Node #3: Cache Worker&lt;/span&gt;
+            &lt;button class=&quot;del-btn&quot; onclick=&quot;this.parentElement.remove(); updateCount();&quot;&gt;&amp;times;&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;const container = document.getElementById(&quot;nodesContainer&quot;);
+
+function createCard(text) {
+  // 1. Create wrapper element
+  const node = document.createElement(&quot;div&quot;);
+  node.className = &quot;node-item&quot;;
+
+  // 2. Create label span
+  const span = document.createElement(&quot;span&quot;);
+  span.textContent = text;
+  node.appendChild(span);
+
+  // 3. Create delete button
+  const delBtn = document.createElement(&quot;button&quot;);
+  delBtn.className = &quot;del-btn&quot;;
+  delBtn.innerHTML = &quot;&amp;times;&quot;;
+  delBtn.onclick = function() {
+    node.remove(); // removes node from DOM tree
+  };
+  node.appendChild(delBtn);
+
+  return node;
+}
+
+// Append child at the end
+function appendNode(text) {
+  const node = createCard(text);
+  container.appendChild(node);
+}
+
+// Prepend child at the beginning
+function prependNode(text) {
+  const node = createCard(text);
+  container.prepend(node);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;bg-color-picker.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; DOM 03: BG Color Picker&lt;/a&gt;
+      &lt;a href=&quot;dom-classes.html&quot; class=&quot;nav-next&quot;&gt;DOM 05: ClassList Manipulation &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const container = document.getElementById(&quot;nodesContainer&quot;);
+    const input = document.getElementById(&quot;nodeTextInput&quot;);
+    let autoIndex = 4;
+
+    function updateCount() {
+      const count = container.children.length;
+      document.getElementById(&quot;nodeCount&quot;).textContent = count + &quot; item&quot; + (count === 1 ? &quot;&quot; : &quot;s&quot;);
+    }
+
+    function createNode(title) {
+      const text = title || `Node #${autoIndex++}: Service Worker`;
+      const node = document.createElement(&quot;div&quot;);
+      node.className = &quot;node-item&quot;;
+      
+      const span = document.createElement(&quot;span&quot;);
+      span.textContent = text;
+      node.appendChild(span);
+
+      const delBtn = document.createElement(&quot;button&quot;);
+      delBtn.className = &quot;del-btn&quot;;
+      delBtn.innerHTML = &quot;&amp;times;&quot;;
+      delBtn.onclick = () =&gt; {
+        node.remove();
+        updateCount();
+      };
+      node.appendChild(delBtn);
+
+      return node;
+    }
+
+    function appendNode() {
+      const val = input.value.trim();
+      const node = createNode(val);
+      container.appendChild(node);
+      input.value = &quot;&quot;;
+      updateCount();
+    }
+
+    function prependNode() {
+      const val = input.value.trim();
+      const node = createNode(val);
+      container.prepend(node);
+      input.value = &quot;&quot;;
+      updateCount();
+    }
+
+    function clearAllNodes() {
+      container.innerHTML = &quot;&quot;;
+      updateCount();
+    }
+
+    updateCount();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const container = document.getElementById(&quot;nodesContainer&quot;);
+    const input = document.getElementById(&quot;nodeTextInput&quot;);
+    let autoIndex = 4;
+
+    function updateCount() {
+      const count = container.children.length;
+      document.getElementById(&quot;nodeCount&quot;).textContent = count + &quot; item&quot; + (count === 1 ? &quot;&quot; : &quot;s&quot;);
+    }
+
+    function createNode(title) {
+      const text = title || `Node #${autoIndex++}: Service Worker`;
+      const node = document.createElement(&quot;div&quot;);
+      node.className = &quot;node-item&quot;;
+      
+      const span = document.createElement(&quot;span&quot;);
+      span.textContent = text;
+      node.appendChild(span);
+
+      const delBtn = document.createElement(&quot;button&quot;);
+      delBtn.className = &quot;del-btn&quot;;
+      delBtn.innerHTML = &quot;&amp;times;&quot;;
+      delBtn.onclick = () =&gt; {
+        node.remove();
+        updateCount();
+      };
+      node.appendChild(delBtn);
+
+      return node;
+    }
+
+    function appendNode() {
+      const val = input.value.trim();
+      const node = createNode(val);
+      container.appendChild(node);
+      input.value = &quot;&quot;;
+      updateCount();
+    }
+
+    function prependNode() {
+      const val = input.value.trim();
+      const node = createNode(val);
+      container.prepend(node);
+      input.value = &quot;&quot;;
+      updateCount();
+    }
+
+    function clearAllNodes() {
+      container.innerHTML = &quot;&quot;;
+      updateCount();
+    }
+
+    updateCount();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="286-countdown-timer.html"><small>← Previous</small>Countdown timer</a><a class="nav-btn" href="288-currency-converter.html"><small>Next →</small>Currency converter</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>
