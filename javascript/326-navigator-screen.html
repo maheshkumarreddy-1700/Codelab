@@ -1,0 +1,287 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 326 | Navigator screen | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 326</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 326</div><h1>Navigator screen</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to navigator screen.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;BR 07 - Navigator &amp; Screen Hardware Specs | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .specs-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .spec-table td {
+      padding: 8px 4px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .spec-prop {
+      color: #38bdf8;
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      width: 40%;
+    }
+    .spec-val {
+      color: #f8fafc;
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      word-break: break-all;
+    }
+    .online-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .online { background: #065f46; color: #34d399; }
+    .offline { background: #7f1d1d; color: #fca5a5; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Browser&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;BR 07 - Navigator &amp; Screen Specs&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Browser BOM • Program 07&lt;/div&gt;
+      &lt;h1&gt;Navigator &amp; Screen Hardware Diagnostics&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Query client hardware, browser runtime properties (userAgent, language, online/offline status), 
+        physical display resolutions, and pixel density scaling via &lt;code&gt;window.navigator&lt;/code&gt; and &lt;code&gt;window.screen&lt;/code&gt;.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;💻&lt;/span&gt; Hardware &amp; Environment Diagnostics
+        &lt;/div&gt;
+        &lt;div id=&quot;onlineBadge&quot; class=&quot;online-indicator online&quot;&gt;
+          &lt;span style=&quot;font-size:0.6rem;&quot;&gt;●&lt;/span&gt; &lt;span&gt;ONLINE&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;specs-grid&quot;&gt;
+          &lt;!-- Navigator Card --&gt;
+          &lt;div class=&quot;specs-card&quot;&gt;
+            &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 0.75rem;&quot;&gt;window.navigator Properties:&lt;/h3&gt;
+            &lt;table class=&quot;spec-table&quot;&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;.userAgent&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;navAgent&quot; style=&quot;font-size: 0.75rem;&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;.language&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;navLang&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;.platform&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;navPlatform&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;.cookieEnabled&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;navCookie&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;.hardwareConcurrency&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;navCores&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Screen Card --&gt;
+          &lt;div class=&quot;specs-card&quot;&gt;
+            &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 0.75rem;&quot;&gt;window.screen &amp; Viewport:&lt;/h3&gt;
+            &lt;table class=&quot;spec-table&quot;&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;screen.width × height&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;scrRes&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;screen.availWidth × height&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;scrAvail&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;screen.colorDepth&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;scrDepth&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;window.innerWidth × height&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;viewRes&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;spec-prop&quot;&gt;devicePixelRatio&lt;/td&gt;
+                &lt;td class=&quot;spec-val&quot; id=&quot;scrDpr&quot;&gt;-&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;// 1. Browser info
+console.log(&quot;User Agent:&quot;, navigator.userAgent);
+console.log(&quot;Language:&quot;, navigator.language);
+console.log(&quot;Online Status:&quot;, navigator.onLine);
+console.log(&quot;CPU Logical Cores:&quot;, navigator.hardwareConcurrency);
+
+// 2. Network connectivity listeners
+window.addEventListener(&quot;online&quot;, () =&gt; console.log(&quot;Network connected&quot;));
+window.addEventListener(&quot;offline&quot;, () =&gt; console.log(&quot;Network disconnected&quot;));
+
+// 3. Screen display specs
+console.log(`Resolution: ${screen.width} x ${screen.height}`);
+console.log(`Color Depth: ${screen.colorDepth} bit`);
+console.log(`Device Pixel Ratio: ${window.devicePixelRatio}`);&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;location-history.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; BR 06: Location &amp; History&lt;/a&gt;
+      &lt;a href=&quot;geolocation-api.html&quot; class=&quot;nav-next&quot;&gt;BR 08: Geolocation API &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function renderSpecs() {
+      // Navigator
+      document.getElementById(&quot;navAgent&quot;).textContent = navigator.userAgent;
+      document.getElementById(&quot;navLang&quot;).textContent = navigator.language;
+      document.getElementById(&quot;navPlatform&quot;).textContent = navigator.platform || &quot;Win32&quot;;
+      document.getElementById(&quot;navCookie&quot;).textContent = navigator.cookieEnabled ? &quot;true (Cookies Allowed)&quot; : &quot;false&quot;;
+      document.getElementById(&quot;navCores&quot;).textContent = `${navigator.hardwareConcurrency || 8} CPU Cores`;
+
+      // Screen
+      document.getElementById(&quot;scrRes&quot;).textContent = `${screen.width} × ${screen.height} px`;
+      document.getElementById(&quot;scrAvail&quot;).textContent = `${screen.availWidth} × ${screen.availHeight} px`;
+      document.getElementById(&quot;scrDepth&quot;).textContent = `${screen.colorDepth}-bit color`;
+      document.getElementById(&quot;viewRes&quot;).textContent = `${window.innerWidth} × ${window.innerHeight} px`;
+      document.getElementById(&quot;scrDpr&quot;).textContent = `${window.devicePixelRatio}x (DPR)`;
+
+      // Network
+      updateNetworkBadge();
+    }
+
+    function updateNetworkBadge() {
+      const badge = document.getElementById(&quot;onlineBadge&quot;);
+      if (navigator.onLine) {
+        badge.className = &quot;online-indicator online&quot;;
+        badge.innerHTML = &quot;&lt;span&gt;●&lt;/span&gt; &lt;span&gt;ONLINE&lt;/span&gt;&quot;;
+      } else {
+        badge.className = &quot;online-indicator offline&quot;;
+        badge.innerHTML = &quot;&lt;span&gt;●&lt;/span&gt; &lt;span&gt;OFFLINE&lt;/span&gt;&quot;;
+      }
+    }
+
+    window.addEventListener(&quot;online&quot;, updateNetworkBadge);
+    window.addEventListener(&quot;offline&quot;, updateNetworkBadge);
+    window.addEventListener(&quot;resize&quot;, renderSpecs);
+
+    renderSpecs();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function renderSpecs() {
+      // Navigator
+      document.getElementById(&quot;navAgent&quot;).textContent = navigator.userAgent;
+      document.getElementById(&quot;navLang&quot;).textContent = navigator.language;
+      document.getElementById(&quot;navPlatform&quot;).textContent = navigator.platform || &quot;Win32&quot;;
+      document.getElementById(&quot;navCookie&quot;).textContent = navigator.cookieEnabled ? &quot;true (Cookies Allowed)&quot; : &quot;false&quot;;
+      document.getElementById(&quot;navCores&quot;).textContent = `${navigator.hardwareConcurrency || 8} CPU Cores`;
+
+      // Screen
+      document.getElementById(&quot;scrRes&quot;).textContent = `${screen.width} × ${screen.height} px`;
+      document.getElementById(&quot;scrAvail&quot;).textContent = `${screen.availWidth} × ${screen.availHeight} px`;
+      document.getElementById(&quot;scrDepth&quot;).textContent = `${screen.colorDepth}-bit color`;
+      document.getElementById(&quot;viewRes&quot;).textContent = `${window.innerWidth} × ${window.innerHeight} px`;
+      document.getElementById(&quot;scrDpr&quot;).textContent = `${window.devicePixelRatio}x (DPR)`;
+
+      // Network
+      updateNetworkBadge();
+    }
+
+    function updateNetworkBadge() {
+      const badge = document.getElementById(&quot;onlineBadge&quot;);
+      if (navigator.onLine) {
+        badge.className = &quot;online-indicator online&quot;;
+        badge.innerHTML = &quot;&lt;span&gt;●&lt;/span&gt; &lt;span&gt;ONLINE&lt;/span&gt;&quot;;
+      } else {
+        badge.className = &quot;online-indicator offline&quot;;
+        badge.innerHTML = &quot;&lt;span&gt;●&lt;/span&gt; &lt;span&gt;OFFLINE&lt;/span&gt;&quot;;
+      }
+    }
+
+    window.addEventListener(&quot;online&quot;, updateNetworkBadge);
+    window.addEventListener(&quot;offline&quot;, updateNetworkBadge);
+    window.addEventListener(&quot;resize&quot;, renderSpecs);
+
+    renderSpecs();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="325-multi-step-form.html"><small>← Previous</small>Multi step form</a><a class="nav-btn" href="327-notes-app-storage.html"><small>Next →</small>Notes app storage</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

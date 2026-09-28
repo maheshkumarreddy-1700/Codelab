@@ -1,0 +1,425 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 337 | Quiz app | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 337</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 337</div><h1>Quiz app</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to quiz app.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;PR 07 - Interactive MCQ Quiz App | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .quiz-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.25rem;
+    }
+    .quiz-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 1rem;
+    }
+    .quiz-question {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f8fafc;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .quiz-option-btn {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .quiz-option-btn.correct {
+      background: #065f46 !important;
+      border-color: #10b981 !important;
+      color: #fff !important;
+    }
+    .quiz-option-btn.wrong {
+      background: #7f1d1d !important;
+      border-color: #ef4444 !important;
+      color: #fff !important;
+    }
+    .progress-track-quiz {
+      height: 6px;
+      background: #1e293b;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .progress-fill-quiz {
+      height: 100%;
+      background: #38bdf8;
+      transition: width 0.3s ease;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Projects&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;PR 07 - Interactive Quiz App&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Mini Project • Project 07&lt;/div&gt;
+      &lt;h1&gt;Interactive Web Development MCQ Quiz Engine&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Evaluate computer science concepts with an interactive quiz engine: question shuffling, 
+        immediate correctness feedback, progress indicator bar, and automated scorecard generation.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🧠&lt;/span&gt; Computer Science &amp; Web Tech Quiz
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot; id=&quot;scoreBadge&quot;&gt;Score: 0 / 4&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;quiz-card&quot; id=&quot;quizContainer&quot;&gt;
+          &lt;div class=&quot;progress-track-quiz&quot;&gt;
+            &lt;div id=&quot;quizProgressBar&quot; class=&quot;progress-fill-quiz&quot; style=&quot;width: 25%;&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;quiz-header-bar&quot;&gt;
+            &lt;span style=&quot;font-size: 0.85rem; color: #94a3b8;&quot; id=&quot;questionNum&quot;&gt;Question 1 of 4&lt;/span&gt;
+            &lt;span class=&quot;badge badge-primary&quot;&gt;Web Tech Lab&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;quiz-question&quot; id=&quot;questionText&quot;&gt;
+            Which HTML5 tag is used to embed an independent external browsing context?
+          &lt;/div&gt;
+
+          &lt;div class=&quot;options-stack&quot; id=&quot;optionsBox&quot;&gt;
+            &lt;!-- Rendered dynamically --&gt;
+          &lt;/div&gt;
+
+          &lt;div style=&quot;display: flex; justify-content: flex-end;&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; id=&quot;btnNextQ&quot; onclick=&quot;nextQuestion()&quot; disabled&gt;Next Question &amp;rarr;&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;const questions = [
+  {
+    q: &quot;Which HTML5 tag embeds external sub-windows?&quot;,
+    options: [&quot;&amp;lt;frame&amp;gt;&quot;, &quot;&amp;lt;iframe&amp;gt;&quot;, &quot;&amp;lt;embed&amp;gt;&quot;, &quot;&amp;lt;object&amp;gt;&quot;],
+    answer: 1
+  }
+];
+
+function selectOption(index, button) {
+  const current = questions[currentIndex];
+  if (index === current.answer) {
+    button.classList.add(&quot;correct&quot;);
+    score++;
+  } else {
+    button.classList.add(&quot;wrong&quot;);
+  }
+
+  // Disable buttons and reveal correct answer
+  optionsButtons.forEach(b =&gt; b.disabled = true);
+  nextButton.disabled = false;
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;weather-app.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; PR 06: Weather App&lt;/a&gt;
+      &lt;a href=&quot;number-guessing-game.html&quot; class=&quot;nav-next&quot;&gt;PR 08: Number Guessing Game &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const questions = [
+      {
+        q: &quot;Which HTML5 element is used to define navigation links?&quot;,
+        options: [&quot;&lt;navigation&gt;&quot;, &quot;&lt;navigate&gt;&quot;, &quot;&lt;nav&gt;&quot;, &quot;&lt;links&gt;&quot;],
+        answer: 2
+      },
+      {
+        q: &quot;Which CSS property is used to create a 2-dimensional grid layout?&quot;,
+        options: [&quot;display: flex&quot;, &quot;display: grid&quot;, &quot;display: block&quot;, &quot;float: left&quot;],
+        answer: 1
+      },
+      {
+        q: &quot;Which method prevents an event from propagating up the DOM tree in JavaScript?&quot;,
+        options: [&quot;event.preventDefault()&quot;, &quot;event.stopPropagation()&quot;, &quot;event.stop()&quot;, &quot;event.halt()&quot;],
+        answer: 1
+      },
+      {
+        q: &quot;What is the typical storage capacity limit for HTML5 localStorage?&quot;,
+        options: [&quot;4 KB&quot;, &quot;5 MB to 10 MB&quot;, &quot;1 GB&quot;, &quot;Unlimited&quot;],
+        answer: 1
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    const qNum = document.getElementById(&quot;questionNum&quot;);
+    const qText = document.getElementById(&quot;questionText&quot;);
+    const optBox = document.getElementById(&quot;optionsBox&quot;);
+    const nextBtn = document.getElementById(&quot;btnNextQ&quot;);
+    const progBar = document.getElementById(&quot;quizProgressBar&quot;);
+    const scoreBadge = document.getElementById(&quot;scoreBadge&quot;);
+    const quizContainer = document.getElementById(&quot;quizContainer&quot;);
+
+    function renderQuestion() {
+      const q = questions[currentQ];
+      qNum.textContent = `Question ${currentQ + 1} of ${questions.length}`;
+      qText.textContent = q.q;
+      nextBtn.disabled = true;
+
+      const pct = ((currentQ + 1) / questions.length) * 100;
+      progBar.style.width = `${pct}%`;
+
+      optBox.innerHTML = &quot;&quot;;
+      q.options.forEach((opt, idx) =&gt; {
+        const btn = document.createElement(&quot;button&quot;);
+        btn.className = &quot;quiz-option-btn&quot;;
+        btn.textContent = opt;
+        btn.onclick = () =&gt; selectAnswer(idx, btn);
+        optBox.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(idx, btn) {
+      const q = questions[currentQ];
+      const allBtns = optBox.querySelectorAll(&quot;.quiz-option-btn&quot;);
+      allBtns.forEach(b =&gt; b.disabled = true);
+
+      if (idx === q.answer) {
+        btn.classList.add(&quot;correct&quot;);
+        score++;
+      } else {
+        btn.classList.add(&quot;wrong&quot;);
+        allBtns[q.answer].classList.add(&quot;correct&quot;);
+      }
+
+      scoreBadge.textContent = `Score: ${score} / ${questions.length}`;
+      nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ &lt; questions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const pct = Math.round((score / questions.length) * 100);
+      quizContainer.innerHTML = `
+        &lt;div style=&quot;text-align: center; padding: 2rem 1rem;&quot;&gt;
+          &lt;div style=&quot;font-size: 4rem; margin-bottom: 0.5rem;&quot;&gt;🏆&lt;/div&gt;
+          &lt;h2 style=&quot;color: #38bdf8; margin-bottom: 0.5rem;&quot;&gt;Quiz Examination Completed!&lt;/h2&gt;
+          &lt;p style=&quot;color: #cbd5e1; margin-bottom: 1.5rem;&quot;&gt;Candidate: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+          
+          &lt;div style=&quot;font-size: 3rem; font-family: &#x27;Fira Code&#x27;, monospace; font-weight: 800; color: #10b981; margin-bottom: 0.5rem;&quot;&gt;
+            ${score} / ${questions.length} (${pct}%)
+          &lt;/div&gt;
+
+          &lt;p style=&quot;color: #94a3b8; margin-bottom: 2rem;&quot;&gt;
+            ${pct &gt;= 75 ? &#x27;Outstanding mastery in HTML, CSS &amp; JavaScript!&#x27; : &#x27;Good attempt! Review questions to improve.&#x27;}
+          &lt;/p&gt;
+
+          &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;restartQuiz()&quot;&gt;🔄 Retake Quiz&lt;/button&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    function restartQuiz() {
+      currentQ = 0;
+      score = 0;
+      scoreBadge.textContent = `Score: 0 / ${questions.length}`;
+      location.reload();
+    }
+
+    renderQuestion();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const questions = [
+      {
+        q: &quot;Which HTML5 element is used to define navigation links?&quot;,
+        options: [&quot;&lt;navigation&gt;&quot;, &quot;&lt;navigate&gt;&quot;, &quot;&lt;nav&gt;&quot;, &quot;&lt;links&gt;&quot;],
+        answer: 2
+      },
+      {
+        q: &quot;Which CSS property is used to create a 2-dimensional grid layout?&quot;,
+        options: [&quot;display: flex&quot;, &quot;display: grid&quot;, &quot;display: block&quot;, &quot;float: left&quot;],
+        answer: 1
+      },
+      {
+        q: &quot;Which method prevents an event from propagating up the DOM tree in JavaScript?&quot;,
+        options: [&quot;event.preventDefault()&quot;, &quot;event.stopPropagation()&quot;, &quot;event.stop()&quot;, &quot;event.halt()&quot;],
+        answer: 1
+      },
+      {
+        q: &quot;What is the typical storage capacity limit for HTML5 localStorage?&quot;,
+        options: [&quot;4 KB&quot;, &quot;5 MB to 10 MB&quot;, &quot;1 GB&quot;, &quot;Unlimited&quot;],
+        answer: 1
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    const qNum = document.getElementById(&quot;questionNum&quot;);
+    const qText = document.getElementById(&quot;questionText&quot;);
+    const optBox = document.getElementById(&quot;optionsBox&quot;);
+    const nextBtn = document.getElementById(&quot;btnNextQ&quot;);
+    const progBar = document.getElementById(&quot;quizProgressBar&quot;);
+    const scoreBadge = document.getElementById(&quot;scoreBadge&quot;);
+    const quizContainer = document.getElementById(&quot;quizContainer&quot;);
+
+    function renderQuestion() {
+      const q = questions[currentQ];
+      qNum.textContent = `Question ${currentQ + 1} of ${questions.length}`;
+      qText.textContent = q.q;
+      nextBtn.disabled = true;
+
+      const pct = ((currentQ + 1) / questions.length) * 100;
+      progBar.style.width = `${pct}%`;
+
+      optBox.innerHTML = &quot;&quot;;
+      q.options.forEach((opt, idx) =&gt; {
+        const btn = document.createElement(&quot;button&quot;);
+        btn.className = &quot;quiz-option-btn&quot;;
+        btn.textContent = opt;
+        btn.onclick = () =&gt; selectAnswer(idx, btn);
+        optBox.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(idx, btn) {
+      const q = questions[currentQ];
+      const allBtns = optBox.querySelectorAll(&quot;.quiz-option-btn&quot;);
+      allBtns.forEach(b =&gt; b.disabled = true);
+
+      if (idx === q.answer) {
+        btn.classList.add(&quot;correct&quot;);
+        score++;
+      } else {
+        btn.classList.add(&quot;wrong&quot;);
+        allBtns[q.answer].classList.add(&quot;correct&quot;);
+      }
+
+      scoreBadge.textContent = `Score: ${score} / ${questions.length}`;
+      nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ &lt; questions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const pct = Math.round((score / questions.length) * 100);
+      quizContainer.innerHTML = `
+        &lt;div style=&quot;text-align: center; padding: 2rem 1rem;&quot;&gt;
+          &lt;div style=&quot;font-size: 4rem; margin-bottom: 0.5rem;&quot;&gt;🏆&lt;/div&gt;
+          &lt;h2 style=&quot;color: #38bdf8; margin-bottom: 0.5rem;&quot;&gt;Quiz Examination Completed!&lt;/h2&gt;
+          &lt;p style=&quot;color: #cbd5e1; margin-bottom: 1.5rem;&quot;&gt;Candidate: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+          
+          &lt;div style=&quot;font-size: 3rem; font-family: &#x27;Fira Code&#x27;, monospace; font-weight: 800; color: #10b981; margin-bottom: 0.5rem;&quot;&gt;
+            ${score} / ${questions.length} (${pct}%)
+          &lt;/div&gt;
+
+          &lt;p style=&quot;color: #94a3b8; margin-bottom: 2rem;&quot;&gt;
+            ${pct &gt;= 75 ? &#x27;Outstanding mastery in HTML, CSS &amp; JavaScript!&#x27; : &#x27;Good attempt! Review questions to improve.&#x27;}
+          &lt;/p&gt;
+
+          &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;restartQuiz()&quot;&gt;🔄 Retake Quiz&lt;/button&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    function restartQuiz() {
+      currentQ = 0;
+      score = 0;
+      scoreBadge.textContent = `Score: 0 / ${questions.length}`;
+      location.reload();
+    }
+
+    renderQuestion();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="336-prime-number.html"><small>← Previous</small>Prime number</a><a class="nav-btn" href="338-radio-checkbox-validation.html"><small>Next →</small>Radio checkbox validation</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

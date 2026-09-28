@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 322 | Modal dialog | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 322</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 322</div><h1>Modal dialog</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to modal dialog.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;DOM 17 - Modal Dialog with Backdrop | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    /* Modal Backdrop */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 90%;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      transform: scale(0.9);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close-btn:hover {
+      color: #ef4444;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;DOM&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;DOM 17 - Custom Modal Dialog&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;DOM Manipulation • Program 17&lt;/div&gt;
+      &lt;h1&gt;Custom Modal Popup Dialog with Backdrop Blur&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Trigger accessible, animated modal dialogs with backdrop blur, keyboard &lt;code&gt;Escape&lt;/code&gt; key 
+        dismissal, and outside-click event listeners.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🪟&lt;/span&gt; Interactive Modal Trigger Demo
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Accessible Component&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot; style=&quot;text-align: center; padding: 3rem 1.5rem;&quot;&gt;
+        
+        &lt;p style=&quot;color: #cbd5e1; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;&quot;&gt;
+          Click the button below to display the modal. Notice that you can close it by clicking the &amp;times; button, clicking anywhere outside on the blurred backdrop, or pressing the &lt;code&gt;Esc&lt;/code&gt; key.
+        &lt;/p&gt;
+
+        &lt;button class=&quot;btn btn-primary&quot; style=&quot;font-size: 1.1rem; padding: 0.85rem 1.75rem;&quot; onclick=&quot;openModal()&quot;&gt;
+          🚀 Open Interactive Dialog
+        &lt;/button&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Modal Element --&gt;
+    &lt;div id=&quot;modalOverlay&quot; class=&quot;modal-overlay&quot; onclick=&quot;onBackdropClick(event)&quot;&gt;
+      &lt;div class=&quot;modal-card&quot;&gt;
+        &lt;div class=&quot;modal-header&quot;&gt;
+          &lt;h3 style=&quot;color: #38bdf8; margin: 0;&quot;&gt;Laboratory Submission Notice&lt;/h3&gt;
+          &lt;button class=&quot;modal-close-btn&quot; onclick=&quot;closeModal()&quot; title=&quot;Close dialog&quot;&gt;&amp;times;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;p style=&quot;color: #cbd5e1; line-height: 1.6; margin-bottom: 1.5rem;&quot;&gt;
+          Hello &lt;strong&gt;Shaik Roshan&lt;/strong&gt;, your Web Technology laboratory assignments and practical records have been successfully generated and synchronized.
+        &lt;/p&gt;
+        &lt;div style=&quot;background: #1e293b; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #94a3b8;&quot;&gt;
+          💡 &lt;em&gt;Keyboard accessibility:&lt;/em&gt; You can press the &lt;strong&gt;ESC&lt;/strong&gt; key on your physical keyboard to immediately dismiss this popup dialog.
+        &lt;/div&gt;
+        &lt;div style=&quot;display: flex; justify-content: flex-end; gap: 0.75rem;&quot;&gt;
+          &lt;button class=&quot;btn btn-secondary&quot; onclick=&quot;closeModal()&quot;&gt;Cancel&lt;/button&gt;
+          &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;alert(&#x27;Confirmed action!&#x27;); closeModal();&quot;&gt;Confirm &amp; Close&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;const modal = document.getElementById(&quot;modalOverlay&quot;);
+
+function openModal() {
+  modal.classList.add(&quot;active&quot;);
+  document.body.style.overflow = &quot;hidden&quot;; // prevent scroll
+}
+
+function closeModal() {
+  modal.classList.remove(&quot;active&quot;);
+  document.body.style.overflow = &quot;&quot;;
+}
+
+// Close on backdrop click
+function onBackdropClick(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+
+// Close on ESC key press
+window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+  if (e.key === &quot;Escape&quot; &amp;&amp; modal.classList.contains(&quot;active&quot;)) {
+    closeModal();
+  }
+});&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;accordion-component.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; DOM 16: FAQ Accordion&lt;/a&gt;
+      &lt;a href=&quot;live-counters.html&quot; class=&quot;nav-next&quot;&gt;DOM 18: Live Text Counters &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const modal = document.getElementById(&quot;modalOverlay&quot;);
+
+    function openModal() {
+      modal.classList.add(&quot;active&quot;);
+      document.body.style.overflow = &quot;hidden&quot;;
+    }
+
+    function closeModal() {
+      modal.classList.remove(&quot;active&quot;);
+      document.body.style.overflow = &quot;&quot;;
+    }
+
+    function onBackdropClick(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    }
+
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if (e.key === &quot;Escape&quot; &amp;&amp; modal.classList.contains(&quot;active&quot;)) {
+        closeModal();
+      }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const modal = document.getElementById(&quot;modalOverlay&quot;);
+
+    function openModal() {
+      modal.classList.add(&quot;active&quot;);
+      document.body.style.overflow = &quot;hidden&quot;;
+    }
+
+    function closeModal() {
+      modal.classList.remove(&quot;active&quot;);
+      document.body.style.overflow = &quot;&quot;;
+    }
+
+    function onBackdropClick(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    }
+
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if (e.key === &quot;Escape&quot; &amp;&amp; modal.classList.contains(&quot;active&quot;)) {
+        closeModal();
+      }
+    });</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="321-login-validation.html"><small>← Previous</small>Login validation</a><a class="nav-btn" href="323-mouse-events.html"><small>Next →</small>Mouse events</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

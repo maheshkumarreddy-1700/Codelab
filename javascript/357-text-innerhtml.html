@@ -1,0 +1,280 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 357 | Text innerhtml | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 357</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 357</div><h1>Text innerhtml</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to text innerhtml.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;DOM 01 - textContent vs innerText vs innerHTML | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .demo-box {
+      background: #0f172a;
+      border: 2px dashed #334155;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .sample-target {
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 1.1rem;
+      color: #f8fafc;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .result-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .result-card h4 {
+      margin-bottom: 0.5rem;
+      color: #38bdf8;
+      font-size: 0.95rem;
+    }
+    .result-val {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 0.85rem;
+      background: #090d16;
+      padding: 0.75rem;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 50px;
+    }
+    .actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .btn-action {
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-action:hover {
+      background: #2563eb;
+    }
+    .btn-reset {
+      background: #475569;
+    }
+    .btn-reset:hover {
+      background: #334155;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;DOM&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;DOM 01 - textContent vs innerText vs innerHTML&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;DOM Manipulation • Program 01&lt;/div&gt;
+      &lt;h1&gt;textContent vs innerText vs innerHTML&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Compare the fundamental differences between DOM text reading and injection properties: 
+        handling hidden CSS styles, parsing HTML tags vs plain text, and security implications (XSS).
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;⚡&lt;/span&gt; Live Interactive Demonstration
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Interactive Demo&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;demo-box&quot;&gt;
+          &lt;label style=&quot;display:block; margin-bottom: 0.5rem; font-size: 0.85rem; color: #94a3b8;&quot;&gt;Sample Target Element (#sampleNode):&lt;/label&gt;
+          &lt;div id=&quot;sampleNode&quot; class=&quot;sample-target&quot;&gt;
+            Welcome to &lt;span style=&quot;color: #f43f5e; font-weight: bold;&quot;&gt;Web Technology Lab&lt;/span&gt;!
+            &lt;span style=&quot;display: none;&quot;&gt; (This text has display: none)&lt;/span&gt;
+            &lt;span style=&quot;visibility: hidden;&quot;&gt; (This text has visibility: hidden)&lt;/span&gt;
+            &amp;nbsp;&lt;span&gt;Learning &lt;em&gt;JavaScript DOM&lt;/em&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;actions-bar&quot;&gt;
+          &lt;button class=&quot;btn-action&quot; onclick=&quot;readProperties()&quot;&gt;1. Inspect Current Properties&lt;/button&gt;
+          &lt;button class=&quot;btn-action&quot; onclick=&quot;setAsText()&quot;&gt;2. Set with .textContent&lt;/button&gt;
+          &lt;button class=&quot;btn-action&quot; onclick=&quot;setAsHtml()&quot;&gt;3. Set with .innerHTML&lt;/button&gt;
+          &lt;button class=&quot;btn-action btn-reset&quot; onclick=&quot;resetSample()&quot;&gt;Reset Element&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;results-grid&quot;&gt;
+          &lt;div class=&quot;result-card&quot;&gt;
+            &lt;h4&gt;.textContent&lt;/h4&gt;
+            &lt;p style=&quot;font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;&quot;&gt;Returns all text content, including hidden styles (display:none) and script tags.&lt;/p&gt;
+            &lt;div id=&quot;outTextContent&quot; class=&quot;result-val&quot;&gt;- Click &#x27;Inspect Current Properties&#x27; -&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;result-card&quot;&gt;
+            &lt;h4&gt;.innerText&lt;/h4&gt;
+            &lt;p style=&quot;font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;&quot;&gt;Returns rendered text as seen by user (aware of CSS layout; ignores hidden elements).&lt;/p&gt;
+            &lt;div id=&quot;outInnerText&quot; class=&quot;result-val&quot;&gt;- Click &#x27;Inspect Current Properties&#x27; -&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;result-card&quot;&gt;
+            &lt;h4&gt;.innerHTML&lt;/h4&gt;
+            &lt;p style=&quot;font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;&quot;&gt;Returns the complete raw HTML string including opening/closing tags and children.&lt;/p&gt;
+            &lt;div id=&quot;outInnerHTML&quot; class=&quot;result-val&quot;&gt;- Click &#x27;Inspect Current Properties&#x27; -&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;html&quot;&gt;HTML&lt;/button&gt;
+          &lt;button class=&quot;code-tab&quot; data-tab=&quot;js&quot;&gt;JavaScript&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;&amp;lt;!-- Target Element --&amp;gt;
+&amp;lt;div id=&quot;sampleNode&quot;&amp;gt;
+  Welcome to &amp;lt;span style=&quot;color: red;&quot;&amp;gt;Web Tech Lab&amp;lt;/span&amp;gt;!
+  &amp;lt;span style=&quot;display: none;&quot;&amp;gt;(Hidden Text)&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;script&amp;gt;
+const el = document.getElementById(&quot;sampleNode&quot;);
+
+// 1. textContent retrieves all text regardless of CSS visibility
+console.log(el.textContent);
+
+// 2. innerText respects CSS styles (excludes display: none)
+console.log(el.innerText);
+
+// 3. innerHTML parses and renders tags, or returns raw markup
+console.log(el.innerHTML);
+
+// Injections:
+// el.textContent = &quot;&amp;lt;strong&amp;gt;Safe&amp;lt;/strong&amp;gt;&quot;; // Displays literal text tags
+// el.innerHTML = &quot;&amp;lt;strong&amp;gt;Bold&amp;lt;/strong&amp;gt;&quot;;   // Renders bold element
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;index.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; DOM Curriculum Index&lt;/a&gt;
+      &lt;a href=&quot;dynamic-css.html&quot; class=&quot;nav-next&quot;&gt;DOM 02: Dynamic CSS &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const initialHTML = document.getElementById(&quot;sampleNode&quot;).innerHTML;
+
+    function readProperties() {
+      const el = document.getElementById(&quot;sampleNode&quot;);
+      document.getElementById(&quot;outTextContent&quot;).textContent = el.textContent;
+      document.getElementById(&quot;outInnerText&quot;).textContent = el.innerText;
+      document.getElementById(&quot;outInnerHTML&quot;).textContent = el.innerHTML;
+    }
+
+    function setAsText() {
+      const el = document.getElementById(&quot;sampleNode&quot;);
+      el.textContent = &quot;Assigned via textContent: &lt;strong&gt;Tags are NOT parsed&lt;/strong&gt; and displayed as plain text!&quot;;
+      readProperties();
+    }
+
+    function setAsHtml() {
+      const el = document.getElementById(&quot;sampleNode&quot;);
+      el.innerHTML = &quot;Assigned via innerHTML: &lt;mark style=&#x27;background:#f59e0b; color:#000; padding:2px 6px; border-radius:4px;&#x27;&gt;Parsed HTML markup!&lt;/mark&gt; &lt;button style=&#x27;padding:4px 8px;&#x27;&gt;Active Button&lt;/button&gt;&quot;;
+      readProperties();
+    }
+
+    function resetSample() {
+      document.getElementById(&quot;sampleNode&quot;).innerHTML = initialHTML;
+      readProperties();
+    }
+
+    // Run initial read
+    readProperties();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const initialHTML = document.getElementById(&quot;sampleNode&quot;).innerHTML;
+
+    function readProperties() {
+      const el = document.getElementById(&quot;sampleNode&quot;);
+      document.getElementById(&quot;outTextContent&quot;).textContent = el.textContent;
+      document.getElementById(&quot;outInnerText&quot;).textContent = el.innerText;
+      document.getElementById(&quot;outInnerHTML&quot;).textContent = el.innerHTML;
+    }
+
+    function setAsText() {
+      const el = document.getElementById(&quot;sampleNode&quot;);
+      el.textContent = &quot;Assigned via textContent: &lt;strong&gt;Tags are NOT parsed&lt;/strong&gt; and displayed as plain text!&quot;;
+      readProperties();
+    }
+
+    function setAsHtml() {
+      const el = document.getElementById(&quot;sampleNode&quot;);
+      el.innerHTML = &quot;Assigned via innerHTML: &lt;mark style=&#x27;background:#f59e0b; color:#000; padding:2px 6px; border-radius:4px;&#x27;&gt;Parsed HTML markup!&lt;/mark&gt; &lt;button style=&#x27;padding:4px 8px;&#x27;&gt;Active Button&lt;/button&gt;&quot;;
+      readProperties();
+    }
+
+    function resetSample() {
+      document.getElementById(&quot;sampleNode&quot;).innerHTML = initialHTML;
+      readProperties();
+    }
+
+    // Run initial read
+    readProperties();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="356-tabs-component.html"><small>← Previous</small>Tabs component</a><a class="nav-btn" href="358-theme-switcher-storage.html"><small>Next →</small>Theme switcher storage</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

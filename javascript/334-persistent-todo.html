@@ -1,0 +1,335 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 334 | Persistent todo | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 334</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 334</div><h1>Persistent todo</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to persistent todo.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;ST 03 - Persistent Todo App (LocalStorage) | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .todo-app-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .input-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-bar input {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
+    .todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .todo-item {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+    .todo-item.done span {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    .check-toggle {
+      width: 18px;
+      height: 18px;
+      accent-color: #10b981;
+      cursor: pointer;
+      margin-right: 0.75rem;
+    }
+    .btn-del {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 2px 6px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Storage&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;ST 03 - Persistent Todo List&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Web Storage • Program 03&lt;/div&gt;
+      &lt;h1&gt;Persistent Task List (LocalStorage State)&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        A complete interactive Todo Application where newly created tasks, completed checkbox states, 
+        and deletions are synchronized permanently in &lt;code&gt;localStorage&lt;/code&gt;, surviving page refreshes.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;📋&lt;/span&gt; Offline-First Task Manager
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot; id=&quot;syncStatus&quot;&gt;Synced to Storage&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;todo-app-card&quot;&gt;
+          &lt;div class=&quot;input-bar&quot;&gt;
+            &lt;input type=&quot;text&quot; id=&quot;taskInput&quot; placeholder=&quot;Add a new task (e.g. Study CSS Grid)...&quot; onkeypress=&quot;if(event.key===&#x27;Enter&#x27;) addTask()&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div style=&quot;display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;&quot;&gt;
+            &lt;span&gt;Tasks: &lt;strong id=&quot;todoCount&quot; style=&quot;color: #38bdf8;&quot;&gt;0&lt;/strong&gt;&lt;/span&gt;
+            &lt;span style=&quot;color: #ef4444; cursor: pointer;&quot; onclick=&quot;clearCompleted()&quot;&gt;Clear Completed&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;ul id=&quot;todoList&quot; class=&quot;todo-list&quot;&gt;
+            &lt;!-- Rendered from localStorage --&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;// 1. Load tasks from storage or initialize empty array
+let tasks = JSON.parse(localStorage.getItem(&quot;todos_list&quot;) || &quot;[]&quot;);
+
+function saveAndRender() {
+  // 2. Persist state as JSON string
+  localStorage.setItem(&quot;todos_list&quot;, JSON.stringify(tasks));
+  renderTasks();
+}
+
+function addTask(text) {
+  tasks.push({ id: Date.now(), text, completed: false });
+  saveAndRender();
+}
+
+function toggleTask(id) {
+  const item = tasks.find(t =&gt; t.id === id);
+  if (item) item.completed = !item.completed;
+  saveAndRender();
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(t =&gt; t.id !== id);
+  saveAndRender();
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;json-storage.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; ST 02: JSON Storage&lt;/a&gt;
+      &lt;a href=&quot;notes-app-storage.html&quot; class=&quot;nav-next&quot;&gt;ST 04: Sticky Notes &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let todos = JSON.parse(localStorage.getItem(&quot;lab_persistent_todos&quot;) || &quot;null&quot;);
+
+    if (!todos) {
+      todos = [
+        { id: 1, text: &quot;Review HTML5 semantic structure&quot;, done: true },
+        { id: 2, text: &quot;Practice CSS Flexbox and Grid layouts&quot;, done: true },
+        { id: 3, text: &quot;Complete JavaScript LocalStorage lab experiment&quot;, done: false }
+      ];
+      localStorage.setItem(&quot;lab_persistent_todos&quot;, JSON.stringify(todos));
+    }
+
+    const listEl = document.getElementById(&quot;todoList&quot;);
+    const countEl = document.getElementById(&quot;todoCount&quot;);
+
+    function saveAndRender() {
+      localStorage.setItem(&quot;lab_persistent_todos&quot;, JSON.stringify(todos));
+      render();
+    }
+
+    function render() {
+      listEl.innerHTML = &quot;&quot;;
+      countEl.textContent = todos.length;
+
+      if (todos.length === 0) {
+        listEl.innerHTML = `&lt;li style=&quot;text-align:center; color:#64748b; padding:1.5rem;&quot;&gt;All tasks completed! Add a new task above.&lt;/li&gt;`;
+        return;
+      }
+
+      todos.forEach(t =&gt; {
+        const li = document.createElement(&quot;li&quot;);
+        li.className = `todo-item ${t.done ? &#x27;done&#x27; : &#x27;&#x27;}`;
+        li.innerHTML = `
+          &lt;div style=&quot;display:flex; align-items:center;&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;check-toggle&quot; ${t.done ? &#x27;checked&#x27; : &#x27;&#x27;} onchange=&quot;toggleTodo(${t.id})&quot;&gt;
+            &lt;span&gt;${t.text}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;button class=&quot;btn-del&quot; onclick=&quot;deleteTodo(${t.id})&quot; title=&quot;Delete&quot;&gt;&amp;times;&lt;/button&gt;
+        `;
+        listEl.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      const input = document.getElementById(&quot;taskInput&quot;);
+      const text = input.value.trim();
+      if (!text) return;
+
+      todos.push({ id: Date.now(), text, done: false });
+      input.value = &quot;&quot;;
+      saveAndRender();
+    }
+
+    function toggleTodo(id) {
+      const item = todos.find(t =&gt; t.id === id);
+      if (item) item.done = !item.done;
+      saveAndRender();
+    }
+
+    function deleteTodo(id) {
+      todos = todos.filter(t =&gt; t.id !== id);
+      saveAndRender();
+    }
+
+    function clearCompleted() {
+      todos = todos.filter(t =&gt; !t.done);
+      saveAndRender();
+    }
+
+    render();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let todos = JSON.parse(localStorage.getItem(&quot;lab_persistent_todos&quot;) || &quot;null&quot;);
+
+    if (!todos) {
+      todos = [
+        { id: 1, text: &quot;Review HTML5 semantic structure&quot;, done: true },
+        { id: 2, text: &quot;Practice CSS Flexbox and Grid layouts&quot;, done: true },
+        { id: 3, text: &quot;Complete JavaScript LocalStorage lab experiment&quot;, done: false }
+      ];
+      localStorage.setItem(&quot;lab_persistent_todos&quot;, JSON.stringify(todos));
+    }
+
+    const listEl = document.getElementById(&quot;todoList&quot;);
+    const countEl = document.getElementById(&quot;todoCount&quot;);
+
+    function saveAndRender() {
+      localStorage.setItem(&quot;lab_persistent_todos&quot;, JSON.stringify(todos));
+      render();
+    }
+
+    function render() {
+      listEl.innerHTML = &quot;&quot;;
+      countEl.textContent = todos.length;
+
+      if (todos.length === 0) {
+        listEl.innerHTML = `&lt;li style=&quot;text-align:center; color:#64748b; padding:1.5rem;&quot;&gt;All tasks completed! Add a new task above.&lt;/li&gt;`;
+        return;
+      }
+
+      todos.forEach(t =&gt; {
+        const li = document.createElement(&quot;li&quot;);
+        li.className = `todo-item ${t.done ? &#x27;done&#x27; : &#x27;&#x27;}`;
+        li.innerHTML = `
+          &lt;div style=&quot;display:flex; align-items:center;&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;check-toggle&quot; ${t.done ? &#x27;checked&#x27; : &#x27;&#x27;} onchange=&quot;toggleTodo(${t.id})&quot;&gt;
+            &lt;span&gt;${t.text}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;button class=&quot;btn-del&quot; onclick=&quot;deleteTodo(${t.id})&quot; title=&quot;Delete&quot;&gt;&amp;times;&lt;/button&gt;
+        `;
+        listEl.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      const input = document.getElementById(&quot;taskInput&quot;);
+      const text = input.value.trim();
+      if (!text) return;
+
+      todos.push({ id: Date.now(), text, done: false });
+      input.value = &quot;&quot;;
+      saveAndRender();
+    }
+
+    function toggleTodo(id) {
+      const item = todos.find(t =&gt; t.id === id);
+      if (item) item.done = !item.done;
+      saveAndRender();
+    }
+
+    function deleteTodo(id) {
+      todos = todos.filter(t =&gt; t.id !== id);
+      saveAndRender();
+    }
+
+    function clearCompleted() {
+      todos = todos.filter(t =&gt; !t.done);
+      saveAndRender();
+    }
+
+    render();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="333-persistent-cart.html"><small>← Previous</small>Persistent cart</a><a class="nav-btn" href="335-positive-negative.html"><small>Next →</small>Positive negative</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

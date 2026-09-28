@@ -1,0 +1,252 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 356 | Tabs component | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 356</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 356</div><h1>Tabs component</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to tabs component.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;DOM 15 - Tabbed Navigation Component | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .tab-system {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .tab-headers {
+      display: flex;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+    }
+    .tab-header-btn {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-header-btn:hover {
+      color: #f8fafc;
+      background: rgba(255,255,255,0.03);
+    }
+    .tab-header-btn.active {
+      color: #38bdf8;
+      background: #0f172a;
+      border-bottom-color: #38bdf8;
+    }
+    .tab-panels {
+      padding: 2rem;
+    }
+    .tab-panel {
+      display: none;
+      animation: tabFadeIn 0.3s ease;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;DOM&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;DOM 15 - Tabbed Navigation Component&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;DOM Manipulation • Program 15&lt;/div&gt;
+      &lt;h1&gt;Interactive Tabbed Navigation Component&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Switch visible content dynamically between multiple panels using custom data attributes, 
+        event listeners, and classList activations.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;📑&lt;/span&gt; Course Curriculum Tab Switcher
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Interactive UI Component&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;tab-system&quot;&gt;
+          &lt;div class=&quot;tab-headers&quot;&gt;
+            &lt;button class=&quot;tab-header-btn active&quot; data-target=&quot;tab-overview&quot;&gt;
+              &lt;span&gt;📌&lt;/span&gt; Overview
+            &lt;/button&gt;
+            &lt;button class=&quot;tab-header-btn&quot; data-target=&quot;tab-syllabus&quot;&gt;
+              &lt;span&gt;📚&lt;/span&gt; Syllabus
+            &lt;/button&gt;
+            &lt;button class=&quot;tab-header-btn&quot; data-target=&quot;tab-grading&quot;&gt;
+              &lt;span&gt;🎯&lt;/span&gt; Grading Matrix
+            &lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;tab-panels&quot;&gt;
+            &lt;!-- Panel 1 --&gt;
+            &lt;div id=&quot;tab-overview&quot; class=&quot;tab-panel active&quot;&gt;
+              &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 0.75rem;&quot;&gt;Web Technologies Laboratory&lt;/h3&gt;
+              &lt;p style=&quot;color: #cbd5e1; line-height: 1.6; margin-bottom: 1rem;&quot;&gt;
+                This laboratory course provides hands-on mastery in modern client-side and server-side web development.
+                Students learn HTML5 semantics, modern CSS3 layout systems (Flexbox, Grid, animations), and DOM programming using vanilla ES6+ JavaScript.
+              &lt;/p&gt;
+              &lt;div style=&quot;background:#1e293b; padding:1rem; border-radius:8px; border-left:3px solid #38bdf8;&quot;&gt;
+                &lt;strong&gt;Faculty In-Charge:&lt;/strong&gt; Computer Science Engineering Dept.
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Panel 2 --&gt;
+            &lt;div id=&quot;tab-syllabus&quot; class=&quot;tab-panel&quot;&gt;
+              &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 0.75rem;&quot;&gt;Curriculum Modules&lt;/h3&gt;
+              &lt;ul style=&quot;color: #cbd5e1; line-height: 1.8; padding-left: 1.25rem;&quot;&gt;
+                &lt;li&gt;&lt;strong&gt;Unit 1:&lt;/strong&gt; HTML5 Semantic elements, forms, and audio/video media.&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;Unit 2:&lt;/strong&gt; CSS3 selectors, box-model, Flexbox, responsive grid systems.&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;Unit 3:&lt;/strong&gt; JavaScript core syntax, functions, arrays, and ES6 classes.&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;Unit 4:&lt;/strong&gt; DOM traversal, manipulation, and event-driven architecture.&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Panel 3 --&gt;
+            &lt;div id=&quot;tab-grading&quot; class=&quot;tab-panel&quot;&gt;
+              &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 0.75rem;&quot;&gt;Continuous Internal Evaluation (CIE)&lt;/h3&gt;
+              &lt;table style=&quot;width: 100%; border-collapse: collapse; margin-top: 0.75rem; color: #cbd5e1;&quot;&gt;
+                &lt;tr style=&quot;border-bottom: 1px solid #334155;&quot;&gt;
+                  &lt;td style=&quot;padding: 8px 0;&quot;&gt;Laboratory Record &amp; Code Submission:&lt;/td&gt;
+                  &lt;td style=&quot;text-align: right; color: #38bdf8; font-weight: bold;&quot;&gt;20 Marks&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr style=&quot;border-bottom: 1px solid #334155;&quot;&gt;
+                  &lt;td style=&quot;padding: 8px 0;&quot;&gt;Continuous Weekly Experiments:&lt;/td&gt;
+                  &lt;td style=&quot;text-align: right; color: #38bdf8; font-weight: bold;&quot;&gt;30 Marks&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style=&quot;padding: 8px 0;&quot;&gt;Final Viva-Voce &amp; Execution:&lt;/td&gt;
+                  &lt;td style=&quot;text-align: right; color: #38bdf8; font-weight: bold;&quot;&gt;50 Marks&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;const tabBtns = document.querySelectorAll(&quot;.tab-header-btn&quot;);
+const tabPanels = document.querySelectorAll(&quot;.tab-panel&quot;);
+
+tabBtns.forEach(btn =&gt; {
+  btn.addEventListener(&quot;click&quot;, () =&gt; {
+    // 1. Remove active state from all buttons and panels
+    tabBtns.forEach(b =&gt; b.classList.remove(&quot;active&quot;));
+    tabPanels.forEach(p =&gt; p.classList.remove(&quot;active&quot;));
+
+    // 2. Set clicked button as active
+    btn.classList.add(&quot;active&quot;);
+
+    // 3. Show targeted panel using data-target ID
+    const targetId = btn.getAttribute(&quot;data-target&quot;);
+    document.getElementById(targetId).classList.add(&quot;active&quot;);
+  });
+});&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;show-hide-password.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; DOM 14: Show/Hide Password&lt;/a&gt;
+      &lt;a href=&quot;accordion-component.html&quot; class=&quot;nav-next&quot;&gt;DOM 16: FAQ Accordion &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const tabBtns = document.querySelectorAll(&quot;.tab-header-btn&quot;);
+    const tabPanels = document.querySelectorAll(&quot;.tab-panel&quot;);
+
+    tabBtns.forEach(btn =&gt; {
+      btn.addEventListener(&quot;click&quot;, () =&gt; {
+        tabBtns.forEach(b =&gt; b.classList.remove(&quot;active&quot;));
+        tabPanels.forEach(p =&gt; p.classList.remove(&quot;active&quot;));
+
+        btn.classList.add(&quot;active&quot;);
+        const targetId = btn.getAttribute(&quot;data-target&quot;);
+        document.getElementById(targetId).classList.add(&quot;active&quot;);
+      });
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const tabBtns = document.querySelectorAll(&quot;.tab-header-btn&quot;);
+    const tabPanels = document.querySelectorAll(&quot;.tab-panel&quot;);
+
+    tabBtns.forEach(btn =&gt; {
+      btn.addEventListener(&quot;click&quot;, () =&gt; {
+        tabBtns.forEach(b =&gt; b.classList.remove(&quot;active&quot;));
+        tabPanels.forEach(p =&gt; p.classList.remove(&quot;active&quot;));
+
+        btn.classList.add(&quot;active&quot;);
+        const targetId = btn.getAttribute(&quot;data-target&quot;);
+        document.getElementById(targetId).classList.add(&quot;active&quot;);
+      });
+    });</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="355-table-row-crud.html"><small>← Previous</small>Table row crud</a><a class="nav-btn" href="357-text-innerhtml.html"><small>Next →</small>Text innerhtml</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

@@ -1,0 +1,338 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 360 | Timer app | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 360</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 360</div><h1>Timer app</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to timer app.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;PR 04 - Pomodoro Productivity Timer | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .pomo-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .mode-tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #1e293b;
+      padding: 0.4rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+    .pomo-mode-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      border: none;
+      background: none;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pomo-mode-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+    .pomo-timer-display {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: 2px;
+      margin: 1.5rem 0;
+    }
+    .cycle-counter {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 1rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Projects&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;PR 04 - Pomodoro Timer&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Mini Project • Project 04&lt;/div&gt;
+      &lt;h1&gt;Pomodoro Productivity Study Timer&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        A productivity timer based on the Pomodoro Technique: 25-minute focused study sessions, 
+        5-minute short breaks, 15-minute long breaks, and completed cycle counting.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🍅&lt;/span&gt; Deep Work Pomodoro Engine
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot; id=&quot;sessionBadge&quot;&gt;Work Session&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;pomo-card&quot;&gt;
+          &lt;div class=&quot;mode-tab-bar&quot;&gt;
+            &lt;button class=&quot;pomo-mode-btn active&quot; onclick=&quot;setMode(25, &#x27;Work Session&#x27;)&quot;&gt;Pomodoro (25m)&lt;/button&gt;
+            &lt;button class=&quot;pomo-mode-btn&quot; onclick=&quot;setMode(5, &#x27;Short Break&#x27;)&quot;&gt;Short Break (5m)&lt;/button&gt;
+            &lt;button class=&quot;pomo-mode-btn&quot; onclick=&quot;setMode(15, &#x27;Long Break&#x27;)&quot;&gt;Long Break (15m)&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div id=&quot;pomoDisplay&quot; class=&quot;pomo-timer-display&quot;&gt;25:00&lt;/div&gt;
+
+          &lt;div style=&quot;display: flex; justify-content: center; gap: 0.75rem;&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; id=&quot;btnPomoStart&quot; style=&quot;padding: 0.75rem 2rem; font-size: 1.1rem;&quot; onclick=&quot;togglePomo()&quot;&gt;Start Focus&lt;/button&gt;
+            &lt;button class=&quot;btn btn-secondary&quot; onclick=&quot;resetPomo()&quot;&gt;Reset&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;cycle-counter&quot;&gt;
+            🏆 Completed Pomodoros Today: &lt;strong id=&quot;completedCount&quot; style=&quot;color: #38bdf8;&quot;&gt;0&lt;/strong&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;let durationSeconds = 25 * 60;
+let isRunning = false;
+let pomoInterval = null;
+
+function toggleTimer() {
+  if (!isRunning) {
+    isRunning = true;
+    pomoInterval = setInterval(() =&gt; {
+      if (durationSeconds &lt;= 0) {
+        clearInterval(pomoInterval);
+        isRunning = false;
+        alert(&quot;Session completed! Take a break.&quot;);
+        return;
+      }
+      durationSeconds--;
+      updatePomoDisplay();
+    }, 1000);
+  } else {
+    clearInterval(pomoInterval);
+    isRunning = false;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;stopwatch-app.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; PR 03: Stopwatch&lt;/a&gt;
+      &lt;a href=&quot;todo-app.html&quot; class=&quot;nav-next&quot;&gt;PR 05: Todo Application &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let totalSecs = 25 * 60;
+    let initialSecs = 25 * 60;
+    let isRunning = false;
+    let timer = null;
+    let cycles = 0;
+
+    const display = document.getElementById(&quot;pomoDisplay&quot;);
+    const btnStart = document.getElementById(&quot;btnPomoStart&quot;);
+    const badge = document.getElementById(&quot;sessionBadge&quot;);
+    const completedEl = document.getElementById(&quot;completedCount&quot;);
+
+    function renderDisplay() {
+      const m = String(Math.floor(totalSecs / 60)).padStart(2, &#x27;0&#x27;);
+      const s = String(totalSecs % 60).padStart(2, &#x27;0&#x27;);
+      display.textContent = `${m}:${s}`;
+    }
+
+    function setMode(mins, label) {
+      clearInterval(timer);
+      isRunning = false;
+      initialSecs = mins * 60;
+      totalSecs = initialSecs;
+      badge.textContent = label;
+      btnStart.textContent = &quot;Start &quot; + (mins === 25 ? &quot;Focus&quot; : &quot;Break&quot;);
+
+      document.querySelectorAll(&quot;.pomo-mode-btn&quot;).forEach(b =&gt; {
+        b.classList.toggle(&quot;active&quot;, b.textContent.includes(`${mins}m`));
+      });
+
+      renderDisplay();
+    }
+
+    function togglePomo() {
+      if (!isRunning) {
+        isRunning = true;
+        btnStart.textContent = &quot;Pause&quot;;
+        btnStart.className = &quot;btn btn-secondary&quot;;
+
+        timer = setInterval(() =&gt; {
+          if (totalSecs &lt;= 0) {
+            clearInterval(timer);
+            isRunning = false;
+            btnStart.textContent = &quot;Start&quot;;
+            btnStart.className = &quot;btn btn-primary&quot;;
+            if (initialSecs === 25 * 60) {
+              cycles++;
+              completedEl.textContent = cycles;
+              alert(&quot;🎉 Excellent focus! 25-minute Pomodoro finished. Enjoy a 5-minute break!&quot;);
+              setMode(5, &quot;Short Break&quot;);
+            } else {
+              alert(&quot;☕ Break time over! Back to focused study.&quot;);
+              setMode(25, &quot;Work Session&quot;);
+            }
+            return;
+          }
+          totalSecs--;
+          renderDisplay();
+        }, 1000);
+      } else {
+        clearInterval(timer);
+        isRunning = false;
+        btnStart.textContent = &quot;Resume&quot;;
+        btnStart.className = &quot;btn btn-primary&quot;;
+      }
+    }
+
+    function resetPomo() {
+      clearInterval(timer);
+      isRunning = false;
+      totalSecs = initialSecs;
+      btnStart.textContent = &quot;Start&quot;;
+      btnStart.className = &quot;btn btn-primary&quot;;
+      renderDisplay();
+    }
+
+    renderDisplay();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let totalSecs = 25 * 60;
+    let initialSecs = 25 * 60;
+    let isRunning = false;
+    let timer = null;
+    let cycles = 0;
+
+    const display = document.getElementById(&quot;pomoDisplay&quot;);
+    const btnStart = document.getElementById(&quot;btnPomoStart&quot;);
+    const badge = document.getElementById(&quot;sessionBadge&quot;);
+    const completedEl = document.getElementById(&quot;completedCount&quot;);
+
+    function renderDisplay() {
+      const m = String(Math.floor(totalSecs / 60)).padStart(2, &#x27;0&#x27;);
+      const s = String(totalSecs % 60).padStart(2, &#x27;0&#x27;);
+      display.textContent = `${m}:${s}`;
+    }
+
+    function setMode(mins, label) {
+      clearInterval(timer);
+      isRunning = false;
+      initialSecs = mins * 60;
+      totalSecs = initialSecs;
+      badge.textContent = label;
+      btnStart.textContent = &quot;Start &quot; + (mins === 25 ? &quot;Focus&quot; : &quot;Break&quot;);
+
+      document.querySelectorAll(&quot;.pomo-mode-btn&quot;).forEach(b =&gt; {
+        b.classList.toggle(&quot;active&quot;, b.textContent.includes(`${mins}m`));
+      });
+
+      renderDisplay();
+    }
+
+    function togglePomo() {
+      if (!isRunning) {
+        isRunning = true;
+        btnStart.textContent = &quot;Pause&quot;;
+        btnStart.className = &quot;btn btn-secondary&quot;;
+
+        timer = setInterval(() =&gt; {
+          if (totalSecs &lt;= 0) {
+            clearInterval(timer);
+            isRunning = false;
+            btnStart.textContent = &quot;Start&quot;;
+            btnStart.className = &quot;btn btn-primary&quot;;
+            if (initialSecs === 25 * 60) {
+              cycles++;
+              completedEl.textContent = cycles;
+              alert(&quot;🎉 Excellent focus! 25-minute Pomodoro finished. Enjoy a 5-minute break!&quot;);
+              setMode(5, &quot;Short Break&quot;);
+            } else {
+              alert(&quot;☕ Break time over! Back to focused study.&quot;);
+              setMode(25, &quot;Work Session&quot;);
+            }
+            return;
+          }
+          totalSecs--;
+          renderDisplay();
+        }, 1000);
+      } else {
+        clearInterval(timer);
+        isRunning = false;
+        btnStart.textContent = &quot;Resume&quot;;
+        btnStart.className = &quot;btn btn-primary&quot;;
+      }
+    }
+
+    function resetPomo() {
+      clearInterval(timer);
+      isRunning = false;
+      totalSecs = initialSecs;
+      btnStart.textContent = &quot;Start&quot;;
+      btnStart.className = &quot;btn btn-primary&quot;;
+      renderDisplay();
+    }
+
+    renderDisplay();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="359-tic-tac-toe.html"><small>← Previous</small>Tic tac toe</a><a class="nav-btn" href="361-timers.html"><small>Next →</small>Timers</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

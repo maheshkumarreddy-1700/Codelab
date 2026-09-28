@@ -1,0 +1,297 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 343 | Salary calculator | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 343</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 343</div><h1>Salary calculator</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to salary calculator.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;FM 12 - Employee Salary &amp; Payslip Calculator | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .salary-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .salary-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .sal-input-group {
+      margin-bottom: 1rem;
+    }
+    .sal-input-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .sal-input-group input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-family: &#x27;Fira Code&#x27;, monospace;
+    }
+    .payslip-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .payslip-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid #1e293b;
+    }
+    .val-positive { color: #10b981; font-family: &#x27;Fira Code&#x27;, monospace; text-align: right; }
+    .val-negative { color: #ef4444; font-family: &#x27;Fira Code&#x27;, monospace; text-align: right; }
+    .take-home-card {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      border: 1px solid #38bdf8;
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Forms&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;FM 12 - Employee Salary Calculator&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Form Validation • Program 12&lt;/div&gt;
+      &lt;h1&gt;Employee Salary &amp; Monthly Payslip Calculator&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Calculate corporate compensation breakdown: Basic Pay, Dearness Allowance (DA), House Rent Allowance (HRA), 
+        Provident Fund deduction (PF 12%), Professional Tax, Gross and Net In-Hand Salary.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;💼&lt;/span&gt; Payroll &amp; Salary Slip Engine
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Automated Tax &amp; PF&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;salary-layout&quot;&gt;
+          &lt;!-- Input Form --&gt;
+          &lt;div class=&quot;panel&quot;&gt;
+            &lt;h4 style=&quot;color: #38bdf8; margin-bottom: 1rem;&quot;&gt;Salary Parameters:&lt;/h4&gt;
+
+            &lt;div class=&quot;sal-input-group&quot;&gt;
+              &lt;label&gt;Employee Name:&lt;/label&gt;
+              &lt;input type=&quot;text&quot; id=&quot;empName&quot; value=&quot;Shaik Roshan&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;sal-input-group&quot;&gt;
+              &lt;label&gt;Monthly Basic Pay (₹):&lt;/label&gt;
+              &lt;input type=&quot;number&quot; id=&quot;empBasic&quot; value=&quot;50000&quot; oninput=&quot;calculatePayroll()&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;sal-input-group&quot;&gt;
+              &lt;label&gt;Dearness Allowance (DA %):&lt;/label&gt;
+              &lt;input type=&quot;number&quot; id=&quot;empDa&quot; value=&quot;25&quot; oninput=&quot;calculatePayroll()&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;sal-input-group&quot;&gt;
+              &lt;label&gt;House Rent Allowance (HRA %):&lt;/label&gt;
+              &lt;input type=&quot;number&quot; id=&quot;empHra&quot; value=&quot;20&quot; oninput=&quot;calculatePayroll()&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;sal-input-group&quot;&gt;
+              &lt;label&gt;Performance Incentive (₹):&lt;/label&gt;
+              &lt;input type=&quot;number&quot; id=&quot;empBonus&quot; value=&quot;5000&quot; oninput=&quot;calculatePayroll()&quot;&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Payslip Breakdown --&gt;
+          &lt;div class=&quot;panel&quot;&gt;
+            &lt;h4 style=&quot;color: #38bdf8; margin-bottom: 1rem;&quot;&gt;Monthly Earnings &amp; Deductions:&lt;/h4&gt;
+
+            &lt;table class=&quot;payslip-table&quot;&gt;
+              &lt;tr&gt;
+                &lt;td&gt;Basic Salary&lt;/td&gt;
+                &lt;td id=&quot;slipBasic&quot; class=&quot;val-positive&quot;&gt;₹50,000&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;Dearness Allowance (DA)&lt;/td&gt;
+                &lt;td id=&quot;slipDa&quot; class=&quot;val-positive&quot;&gt;₹12,500&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;House Rent Allowance (HRA)&lt;/td&gt;
+                &lt;td id=&quot;slipHra&quot; class=&quot;val-positive&quot;&gt;₹10,000&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;Performance Incentive&lt;/td&gt;
+                &lt;td id=&quot;slipBonus&quot; class=&quot;val-positive&quot;&gt;₹5,000&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;strong&gt;Gross Salary&lt;/strong&gt;&lt;/td&gt;
+                &lt;td id=&quot;slipGross&quot; class=&quot;val-positive&quot; style=&quot;font-weight:bold;&quot;&gt;₹77,500&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;Provident Fund (PF - 12%)&lt;/td&gt;
+                &lt;td id=&quot;slipPf&quot; class=&quot;val-negative&quot;&gt;- ₹6,000&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;Professional Tax (PT)&lt;/td&gt;
+                &lt;td id=&quot;slipPt&quot; class=&quot;val-negative&quot;&gt;- ₹200&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/table&gt;
+
+            &lt;div class=&quot;take-home-card&quot;&gt;
+              &lt;div style=&quot;font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;&quot;&gt;Net Take-Home Salary:&lt;/div&gt;
+              &lt;div id=&quot;slipNet&quot; style=&quot;font-family: &#x27;Fira Code&#x27;, monospace; font-size: 2rem; font-weight: 800; color: #38bdf8; margin-top: 0.3rem;&quot;&gt;
+                ₹71,300
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;function calculateSalary(basic, daPercent, hraPercent, bonus) {
+  // 1. Earnings
+  const da = (basic * daPercent) / 100;
+  const hra = (basic * hraPercent) / 100;
+  const gross = basic + da + hra + bonus;
+
+  // 2. Deductions
+  const pf = (basic * 12) / 100; // standard 12% PF
+  const pt = 200; // Professional Tax
+  const totalDeductions = pf + pt;
+
+  // 3. Net In-Hand
+  const netSalary = gross - totalDeductions;
+
+  return { gross, netSalary, da, hra, pf, pt };
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;student-grade-calculator.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; FM 11: Grade Calculator&lt;/a&gt;
+      &lt;a href=&quot;shopping-bill-calculator.html&quot; class=&quot;nav-next&quot;&gt;FM 13: Shopping Bill &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function calculatePayroll() {
+      const basic = parseFloat(document.getElementById(&quot;empBasic&quot;).value) || 0;
+      const daPct = parseFloat(document.getElementById(&quot;empDa&quot;).value) || 0;
+      const hraPct = parseFloat(document.getElementById(&quot;empHra&quot;).value) || 0;
+      const bonus = parseFloat(document.getElementById(&quot;empBonus&quot;).value) || 0;
+
+      const da = (basic * daPct) / 100;
+      const hra = (basic * hraPct) / 100;
+      const gross = basic + da + hra + bonus;
+
+      const pf = (basic * 12) / 100;
+      const pt = 200;
+      const net = gross - (pf + pt);
+
+      const fmt = (n) =&gt; &quot;₹&quot; + Math.round(n).toLocaleString(&#x27;en-IN&#x27;);
+
+      document.getElementById(&quot;slipBasic&quot;).textContent = fmt(basic);
+      document.getElementById(&quot;slipDa&quot;).textContent = fmt(da);
+      document.getElementById(&quot;slipHra&quot;).textContent = fmt(hra);
+      document.getElementById(&quot;slipBonus&quot;).textContent = fmt(bonus);
+      document.getElementById(&quot;slipGross&quot;).textContent = fmt(gross);
+      document.getElementById(&quot;slipPf&quot;).textContent = &quot;- &quot; + fmt(pf);
+      document.getElementById(&quot;slipPt&quot;).textContent = &quot;- &quot; + fmt(pt);
+      document.getElementById(&quot;slipNet&quot;).textContent = fmt(net);
+    }
+
+    calculatePayroll();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function calculatePayroll() {
+      const basic = parseFloat(document.getElementById(&quot;empBasic&quot;).value) || 0;
+      const daPct = parseFloat(document.getElementById(&quot;empDa&quot;).value) || 0;
+      const hraPct = parseFloat(document.getElementById(&quot;empHra&quot;).value) || 0;
+      const bonus = parseFloat(document.getElementById(&quot;empBonus&quot;).value) || 0;
+
+      const da = (basic * daPct) / 100;
+      const hra = (basic * hraPct) / 100;
+      const gross = basic + da + hra + bonus;
+
+      const pf = (basic * 12) / 100;
+      const pt = 200;
+      const net = gross - (pf + pt);
+
+      const fmt = (n) =&gt; &quot;₹&quot; + Math.round(n).toLocaleString(&#x27;en-IN&#x27;);
+
+      document.getElementById(&quot;slipBasic&quot;).textContent = fmt(basic);
+      document.getElementById(&quot;slipDa&quot;).textContent = fmt(da);
+      document.getElementById(&quot;slipHra&quot;).textContent = fmt(hra);
+      document.getElementById(&quot;slipBonus&quot;).textContent = fmt(bonus);
+      document.getElementById(&quot;slipGross&quot;).textContent = fmt(gross);
+      document.getElementById(&quot;slipPf&quot;).textContent = &quot;- &quot; + fmt(pf);
+      document.getElementById(&quot;slipPt&quot;).textContent = &quot;- &quot; + fmt(pt);
+      document.getElementById(&quot;slipNet&quot;).textContent = fmt(net);
+    }
+
+    calculatePayroll();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="342-reverse-number.html"><small>← Previous</small>Reverse number</a><a class="nav-btn" href="344-shopping-bill-calculator.html"><small>Next →</small>Shopping bill calculator</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

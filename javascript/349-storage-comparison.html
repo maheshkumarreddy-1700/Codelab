@@ -1,0 +1,249 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 349 | Storage comparison | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 349</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 349</div><h1>Storage comparison</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to storage comparison.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;ST 08 - Storage Comparison | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .comparison-table-wrap {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .comp-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .comp-table td {
+      padding: 12px 14px;
+      border-top: 1px solid #1e293b;
+      color: #cbd5e1;
+    }
+    .demo-interactive-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .demo-interactive-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .demo-storage-panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Storage&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;ST 08 - Storage Comparison&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Web Storage • Program 08&lt;/div&gt;
+      &lt;h1&gt;LocalStorage vs SessionStorage vs HTTP Cookies&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        A direct technical comparison examining storage capacities (~5MB vs 4KB), expiration lifecycles, 
+        tab boundaries, and HTTP server transmission.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;⚖️&lt;/span&gt; Comparative Specification Matrix
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Academic Matrix&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;comparison-table-wrap&quot;&gt;
+          &lt;table class=&quot;comp-table&quot;&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+                &lt;th&gt;Feature Property&lt;/th&gt;
+                &lt;th&gt;localStorage&lt;/th&gt;
+                &lt;th&gt;sessionStorage&lt;/th&gt;
+                &lt;th&gt;HTTP Cookies&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;strong&gt;Capacity&lt;/strong&gt;&lt;/td&gt;
+                &lt;td&gt;~5MB - 10MB per origin&lt;/td&gt;
+                &lt;td&gt;~5MB per origin&lt;/td&gt;
+                &lt;td&gt;4KB (very small)&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;strong&gt;Lifespan&lt;/strong&gt;&lt;/td&gt;
+                &lt;td&gt;Never expires until cleared&lt;/td&gt;
+                &lt;td&gt;Expires when browser tab closes&lt;/td&gt;
+                &lt;td&gt;Configured via &lt;code&gt;Expires&lt;/code&gt; or &lt;code&gt;Max-Age&lt;/code&gt;&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;strong&gt;Tab Boundary&lt;/strong&gt;&lt;/td&gt;
+                &lt;td&gt;Shared across all same-origin tabs&lt;/td&gt;
+                &lt;td&gt;Scoped strictly to active tab only&lt;/td&gt;
+                &lt;td&gt;Shared across same-origin tabs/windows&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;strong&gt;Network Overhead&lt;/strong&gt;&lt;/td&gt;
+                &lt;td&gt;Never sent to server with HTTP requests&lt;/td&gt;
+                &lt;td&gt;Never sent to server with HTTP requests&lt;/td&gt;
+                &lt;td&gt;Sent with EVERY HTTP request headers&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;strong&gt;Common Use Case&lt;/strong&gt;&lt;/td&gt;
+                &lt;td&gt;Themes, user preferences, cached data&lt;/td&gt;
+                &lt;td&gt;Single checkout sessions, wizards&lt;/td&gt;
+                &lt;td&gt;Server session tokens, auth tracking&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;demo-interactive-grid&quot;&gt;
+          &lt;!-- LocalStorage Test --&gt;
+          &lt;div class=&quot;demo-storage-panel&quot;&gt;
+            &lt;h4 style=&quot;color: #38bdf8; margin-bottom: 0.5rem;&quot;&gt;localStorage Live Probe&lt;/h4&gt;
+            &lt;p style=&quot;font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem;&quot;&gt;Persists even after closing this browser tab!&lt;/p&gt;
+            &lt;input type=&quot;text&quot; id=&quot;testLocal&quot; placeholder=&quot;Type text...&quot; style=&quot;width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;&quot; oninput=&quot;saveLocal(this.value)&quot;&gt;
+            &lt;div style=&quot;font-size: 0.8rem; color: #cbd5e1;&quot;&gt;Stored: &lt;strong id=&quot;valLocal&quot;&gt;--&lt;/strong&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- SessionStorage Test --&gt;
+          &lt;div class=&quot;demo-storage-panel&quot;&gt;
+            &lt;h4 style=&quot;color: #f59e0b; margin-bottom: 0.5rem;&quot;&gt;sessionStorage Live Probe&lt;/h4&gt;
+            &lt;p style=&quot;font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem;&quot;&gt;Will be completely erased once you close this tab!&lt;/p&gt;
+            &lt;input type=&quot;text&quot; id=&quot;testSession&quot; placeholder=&quot;Type text...&quot; style=&quot;width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;&quot; oninput=&quot;saveSession(this.value)&quot;&gt;
+            &lt;div style=&quot;font-size: 0.8rem; color: #cbd5e1;&quot;&gt;Stored: &lt;strong id=&quot;valSession&quot;&gt;--&lt;/strong&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;// 1. localStorage: persists indefinitely across tabs
+localStorage.setItem(&quot;key_local&quot;, &quot;Permanent Data&quot;);
+console.log(localStorage.getItem(&quot;key_local&quot;));
+
+// 2. sessionStorage: dies immediately when browser tab is closed
+sessionStorage.setItem(&quot;key_session&quot;, &quot;Temporary Session Data&quot;);
+console.log(sessionStorage.getItem(&quot;key_session&quot;));
+
+// 3. Document Cookies: transmitted automatically with HTTP requests
+document.cookie = &quot;username=ShaikRoshan; max-age=3600; path=/&quot;;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;visitor-counter.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; ST 07: Visit Counter&lt;/a&gt;
+      &lt;a href=&quot;auto-save-draft.html&quot; class=&quot;nav-next&quot;&gt;ST 09: Auto-Save Draft &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function saveLocal(val) {
+      localStorage.setItem(&quot;probe_local&quot;, val);
+      document.getElementById(&quot;valLocal&quot;).textContent = val;
+    }
+
+    function saveSession(val) {
+      sessionStorage.setItem(&quot;probe_session&quot;, val);
+      document.getElementById(&quot;valSession&quot;).textContent = val;
+    }
+
+    // Restore on load
+    const loc = localStorage.getItem(&quot;probe_local&quot;) || &quot;&quot;;
+    const ses = sessionStorage.getItem(&quot;probe_session&quot;) || &quot;&quot;;
+
+    document.getElementById(&quot;testLocal&quot;).value = loc;
+    document.getElementById(&quot;valLocal&quot;).textContent = loc || &quot;(none)&quot;;
+
+    document.getElementById(&quot;testSession&quot;).value = ses;
+    document.getElementById(&quot;valSession&quot;).textContent = ses || &quot;(none)&quot;;
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function saveLocal(val) {
+      localStorage.setItem(&quot;probe_local&quot;, val);
+      document.getElementById(&quot;valLocal&quot;).textContent = val;
+    }
+
+    function saveSession(val) {
+      sessionStorage.setItem(&quot;probe_session&quot;, val);
+      document.getElementById(&quot;valSession&quot;).textContent = val;
+    }
+
+    // Restore on load
+    const loc = localStorage.getItem(&quot;probe_local&quot;) || &quot;&quot;;
+    const ses = sessionStorage.getItem(&quot;probe_session&quot;) || &quot;&quot;;
+
+    document.getElementById(&quot;testLocal&quot;).value = loc;
+    document.getElementById(&quot;valLocal&quot;).textContent = loc || &quot;(none)&quot;;
+
+    document.getElementById(&quot;testSession&quot;).value = ses;
+    document.getElementById(&quot;valSession&quot;).textContent = ses || &quot;(none)&quot;;</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="348-stopwatch.html"><small>← Previous</small>Stopwatch</a><a class="nav-btn" href="350-string-methods.html"><small>Next →</small>String methods</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

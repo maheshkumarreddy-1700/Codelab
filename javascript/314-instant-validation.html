@@ -1,0 +1,281 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 314 | Instant validation | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 314</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 314</div><h1>Instant validation</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to instant validation.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;FM 08 - Instant On-The-Fly Validation | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .instant-card {
+      max-width: 540px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .field-row {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .field-row label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .input-wrapper {
+      position: relative;
+    }
+    .field-row input {
+      width: 100%;
+      background: #1e293b;
+      border: 2px solid #334155;
+      color: #f8fafc;
+      padding: 0.75rem 2.8rem 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .field-row input:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+    .input-status-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+    .field-row.valid input {
+      border-color: #10b981 !important;
+      background: rgba(16, 185, 129, 0.05);
+    }
+    .field-row.invalid input {
+      border-color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.05);
+    }
+    .field-hint {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+      transition: color 0.2s;
+    }
+    .field-row.invalid .field-hint {
+      color: #ef4444;
+    }
+    .field-row.valid .field-hint {
+      color: #10b981;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Forms&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;FM 08 - Instant Validation&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Form Validation • Program 08&lt;/div&gt;
+      &lt;h1&gt;Instant On-The-Fly Input Validation&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Provide immediate visual feedback as the user types using &lt;code&gt;input&lt;/code&gt; and &lt;code&gt;blur&lt;/code&gt; events. 
+        Dynamic border colors, status checkmarks/crosses, and contextual hints guide the user before submission.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;⚡&lt;/span&gt; Live Real-Time Interactive Fields
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;No Submit Required&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;instant-card&quot;&gt;
+          &lt;!-- Field 1 --&gt;
+          &lt;div class=&quot;field-row&quot; id=&quot;rowUsername&quot;&gt;
+            &lt;label&gt;Choose Username:&lt;/label&gt;
+            &lt;div class=&quot;input-wrapper&quot;&gt;
+              &lt;input type=&quot;text&quot; id=&quot;inpUsername&quot; placeholder=&quot;e.g. roshan_dev&quot; oninput=&quot;validateUser(this)&quot;&gt;
+              &lt;span class=&quot;input-status-icon&quot; id=&quot;iconUsername&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;field-hint&quot; id=&quot;hintUsername&quot;&gt;Letters, numbers, underscores only (4-16 chars).&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Field 2 --&gt;
+          &lt;div class=&quot;field-row&quot; id=&quot;rowEmail&quot;&gt;
+            &lt;label&gt;Email Address:&lt;/label&gt;
+            &lt;div class=&quot;input-wrapper&quot;&gt;
+              &lt;input type=&quot;email&quot; id=&quot;inpEmail&quot; placeholder=&quot;e.g. shaik.roshan@lab.edu&quot; oninput=&quot;validateEmailField(this)&quot;&gt;
+              &lt;span class=&quot;input-status-icon&quot; id=&quot;iconEmail&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;field-hint&quot; id=&quot;hintEmail&quot;&gt;Must be a valid email format.&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Field 3 --&gt;
+          &lt;div class=&quot;field-row&quot; id=&quot;rowPin&quot;&gt;
+            &lt;label&gt;6-Digit Security PIN:&lt;/label&gt;
+            &lt;div class=&quot;input-wrapper&quot;&gt;
+              &lt;input type=&quot;text&quot; id=&quot;inpPin&quot; placeholder=&quot;e.g. 500084&quot; maxlength=&quot;6&quot; oninput=&quot;validatePinField(this)&quot;&gt;
+              &lt;span class=&quot;input-status-icon&quot; id=&quot;iconPin&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;field-hint&quot; id=&quot;hintPin&quot;&gt;Exactly 6 numeric digits.&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;function updateFieldVisuals(rowId, iconId, hintId, isValid, successMsg, failMsg) {
+  const row = document.getElementById(rowId);
+  const icon = document.getElementById(iconId);
+  const hint = document.getElementById(hintId);
+
+  if (isValid) {
+    row.className = &quot;field-row valid&quot;;
+    icon.textContent = &quot;✔&quot;;
+    icon.style.color = &quot;#10b981&quot;;
+    hint.textContent = successMsg;
+  } else {
+    row.className = &quot;field-row invalid&quot;;
+    icon.textContent = &quot;✖&quot;;
+    icon.style.color = &quot;#ef4444&quot;;
+    hint.textContent = failMsg;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;regex-tester.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; FM 07: RegEx Tester&lt;/a&gt;
+      &lt;a href=&quot;multi-step-form.html&quot; class=&quot;nav-next&quot;&gt;FM 09: Multi-Step Form &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function updateField(rowId, iconId, hintId, ok, goodText, badText) {
+      const row = document.getElementById(rowId);
+      const icon = document.getElementById(iconId);
+      const hint = document.getElementById(hintId);
+
+      if (ok) {
+        row.className = &quot;field-row valid&quot;;
+        icon.textContent = &quot;✔&quot;;
+        icon.style.color = &quot;#10b981&quot;;
+        hint.textContent = goodText;
+      } else {
+        row.className = &quot;field-row invalid&quot;;
+        icon.textContent = &quot;✖&quot;;
+        icon.style.color = &quot;#ef4444&quot;;
+        hint.textContent = badText;
+      }
+    }
+
+    function validateUser(input) {
+      const val = input.value.trim();
+      const ok = /^[a-zA-Z0-9_]{4,16}$/.test(val);
+      updateField(&quot;rowUsername&quot;, &quot;iconUsername&quot;, &quot;hintUsername&quot;, ok, &quot;Username is available!&quot;, &quot;Must be 4-16 alphanumeric characters or _&quot;);
+    }
+
+    function validateEmailField(input) {
+      const val = input.value.trim();
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      updateField(&quot;rowEmail&quot;, &quot;iconEmail&quot;, &quot;hintEmail&quot;, ok, &quot;Email syntax verified!&quot;, &quot;Invalid email format (e.g. name@domain.com)&quot;);
+    }
+
+    function validatePinField(input) {
+      const val = input.value.trim();
+      const ok = /^\d{6}$/.test(val);
+      updateField(&quot;rowPin&quot;, &quot;iconPin&quot;, &quot;hintPin&quot;, ok, &quot;6-digit PIN accepted!&quot;, &quot;Must be exactly 6 numeric digits&quot;);
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function updateField(rowId, iconId, hintId, ok, goodText, badText) {
+      const row = document.getElementById(rowId);
+      const icon = document.getElementById(iconId);
+      const hint = document.getElementById(hintId);
+
+      if (ok) {
+        row.className = &quot;field-row valid&quot;;
+        icon.textContent = &quot;✔&quot;;
+        icon.style.color = &quot;#10b981&quot;;
+        hint.textContent = goodText;
+      } else {
+        row.className = &quot;field-row invalid&quot;;
+        icon.textContent = &quot;✖&quot;;
+        icon.style.color = &quot;#ef4444&quot;;
+        hint.textContent = badText;
+      }
+    }
+
+    function validateUser(input) {
+      const val = input.value.trim();
+      const ok = /^[a-zA-Z0-9_]{4,16}$/.test(val);
+      updateField(&quot;rowUsername&quot;, &quot;iconUsername&quot;, &quot;hintUsername&quot;, ok, &quot;Username is available!&quot;, &quot;Must be 4-16 alphanumeric characters or _&quot;);
+    }
+
+    function validateEmailField(input) {
+      const val = input.value.trim();
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      updateField(&quot;rowEmail&quot;, &quot;iconEmail&quot;, &quot;hintEmail&quot;, ok, &quot;Email syntax verified!&quot;, &quot;Invalid email format (e.g. name@domain.com)&quot;);
+    }
+
+    function validatePinField(input) {
+      const val = input.value.trim();
+      const ok = /^\d{6}$/.test(val);
+      updateField(&quot;rowPin&quot;, &quot;iconPin&quot;, &quot;hintPin&quot;, ok, &quot;6-digit PIN accepted!&quot;, &quot;Must be exactly 6 numeric digits&quot;);
+    }</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="313-image-slideshow.html"><small>← Previous</small>Image slideshow</a><a class="nav-btn" href="315-json-storage.html"><small>Next →</small>Json storage</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

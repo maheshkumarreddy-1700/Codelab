@@ -1,0 +1,303 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 301 | Event delegation | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 301</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 301</div><h1>Event delegation</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to event delegation.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;EV 06 - Event Delegation Pattern | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .delegation-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .input-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-bar input {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+    }
+    .delegated-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .list-item-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .list-item-btn:hover {
+      background: #253347;
+    }
+    .item-badge {
+      background: #38bdf8;
+      color: #000;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .btn-action-del {
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .btn-action-view {
+      background: #3b82f6;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Events&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;EV 06 - Event Delegation Pattern&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Event Handling • Program 06&lt;/div&gt;
+      &lt;h1&gt;Event Delegation Pattern using e.target.closest()&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Bind a single event listener to a common parent element instead of attaching hundreds of separate 
+        listeners to dynamic children. Works seamlessly for newly created DOM nodes without re-binding.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🎯&lt;/span&gt; Delegated Action Board
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Single Listener on &amp;lt;ul&amp;gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;delegation-card&quot;&gt;
+          &lt;div class=&quot;input-bar&quot;&gt;
+            &lt;input type=&quot;text&quot; id=&quot;newItemTitle&quot; placeholder=&quot;Add dynamic item (e.g. Experiment 12 Analysis)...&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;addNewItem()&quot;&gt;+ Add Item&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div style=&quot;font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;&quot;&gt;
+            Notice: Parent &amp;lt;ul id=&quot;delegatedList&quot;&amp;gt; has &lt;strong&gt;only ONE&lt;/strong&gt; click listener handling all buttons!
+          &lt;/div&gt;
+
+          &lt;ul id=&quot;delegatedList&quot; class=&quot;delegated-list&quot;&gt;
+            &lt;li class=&quot;list-item-btn&quot; data-id=&quot;101&quot;&gt;
+              &lt;div&gt;
+                &lt;span class=&quot;item-badge&quot;&gt;ID: 101&lt;/span&gt;
+                &lt;span&gt;Algorithm Complexity Assignment&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div style=&quot;display: flex; gap: 0.35rem;&quot;&gt;
+                &lt;button class=&quot;btn-action-view&quot; data-action=&quot;view&quot;&gt;View&lt;/button&gt;
+                &lt;button class=&quot;btn-action-del&quot; data-action=&quot;delete&quot;&gt;Delete&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;list-item-btn&quot; data-id=&quot;102&quot;&gt;
+              &lt;div&gt;
+                &lt;span class=&quot;item-badge&quot;&gt;ID: 102&lt;/span&gt;
+                &lt;span&gt;Database Schema Normalization&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div style=&quot;display: flex; gap: 0.35rem;&quot;&gt;
+                &lt;button class=&quot;btn-action-view&quot; data-action=&quot;view&quot;&gt;View&lt;/button&gt;
+                &lt;button class=&quot;btn-action-del&quot; data-action=&quot;delete&quot;&gt;Delete&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;const parentList = document.getElementById(&quot;delegatedList&quot;);
+
+// Single event listener on the PARENT container
+parentList.addEventListener(&quot;click&quot;, (event) =&gt; {
+  const target = event.target;
+  const action = target.getAttribute(&quot;data-action&quot;);
+  const row = target.closest(&quot;.list-item-btn&quot;);
+
+  if (!action || !row) return;
+
+  const itemId = row.getAttribute(&quot;data-id&quot;);
+
+  if (action === &quot;delete&quot;) {
+    row.remove(); // Removes the clicked row
+    console.log(`Deleted item ${itemId}`);
+  } else if (action === &quot;view&quot;) {
+    alert(`Viewing details for Item #${itemId}`);
+  }
+});&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;event-bubbling-capturing.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; EV 05: Bubbling &amp; Capturing&lt;/a&gt;
+      &lt;a href=&quot;mouse-tracker.html&quot; class=&quot;nav-next&quot;&gt;EV 07: Mouse Tracker &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const parentList = document.getElementById(&quot;delegatedList&quot;);
+    const input = document.getElementById(&quot;newItemTitle&quot;);
+    let nextId = 103;
+
+    // Single Delegated Listener
+    parentList.addEventListener(&quot;click&quot;, (e) =&gt; {
+      const action = e.target.getAttribute(&quot;data-action&quot;);
+      const row = e.target.closest(&quot;.list-item-btn&quot;);
+
+      if (!action || !row) return;
+
+      const itemId = row.getAttribute(&quot;data-id&quot;);
+      const itemTitle = row.querySelector(&quot;span:not(.item-badge)&quot;).textContent;
+
+      if (action === &quot;delete&quot;) {
+        row.remove();
+      } else if (action === &quot;view&quot;) {
+        alert(`Details for Item ID: ${itemId}\nTitle: &quot;${itemTitle}&quot;`);
+      }
+    });
+
+    function addNewItem() {
+      const title = input.value.trim();
+      if (!title) return;
+
+      const li = document.createElement(&quot;li&quot;);
+      li.className = &quot;list-item-btn&quot;;
+      li.setAttribute(&quot;data-id&quot;, nextId);
+      li.innerHTML = `
+        &lt;div&gt;
+          &lt;span class=&quot;item-badge&quot;&gt;ID: ${nextId++}&lt;/span&gt;
+          &lt;span&gt;${title}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;display: flex; gap: 0.35rem;&quot;&gt;
+          &lt;button class=&quot;btn-action-view&quot; data-action=&quot;view&quot;&gt;View&lt;/button&gt;
+          &lt;button class=&quot;btn-action-del&quot; data-action=&quot;delete&quot;&gt;Delete&lt;/button&gt;
+        &lt;/div&gt;
+      `;
+      parentList.appendChild(li);
+      input.value = &quot;&quot;;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const parentList = document.getElementById(&quot;delegatedList&quot;);
+    const input = document.getElementById(&quot;newItemTitle&quot;);
+    let nextId = 103;
+
+    // Single Delegated Listener
+    parentList.addEventListener(&quot;click&quot;, (e) =&gt; {
+      const action = e.target.getAttribute(&quot;data-action&quot;);
+      const row = e.target.closest(&quot;.list-item-btn&quot;);
+
+      if (!action || !row) return;
+
+      const itemId = row.getAttribute(&quot;data-id&quot;);
+      const itemTitle = row.querySelector(&quot;span:not(.item-badge)&quot;).textContent;
+
+      if (action === &quot;delete&quot;) {
+        row.remove();
+      } else if (action === &quot;view&quot;) {
+        alert(`Details for Item ID: ${itemId}\nTitle: &quot;${itemTitle}&quot;`);
+      }
+    });
+
+    function addNewItem() {
+      const title = input.value.trim();
+      if (!title) return;
+
+      const li = document.createElement(&quot;li&quot;);
+      li.className = &quot;list-item-btn&quot;;
+      li.setAttribute(&quot;data-id&quot;, nextId);
+      li.innerHTML = `
+        &lt;div&gt;
+          &lt;span class=&quot;item-badge&quot;&gt;ID: ${nextId++}&lt;/span&gt;
+          &lt;span&gt;${title}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;display: flex; gap: 0.35rem;&quot;&gt;
+          &lt;button class=&quot;btn-action-view&quot; data-action=&quot;view&quot;&gt;View&lt;/button&gt;
+          &lt;button class=&quot;btn-action-del&quot; data-action=&quot;delete&quot;&gt;Delete&lt;/button&gt;
+        &lt;/div&gt;
+      `;
+      parentList.appendChild(li);
+      input.value = &quot;&quot;;
+    }</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="300-event-bubbling-capturing.html"><small>← Previous</small>Event bubbling capturing</a><a class="nav-btn" href="302-event-listeners.html"><small>Next →</small>Event listeners</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

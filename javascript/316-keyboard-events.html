@@ -1,0 +1,289 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 316 | Keyboard events | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 316</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 316</div><h1>Keyboard events</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to keyboard events.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;EV 02 - Keyboard Events &amp; Keycode Visualizer | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .key-hero {
+      text-align: center;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .big-key-char {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 4rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: inline-block;
+      min-width: 100px;
+      min-height: 90px;
+      line-height: 90px;
+      background: #1e293b;
+      border: 2px solid #38bdf8;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+      margin-bottom: 1rem;
+    }
+    .meta-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .meta-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .meta-card label {
+      display: block;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .meta-val {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 1.25rem;
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .modifier-pills {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .mod-pill {
+      background: #1e293b;
+      border: 1px solid #475569;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      transition: all 0.2s;
+    }
+    .mod-pill.active {
+      background: #10b981;
+      color: #fff;
+      border-color: #10b981;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Events&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;EV 02 - Keyboard Events Visualizer&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Event Handling • Program 02&lt;/div&gt;
+      &lt;h1&gt;Keyboard Events &amp; Keycode Visualizer&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Capture physical and virtual keyboard strokes in real-time. Inspect modern &lt;code&gt;event.key&lt;/code&gt;, 
+        &lt;code&gt;event.code&lt;/code&gt;, &lt;code&gt;event.which&lt;/code&gt;, and modifier keys (Ctrl, Shift, Alt, Meta).
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;⌨️&lt;/span&gt; Live Keystroke Radar
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Press Any Key&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;key-hero&quot;&gt;
+          &lt;div id=&quot;bigKeyDisplay&quot; class=&quot;big-key-char&quot;&gt;Space&lt;/div&gt;
+          &lt;h3 id=&quot;heroStatusText&quot; style=&quot;color: #cbd5e1; font-weight: normal;&quot;&gt;Press any key on your keyboard to inspect its properties&lt;/h3&gt;
+
+          &lt;div class=&quot;modifier-pills&quot;&gt;
+            &lt;span id=&quot;pillCtrl&quot; class=&quot;mod-pill&quot;&gt;Ctrl&lt;/span&gt;
+            &lt;span id=&quot;pillShift&quot; class=&quot;mod-pill&quot;&gt;Shift&lt;/span&gt;
+            &lt;span id=&quot;pillAlt&quot; class=&quot;mod-pill&quot;&gt;Alt&lt;/span&gt;
+            &lt;span id=&quot;pillMeta&quot; class=&quot;mod-pill&quot;&gt;Meta / Cmd&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;meta-cards-grid&quot;&gt;
+          &lt;div class=&quot;meta-card&quot;&gt;
+            &lt;label&gt;event.key&lt;/label&gt;
+            &lt;div id=&quot;valKey&quot; class=&quot;meta-val&quot;&gt;&quot; &quot;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;meta-card&quot;&gt;
+            &lt;label&gt;event.code&lt;/label&gt;
+            &lt;div id=&quot;valCode&quot; class=&quot;meta-val&quot;&gt;Space&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;meta-card&quot;&gt;
+            &lt;label&gt;event.which / keyCode&lt;/label&gt;
+            &lt;div id=&quot;valWhich&quot; class=&quot;meta-val&quot;&gt;32&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;meta-card&quot;&gt;
+            &lt;label&gt;event.location&lt;/label&gt;
+            &lt;div id=&quot;valLoc&quot; class=&quot;meta-val&quot;&gt;Standard (0)&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;window.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+  // 1. Modern string representation of key value
+  const key = event.key;
+
+  // 2. Physical key on the keyboard hardware
+  const code = event.code;
+
+  // 3. Numeric keyCode (deprecated in modern web, but useful in legacy code)
+  const keyCode = event.which || event.keyCode;
+
+  // 4. Modifier keys
+  const isCtrl = event.ctrlKey;
+  const isShift = event.shiftKey;
+  const isAlt = event.altKey;
+
+  console.log({ key, code, keyCode, isCtrl, isShift, isAlt });
+});&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;mouse-events.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; EV 01: Mouse Events&lt;/a&gt;
+      &lt;a href=&quot;form-events.html&quot; class=&quot;nav-next&quot;&gt;EV 03: Form Events &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const bigKey = document.getElementById(&quot;bigKeyDisplay&quot;);
+    const valKey = document.getElementById(&quot;valKey&quot;);
+    const valCode = document.getElementById(&quot;valCode&quot;);
+    const valWhich = document.getElementById(&quot;valWhich&quot;);
+    const valLoc = document.getElementById(&quot;valLoc&quot;);
+
+    const pillCtrl = document.getElementById(&quot;pillCtrl&quot;);
+    const pillShift = document.getElementById(&quot;pillShift&quot;);
+    const pillAlt = document.getElementById(&quot;pillAlt&quot;);
+    const pillMeta = document.getElementById(&quot;pillMeta&quot;);
+
+    const locNames = [&quot;Standard (0)&quot;, &quot;Left (1)&quot;, &quot;Right (2)&quot;, &quot;Numpad (3)&quot;];
+
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      // Prevent browser default scrolling on space or arrows during experiment
+      if ([&quot;Space&quot;, &quot;ArrowUp&quot;, &quot;ArrowDown&quot;].includes(e.code)) {
+        e.preventDefault();
+      }
+
+      bigKey.textContent = e.key === &quot; &quot; ? &quot;Space&quot; : e.key;
+      valKey.textContent = `&quot;${e.key}&quot;`;
+      valCode.textContent = e.code;
+      valWhich.textContent = e.which || e.keyCode;
+      valLoc.textContent = locNames[e.location] || e.location;
+
+      pillCtrl.classList.toggle(&quot;active&quot;, e.ctrlKey);
+      pillShift.classList.toggle(&quot;active&quot;, e.shiftKey);
+      pillAlt.classList.toggle(&quot;active&quot;, e.altKey);
+      pillMeta.classList.toggle(&quot;active&quot;, e.metaKey);
+    });
+
+    window.addEventListener(&quot;keyup&quot;, (e) =&gt; {
+      pillCtrl.classList.toggle(&quot;active&quot;, e.ctrlKey);
+      pillShift.classList.toggle(&quot;active&quot;, e.shiftKey);
+      pillAlt.classList.toggle(&quot;active&quot;, e.altKey);
+      pillMeta.classList.toggle(&quot;active&quot;, e.metaKey);
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const bigKey = document.getElementById(&quot;bigKeyDisplay&quot;);
+    const valKey = document.getElementById(&quot;valKey&quot;);
+    const valCode = document.getElementById(&quot;valCode&quot;);
+    const valWhich = document.getElementById(&quot;valWhich&quot;);
+    const valLoc = document.getElementById(&quot;valLoc&quot;);
+
+    const pillCtrl = document.getElementById(&quot;pillCtrl&quot;);
+    const pillShift = document.getElementById(&quot;pillShift&quot;);
+    const pillAlt = document.getElementById(&quot;pillAlt&quot;);
+    const pillMeta = document.getElementById(&quot;pillMeta&quot;);
+
+    const locNames = [&quot;Standard (0)&quot;, &quot;Left (1)&quot;, &quot;Right (2)&quot;, &quot;Numpad (3)&quot;];
+
+    window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      // Prevent browser default scrolling on space or arrows during experiment
+      if ([&quot;Space&quot;, &quot;ArrowUp&quot;, &quot;ArrowDown&quot;].includes(e.code)) {
+        e.preventDefault();
+      }
+
+      bigKey.textContent = e.key === &quot; &quot; ? &quot;Space&quot; : e.key;
+      valKey.textContent = `&quot;${e.key}&quot;`;
+      valCode.textContent = e.code;
+      valWhich.textContent = e.which || e.keyCode;
+      valLoc.textContent = locNames[e.location] || e.location;
+
+      pillCtrl.classList.toggle(&quot;active&quot;, e.ctrlKey);
+      pillShift.classList.toggle(&quot;active&quot;, e.shiftKey);
+      pillAlt.classList.toggle(&quot;active&quot;, e.altKey);
+      pillMeta.classList.toggle(&quot;active&quot;, e.metaKey);
+    });
+
+    window.addEventListener(&quot;keyup&quot;, (e) =&gt; {
+      pillCtrl.classList.toggle(&quot;active&quot;, e.ctrlKey);
+      pillShift.classList.toggle(&quot;active&quot;, e.shiftKey);
+      pillAlt.classList.toggle(&quot;active&quot;, e.altKey);
+      pillMeta.classList.toggle(&quot;active&quot;, e.metaKey);
+    });</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="315-json-storage.html"><small>← Previous</small>Json storage</a><a class="nav-btn" href="317-largest-of-three.html"><small>Next →</small>Largest of three</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

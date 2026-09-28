@@ -1,0 +1,242 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 364 | Visitor counter | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 364</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 364</div><h1>Visitor counter</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to visitor counter.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;ST 07 - Visit Counter &amp; Timestamp Logger | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .counter-hero {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .big-visit-number {
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+      line-height: 1;
+      margin: 1rem 0;
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    }
+    .analytics-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    .analytics-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .analytics-label {
+      color: #94a3b8;
+    }
+    .analytics-val {
+      color: #f8fafc;
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      text-align: right;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Storage&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;ST 07 - Visit Counter&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Web Storage • Program 07&lt;/div&gt;
+      &lt;h1&gt;Page Visit Counter &amp; Timestamp Logger&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Track cumulative page visits, first recorded visit date, and previous visit timestamp 
+        using persistent integers and Date ISO strings inside &lt;code&gt;localStorage&lt;/code&gt;.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;📊&lt;/span&gt; Visitor Analytics Logger
+        &lt;/div&gt;
+        &lt;button class=&quot;btn btn-secondary&quot; style=&quot;padding: 4px 10px; font-size: 0.8rem;&quot; onclick=&quot;resetAnalytics()&quot;&gt;Reset Counter&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;counter-hero&quot;&gt;
+          &lt;div style=&quot;font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;&quot;&gt;You Have Visited This Lab Experiment:&lt;/div&gt;
+          &lt;div id=&quot;visitCountDisplay&quot; class=&quot;big-visit-number&quot;&gt;1&lt;/div&gt;
+          &lt;div style=&quot;font-size: 1rem; color: #cbd5e1;&quot;&gt;Times on this Web Browser&lt;/div&gt;
+
+          &lt;table class=&quot;analytics-table&quot;&gt;
+            &lt;tr&gt;
+              &lt;td class=&quot;analytics-label&quot;&gt;First Recorded Visit:&lt;/td&gt;
+              &lt;td class=&quot;analytics-val&quot; id=&quot;firstVisit&quot;&gt;--&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td class=&quot;analytics-label&quot;&gt;Previous Visit Timestamp:&lt;/td&gt;
+              &lt;td class=&quot;analytics-val&quot; id=&quot;prevVisit&quot;&gt;--&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td class=&quot;analytics-label&quot;&gt;Current Session Time:&lt;/td&gt;
+              &lt;td class=&quot;analytics-val&quot; id=&quot;currentSession&quot;&gt;--&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/table&gt;
+
+          &lt;div style=&quot;margin-top: 1.5rem;&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;simulateReload()&quot;&gt;Simulate Return Visit (+1)&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;// 1. Retrieve existing count and parse as integer
+let count = parseInt(localStorage.getItem(&quot;total_page_visits&quot;) || &quot;0&quot;);
+count++;
+
+// 2. Save updated count
+localStorage.setItem(&quot;total_page_visits&quot;, count);
+
+// 3. First visit date
+if (!localStorage.getItem(&quot;first_visit_date&quot;)) {
+  localStorage.setItem(&quot;first_visit_date&quot;, new Date().toLocaleString());
+}
+
+// 4. Update last visit timestamp
+const previousVisit = localStorage.getItem(&quot;last_visit_date&quot;) || &quot;First time visiting!&quot;;
+localStorage.setItem(&quot;last_visit_date&quot;, new Date().toLocaleString());&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;font-size-preference.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; ST 06: Font Preference&lt;/a&gt;
+      &lt;a href=&quot;storage-comparison.html&quot; class=&quot;nav-next&quot;&gt;ST 08: Storage Comparison &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function updateAnalytics() {
+      let count = parseInt(localStorage.getItem(&quot;lab_visit_counter&quot;) || &quot;0&quot;);
+      count++;
+      localStorage.setItem(&quot;lab_visit_counter&quot;, count);
+
+      const now = new Date().toLocaleString();
+      let first = localStorage.getItem(&quot;lab_first_visit&quot;);
+      if (!first) {
+        first = now;
+        localStorage.setItem(&quot;lab_first_visit&quot;, first);
+      }
+
+      const prev = localStorage.getItem(&quot;lab_last_visit&quot;) || &quot;First time opening this page!&quot;;
+      localStorage.setItem(&quot;lab_last_visit&quot;, now);
+
+      document.getElementById(&quot;visitCountDisplay&quot;).textContent = count;
+      document.getElementById(&quot;firstVisit&quot;).textContent = first;
+      document.getElementById(&quot;prevVisit&quot;).textContent = prev;
+      document.getElementById(&quot;currentSession&quot;).textContent = now;
+    }
+
+    function simulateReload() {
+      updateAnalytics();
+    }
+
+    function resetAnalytics() {
+      localStorage.removeItem(&quot;lab_visit_counter&quot;);
+      localStorage.removeItem(&quot;lab_first_visit&quot;);
+      localStorage.removeItem(&quot;lab_last_visit&quot;);
+      updateAnalytics();
+    }
+
+    updateAnalytics();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">function updateAnalytics() {
+      let count = parseInt(localStorage.getItem(&quot;lab_visit_counter&quot;) || &quot;0&quot;);
+      count++;
+      localStorage.setItem(&quot;lab_visit_counter&quot;, count);
+
+      const now = new Date().toLocaleString();
+      let first = localStorage.getItem(&quot;lab_first_visit&quot;);
+      if (!first) {
+        first = now;
+        localStorage.setItem(&quot;lab_first_visit&quot;, first);
+      }
+
+      const prev = localStorage.getItem(&quot;lab_last_visit&quot;) || &quot;First time opening this page!&quot;;
+      localStorage.setItem(&quot;lab_last_visit&quot;, now);
+
+      document.getElementById(&quot;visitCountDisplay&quot;).textContent = count;
+      document.getElementById(&quot;firstVisit&quot;).textContent = first;
+      document.getElementById(&quot;prevVisit&quot;).textContent = prev;
+      document.getElementById(&quot;currentSession&quot;).textContent = now;
+    }
+
+    function simulateReload() {
+      updateAnalytics();
+    }
+
+    function resetAnalytics() {
+      localStorage.removeItem(&quot;lab_visit_counter&quot;);
+      localStorage.removeItem(&quot;lab_first_visit&quot;);
+      localStorage.removeItem(&quot;lab_last_visit&quot;);
+      updateAnalytics();
+    }
+
+    updateAnalytics();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="363-typing-speed-test.html"><small>← Previous</small>Typing speed test</a><a class="nav-btn" href="365-weather-app.html"><small>Next →</small>Weather app</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

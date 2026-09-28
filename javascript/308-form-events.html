@@ -1,0 +1,283 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 308 | Form events | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 308</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 308</div><h1>Form events</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to form events.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;EV 03 - Form Events Lifecycle | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .form-events-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .form-events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .input-grp {
+      margin-bottom: 1.2rem;
+    }
+    .input-grp label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .form-control-styled {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control-styled:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+    .stream-box {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      height: 320px;
+      overflow-y: auto;
+      font-family: &#x27;Fira Code&#x27;, monospace;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.4rem;
+    }
+    .stream-item {
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #1e293b;
+      display: flex;
+      justify-content: space-between;
+    }
+    .tag-focus { color: #38bdf8; }
+    .tag-blur { color: #f59e0b; }
+    .tag-input { color: #10b981; }
+    .tag-change { color: #a855f7; }
+    .tag-submit { color: #ec4899; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Events&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;EV 03 - Form Events Lifecycle&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Event Handling • Program 03&lt;/div&gt;
+      &lt;h1&gt;Form Events Lifecycle (focus, blur, change, input, submit)&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Observe the real-time event pipeline of HTML forms: &lt;code&gt;focus&lt;/code&gt; (gaining cursor), 
+        &lt;code&gt;blur&lt;/code&gt; (losing focus), &lt;code&gt;input&lt;/code&gt; (keystroke mutations), &lt;code&gt;change&lt;/code&gt; (committing changes), 
+        and &lt;code&gt;submit&lt;/code&gt; (form dispatch).
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;📝&lt;/span&gt; Interactive Form Event Monitor
+        &lt;/div&gt;
+        &lt;button class=&quot;btn btn-secondary&quot; style=&quot;padding: 4px 10px; font-size: 0.8rem;&quot; onclick=&quot;clearStream()&quot;&gt;Clear Log&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;form-events-grid&quot;&gt;
+          &lt;!-- Interactive Form --&gt;
+          &lt;div class=&quot;form-box&quot;&gt;
+            &lt;form id=&quot;sampleForm&quot; onsubmit=&quot;handleFormSubmit(event)&quot;&gt;
+              &lt;div class=&quot;input-grp&quot;&gt;
+                &lt;label&gt;Student Full Name (Tracks: focus, blur, input):&lt;/label&gt;
+                &lt;input type=&quot;text&quot; id=&quot;fieldName&quot; class=&quot;form-control-styled&quot; placeholder=&quot;e.g. Shaik Roshan&quot;&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;input-grp&quot;&gt;
+                &lt;label&gt;Branch Selection (Tracks: change):&lt;/label&gt;
+                &lt;select id=&quot;fieldBranch&quot; class=&quot;form-control-styled&quot;&gt;
+                  &lt;option value=&quot;&quot;&gt;-- Choose Branch --&lt;/option&gt;
+                  &lt;option value=&quot;CSE&quot;&gt;Computer Science&lt;/option&gt;
+                  &lt;option value=&quot;ECE&quot;&gt;Electronics &amp; Comm.&lt;/option&gt;
+                  &lt;option value=&quot;IT&quot;&gt;Information Tech.&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;input-grp&quot;&gt;
+                &lt;label&gt;Feedback Notes (Tracks: input, blur):&lt;/label&gt;
+                &lt;textarea id=&quot;fieldNotes&quot; class=&quot;form-control-styled&quot; rows=&quot;2&quot; placeholder=&quot;Type here...&quot;&gt;&lt;/textarea&gt;
+              &lt;/div&gt;
+
+              &lt;div style=&quot;display: flex; gap: 0.5rem;&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; style=&quot;flex: 1;&quot;&gt;Submit Form&lt;/button&gt;
+                &lt;button type=&quot;reset&quot; class=&quot;btn btn-secondary&quot; onclick=&quot;logStream(&#x27;reset&#x27;, &#x27;Form reset triggered&#x27;)&quot;&gt;Reset&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Live Event Log --&gt;
+          &lt;div&gt;
+            &lt;h4 style=&quot;margin-bottom: 0.5rem; color: #94a3b8; font-size: 0.85rem;&quot;&gt;Event Dispatch Log:&lt;/h4&gt;
+            &lt;div id=&quot;eventStream&quot; class=&quot;stream-box&quot;&gt;
+              &lt;div class=&quot;stream-item&quot;&gt;&lt;span class=&quot;tag-focus&quot;&gt;ready&lt;/span&gt;&lt;span&gt;Form loaded&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;const input = document.getElementById(&quot;fieldName&quot;);
+const select = document.getElementById(&quot;fieldBranch&quot;);
+const form = document.getElementById(&quot;sampleForm&quot;);
+
+// 1. Focus &amp; Blur
+input.addEventListener(&quot;focus&quot;, () =&gt; console.log(&quot;Field focused&quot;));
+input.addEventListener(&quot;blur&quot;, () =&gt; console.log(&quot;Field lost focus&quot;));
+
+// 2. Real-time Input
+input.addEventListener(&quot;input&quot;, (e) =&gt; console.log(&quot;Value:&quot;, e.target.value));
+
+// 3. Committed Value Change
+select.addEventListener(&quot;change&quot;, (e) =&gt; console.log(&quot;Branch changed:&quot;, e.target.value));
+
+// 4. Submit Event with preventDefault
+form.addEventListener(&quot;submit&quot;, (e) =&gt; {
+  e.preventDefault(); // Prevents page reload
+  console.log(&quot;Form submitted successfully!&quot;);
+});&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;keyboard-events.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; EV 02: Keyboard Events&lt;/a&gt;
+      &lt;a href=&quot;event-listeners.html&quot; class=&quot;nav-next&quot;&gt;EV 04: Event Listeners &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const stream = document.getElementById(&quot;eventStream&quot;);
+    const nameInp = document.getElementById(&quot;fieldName&quot;);
+    const branchSel = document.getElementById(&quot;fieldBranch&quot;);
+    const notesInp = document.getElementById(&quot;fieldNotes&quot;);
+
+    function logStream(type, desc) {
+      const row = document.createElement(&quot;div&quot;);
+      row.className = &quot;stream-item&quot;;
+      row.innerHTML = `&lt;span class=&quot;tag-${type}&quot;&gt;[${type.toUpperCase()}]&lt;/span&gt;&lt;span&gt;${desc}&lt;/span&gt;`;
+      stream.prepend(row);
+    }
+
+    function clearStream() {
+      stream.innerHTML = &quot;&quot;;
+    }
+
+    [nameInp, notesInp].forEach(el =&gt; {
+      el.addEventListener(&quot;focus&quot;, () =&gt; logStream(&quot;focus&quot;, `Focus gained on #${el.id}`));
+      el.addEventListener(&quot;blur&quot;, () =&gt; logStream(&quot;blur&quot;, `Blur (lost focus) on #${el.id}`));
+      el.addEventListener(&quot;input&quot;, (e) =&gt; logStream(&quot;input&quot;, `Input: &quot;${e.target.value}&quot;`));
+    });
+
+    branchSel.addEventListener(&quot;change&quot;, (e) =&gt; {
+      logStream(&quot;change&quot;, `Branch selected: &quot;${e.target.value}&quot;`);
+    });
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      logStream(&quot;submit&quot;, &quot;e.preventDefault() called; Simulated submission complete!&quot;);
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">const stream = document.getElementById(&quot;eventStream&quot;);
+    const nameInp = document.getElementById(&quot;fieldName&quot;);
+    const branchSel = document.getElementById(&quot;fieldBranch&quot;);
+    const notesInp = document.getElementById(&quot;fieldNotes&quot;);
+
+    function logStream(type, desc) {
+      const row = document.createElement(&quot;div&quot;);
+      row.className = &quot;stream-item&quot;;
+      row.innerHTML = `&lt;span class=&quot;tag-${type}&quot;&gt;[${type.toUpperCase()}]&lt;/span&gt;&lt;span&gt;${desc}&lt;/span&gt;`;
+      stream.prepend(row);
+    }
+
+    function clearStream() {
+      stream.innerHTML = &quot;&quot;;
+    }
+
+    [nameInp, notesInp].forEach(el =&gt; {
+      el.addEventListener(&quot;focus&quot;, () =&gt; logStream(&quot;focus&quot;, `Focus gained on #${el.id}`));
+      el.addEventListener(&quot;blur&quot;, () =&gt; logStream(&quot;blur&quot;, `Blur (lost focus) on #${el.id}`));
+      el.addEventListener(&quot;input&quot;, (e) =&gt; logStream(&quot;input&quot;, `Input: &quot;${e.target.value}&quot;`));
+    });
+
+    branchSel.addEventListener(&quot;change&quot;, (e) =&gt; {
+      logStream(&quot;change&quot;, `Branch selected: &quot;${e.target.value}&quot;`);
+    });
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      logStream(&quot;submit&quot;, &quot;e.preventDefault() called; Simulated submission complete!&quot;);
+    }</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="307-font-size-preference.html"><small>← Previous</small>Font size preference</a><a class="nav-btn" href="309-functions-demo.html"><small>Next →</small>Functions demo</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

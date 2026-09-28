@@ -1,0 +1,394 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 355 | Table row crud | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 355</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 355</div><h1>Table row crud</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to table row crud.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;DOM 09 - Table Row CRUD Operations | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .form-panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      align-items: end;
+    }
+    .form-panel input, .form-panel select {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+    }
+    .crud-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+    .crud-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .crud-table td {
+      padding: 12px 14px;
+      border-top: 1px solid #1e293b;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+    .crud-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .action-btn-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-edit {
+      background: #f59e0b;
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn-del {
+      background: #ef4444;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;DOM&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;DOM 09 - Table Row CRUD Operations&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;DOM Manipulation • Program 09&lt;/div&gt;
+      &lt;h1&gt;Student Records Table CRUD (Create, Read, Update, Delete)&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Perform complete in-memory CRUD operations directly on DOM table rows: adding new entries, 
+        inline editing cell data, updating records, and removing table rows.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;📋&lt;/span&gt; Student Registration &amp; Grade Records
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot;&gt;Interactive CRUD Table&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;form-panel&quot;&gt;
+          &lt;div&gt;
+            &lt;label style=&quot;display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Student Name:&lt;/label&gt;
+            &lt;input type=&quot;text&quot; id=&quot;studName&quot; placeholder=&quot;e.g. Rahul Sharma&quot;&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;label style=&quot;display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Roll Number:&lt;/label&gt;
+            &lt;input type=&quot;text&quot; id=&quot;studRoll&quot; placeholder=&quot;e.g. 21CS042&quot;&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;label style=&quot;display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Department:&lt;/label&gt;
+            &lt;select id=&quot;studDept&quot;&gt;
+              &lt;option value=&quot;CSE&quot;&gt;Computer Science (CSE)&lt;/option&gt;
+              &lt;option value=&quot;IT&quot;&gt;Information Technology (IT)&lt;/option&gt;
+              &lt;option value=&quot;ECE&quot;&gt;Electronics (ECE)&lt;/option&gt;
+              &lt;option value=&quot;MECH&quot;&gt;Mechanical (MECH)&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;label style=&quot;display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Marks (%):&lt;/label&gt;
+            &lt;input type=&quot;number&quot; id=&quot;studMarks&quot; placeholder=&quot;e.g. 92&quot; min=&quot;0&quot; max=&quot;100&quot;&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;input type=&quot;hidden&quot; id=&quot;editIndex&quot; value=&quot;-1&quot;&gt;
+            &lt;button class=&quot;btn btn-primary&quot; id=&quot;submitBtn&quot; style=&quot;width: 100%;&quot; onclick=&quot;handleSaveRecord()&quot;&gt;Add Record&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;table class=&quot;crud-table&quot; id=&quot;studentTable&quot;&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;#&lt;/th&gt;
+              &lt;th&gt;Roll Number&lt;/th&gt;
+              &lt;th&gt;Student Name&lt;/th&gt;
+              &lt;th&gt;Department&lt;/th&gt;
+              &lt;th&gt;Marks (%)&lt;/th&gt;
+              &lt;th&gt;Actions&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody id=&quot;tableBody&quot;&gt;
+            &lt;!-- Populated via JS --&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;let students = [
+  { roll: &quot;22CSE01&quot;, name: &quot;Shaik Roshan&quot;, dept: &quot;CSE&quot;, marks: 95 },
+  { roll: &quot;22CSE02&quot;, name: &quot;Ananya Patel&quot;, dept: &quot;IT&quot;, marks: 88 }
+];
+
+function renderTable() {
+  const tbody = document.getElementById(&quot;tableBody&quot;);
+  tbody.innerHTML = &quot;&quot;;
+
+  students.forEach((s, i) =&gt; {
+    const tr = tbody.insertRow();
+    tr.innerHTML = `
+      &amp;lt;td&amp;gt;${i + 1}&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;${s.roll}&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;${s.name}&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;${s.dept}&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;${s.marks}%&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;
+        &amp;lt;button class=&quot;btn-edit&quot; onclick=&quot;editRow(${i})&quot;&amp;gt;Edit&amp;lt;/button&amp;gt;
+        &amp;lt;button class=&quot;btn-del&quot; onclick=&quot;deleteRow(${i})&quot;&amp;gt;Delete&amp;lt;/button&amp;gt;
+      &amp;lt;/td&amp;gt;
+    `;
+  });
+}
+
+function deleteRow(index) {
+  students.splice(index, 1);
+  renderTable();
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;dynamic-tables.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; DOM 08: Dynamic Tables&lt;/a&gt;
+      &lt;a href=&quot;table-filter-sort.html&quot; class=&quot;nav-next&quot;&gt;DOM 10: Table Filter &amp; Sort &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let students = [
+      { roll: &quot;22CSE01&quot;, name: &quot;Shaik Roshan&quot;, dept: &quot;CSE&quot;, marks: 96 },
+      { roll: &quot;22CSE05&quot;, name: &quot;Kiran Kumar&quot;, dept: &quot;IT&quot;, marks: 84 },
+      { roll: &quot;22ECE12&quot;, name: &quot;Pooja Hegde&quot;, dept: &quot;ECE&quot;, marks: 91 }
+    ];
+
+    function renderTable() {
+      const tbody = document.getElementById(&quot;tableBody&quot;);
+      tbody.innerHTML = &quot;&quot;;
+
+      if (students.length === 0) {
+        tbody.innerHTML = `&lt;tr&gt;&lt;td colspan=&quot;6&quot; style=&quot;text-align: center; color: #94a3b8; padding: 2rem;&quot;&gt;No records found. Add one above!&lt;/td&gt;&lt;/tr&gt;`;
+        return;
+      }
+
+      students.forEach((s, idx) =&gt; {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          &lt;td&gt;${idx + 1}&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;${s.roll}&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;${s.name}&lt;/td&gt;
+          &lt;td&gt;&lt;span class=&quot;badge badge-primary&quot;&gt;${s.dept}&lt;/span&gt;&lt;/td&gt;
+          &lt;td&gt;${s.marks}%&lt;/td&gt;
+          &lt;td&gt;
+            &lt;div class=&quot;action-btn-group&quot;&gt;
+              &lt;button class=&quot;btn-edit&quot; onclick=&quot;editRecord(${idx})&quot;&gt;Edit&lt;/button&gt;
+              &lt;button class=&quot;btn-del&quot; onclick=&quot;deleteRecord(${idx})&quot;&gt;Delete&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/td&gt;
+        `;
+      });
+    }
+
+    function handleSaveRecord() {
+      const name = document.getElementById(&quot;studName&quot;).value.trim();
+      const roll = document.getElementById(&quot;studRoll&quot;).value.trim();
+      const dept = document.getElementById(&quot;studDept&quot;).value;
+      const marks = document.getElementById(&quot;studMarks&quot;).value.trim();
+      const editIdx = parseInt(document.getElementById(&quot;editIndex&quot;).value);
+
+      if (!name || !roll || !marks) {
+        alert(&quot;Please fill all required fields!&quot;);
+        return;
+      }
+
+      if (editIdx &gt;= 0) {
+        students[editIdx] = { name, roll, dept, marks };
+        document.getElementById(&quot;editIndex&quot;).value = -1;
+        document.getElementById(&quot;submitBtn&quot;).textContent = &quot;Add Record&quot;;
+      } else {
+        students.push({ name, roll, dept, marks });
+      }
+
+      document.getElementById(&quot;studName&quot;).value = &quot;&quot;;
+      document.getElementById(&quot;studRoll&quot;).value = &quot;&quot;;
+      document.getElementById(&quot;studMarks&quot;).value = &quot;&quot;;
+      renderTable();
+    }
+
+    function editRecord(idx) {
+      const s = students[idx];
+      document.getElementById(&quot;studName&quot;).value = s.name;
+      document.getElementById(&quot;studRoll&quot;).value = s.roll;
+      document.getElementById(&quot;studDept&quot;).value = s.dept;
+      document.getElementById(&quot;studMarks&quot;).value = s.marks;
+      document.getElementById(&quot;editIndex&quot;).value = idx;
+      document.getElementById(&quot;submitBtn&quot;).textContent = &quot;Update Record&quot;;
+    }
+
+    function deleteRecord(idx) {
+      if (confirm(`Are you sure you want to delete ${students[idx].name}?`)) {
+        students.splice(idx, 1);
+        renderTable();
+      }
+    }
+
+    renderTable();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let students = [
+      { roll: &quot;22CSE01&quot;, name: &quot;Shaik Roshan&quot;, dept: &quot;CSE&quot;, marks: 96 },
+      { roll: &quot;22CSE05&quot;, name: &quot;Kiran Kumar&quot;, dept: &quot;IT&quot;, marks: 84 },
+      { roll: &quot;22ECE12&quot;, name: &quot;Pooja Hegde&quot;, dept: &quot;ECE&quot;, marks: 91 }
+    ];
+
+    function renderTable() {
+      const tbody = document.getElementById(&quot;tableBody&quot;);
+      tbody.innerHTML = &quot;&quot;;
+
+      if (students.length === 0) {
+        tbody.innerHTML = `&lt;tr&gt;&lt;td colspan=&quot;6&quot; style=&quot;text-align: center; color: #94a3b8; padding: 2rem;&quot;&gt;No records found. Add one above!&lt;/td&gt;&lt;/tr&gt;`;
+        return;
+      }
+
+      students.forEach((s, idx) =&gt; {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          &lt;td&gt;${idx + 1}&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;${s.roll}&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;${s.name}&lt;/td&gt;
+          &lt;td&gt;&lt;span class=&quot;badge badge-primary&quot;&gt;${s.dept}&lt;/span&gt;&lt;/td&gt;
+          &lt;td&gt;${s.marks}%&lt;/td&gt;
+          &lt;td&gt;
+            &lt;div class=&quot;action-btn-group&quot;&gt;
+              &lt;button class=&quot;btn-edit&quot; onclick=&quot;editRecord(${idx})&quot;&gt;Edit&lt;/button&gt;
+              &lt;button class=&quot;btn-del&quot; onclick=&quot;deleteRecord(${idx})&quot;&gt;Delete&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/td&gt;
+        `;
+      });
+    }
+
+    function handleSaveRecord() {
+      const name = document.getElementById(&quot;studName&quot;).value.trim();
+      const roll = document.getElementById(&quot;studRoll&quot;).value.trim();
+      const dept = document.getElementById(&quot;studDept&quot;).value;
+      const marks = document.getElementById(&quot;studMarks&quot;).value.trim();
+      const editIdx = parseInt(document.getElementById(&quot;editIndex&quot;).value);
+
+      if (!name || !roll || !marks) {
+        alert(&quot;Please fill all required fields!&quot;);
+        return;
+      }
+
+      if (editIdx &gt;= 0) {
+        students[editIdx] = { name, roll, dept, marks };
+        document.getElementById(&quot;editIndex&quot;).value = -1;
+        document.getElementById(&quot;submitBtn&quot;).textContent = &quot;Add Record&quot;;
+      } else {
+        students.push({ name, roll, dept, marks });
+      }
+
+      document.getElementById(&quot;studName&quot;).value = &quot;&quot;;
+      document.getElementById(&quot;studRoll&quot;).value = &quot;&quot;;
+      document.getElementById(&quot;studMarks&quot;).value = &quot;&quot;;
+      renderTable();
+    }
+
+    function editRecord(idx) {
+      const s = students[idx];
+      document.getElementById(&quot;studName&quot;).value = s.name;
+      document.getElementById(&quot;studRoll&quot;).value = s.roll;
+      document.getElementById(&quot;studDept&quot;).value = s.dept;
+      document.getElementById(&quot;studMarks&quot;).value = s.marks;
+      document.getElementById(&quot;editIndex&quot;).value = idx;
+      document.getElementById(&quot;submitBtn&quot;).textContent = &quot;Update Record&quot;;
+    }
+
+    function deleteRecord(idx) {
+      if (confirm(`Are you sure you want to delete ${students[idx].name}?`)) {
+        students.splice(idx, 1);
+        renderTable();
+      }
+    }
+
+    renderTable();</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="354-table-filter-sort.html"><small>← Previous</small>Table filter sort</a><a class="nav-btn" href="356-tabs-component.html"><small>Next →</small>Tabs component</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>

@@ -1,0 +1,379 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 325 | Multi step form | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 325</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 325</div><h1>Multi step form</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to multi step form.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;FM 09 - Multi-Step Form Wizard | Web Tech Lab&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/style.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;../../assets/css/program-viewer.css&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    .wizard-card {
+      max-width: 620px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .stepper-header {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .stepper-header::before {
+      content: &quot;&quot;;
+      position: absolute;
+      top: 18px;
+      left: 30px;
+      right: 30px;
+      height: 2px;
+      background: #334155;
+      z-index: 1;
+    }
+    .step-indicator {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .step-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 2px solid #475569;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .step-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .step-indicator.active .step-circle {
+      background: #38bdf8;
+      border-color: #38bdf8;
+      color: #0f172a;
+    }
+    .step-indicator.active .step-label {
+      color: #38bdf8;
+    }
+    .step-indicator.completed .step-circle {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+    .step-panel {
+      display: none;
+    }
+    .step-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .wizard-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #1e293b;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar --&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;
+    &lt;div class=&quot;nav-container&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot; class=&quot;logo&quot;&gt;
+        &lt;span class=&quot;logo-icon&quot;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+        &lt;span&gt;WebTech&lt;span class=&quot;highlight&quot;&gt;Lab&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div class=&quot;nav-links&quot;&gt;
+        &lt;a href=&quot;../../index.html&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;../../html/index.html&quot;&gt;HTML&lt;/a&gt;
+        &lt;a href=&quot;../../css/index.html&quot;&gt;CSS&lt;/a&gt;
+        &lt;a href=&quot;../index.html&quot; class=&quot;active&quot;&gt;JavaScript&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;breadcrumb&quot;&gt;
+      &lt;a href=&quot;../../index.html&quot;&gt;Home&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;../index.html&quot;&gt;JavaScript&lt;/a&gt; &amp;rsaquo; 
+      &lt;a href=&quot;index.html&quot;&gt;Forms&lt;/a&gt; &amp;rsaquo; 
+      &lt;span&gt;FM 09 - Multi-Step Form Wizard&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;program-header&quot;&gt;
+      &lt;div class=&quot;program-badge&quot;&gt;Form Validation • Program 09&lt;/div&gt;
+      &lt;h1&gt;Multi-Step Form Wizard with Stepper Indicators&lt;/h1&gt;
+      &lt;p class=&quot;program-desc&quot;&gt;
+        Break complex registration workflows into structured steps (Account &amp;rarr; Academic &amp;rarr; Confirmation) 
+        with progress indicators and per-step validation gating.
+      &lt;/p&gt;
+      &lt;div class=&quot;student-pill&quot;&gt;
+        &lt;span&gt;👨‍💻 Student: &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/span&gt;
+        &lt;span&gt;•&lt;/span&gt;
+        &lt;span&gt;Reg No: &lt;strong&gt;[TO BE FILLED BY STUDENT]&lt;/strong&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Live Demo --&gt;
+    &lt;div class=&quot;demo-section&quot;&gt;
+      &lt;div class=&quot;demo-header&quot;&gt;
+        &lt;div class=&quot;demo-title&quot;&gt;
+          &lt;span&gt;🚀&lt;/span&gt; Student Onboarding Wizard
+        &lt;/div&gt;
+        &lt;span class=&quot;badge badge-success&quot; id=&quot;stepBadge&quot;&gt;Step 1 of 3&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-body&quot;&gt;
+        
+        &lt;div class=&quot;wizard-card&quot;&gt;
+          &lt;!-- Stepper Header --&gt;
+          &lt;div class=&quot;stepper-header&quot;&gt;
+            &lt;div class=&quot;step-indicator active&quot; id=&quot;step1-ind&quot;&gt;
+              &lt;div class=&quot;step-circle&quot;&gt;1&lt;/div&gt;
+              &lt;div class=&quot;step-label&quot;&gt;Account&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;step-indicator&quot; id=&quot;step2-ind&quot;&gt;
+              &lt;div class=&quot;step-circle&quot;&gt;2&lt;/div&gt;
+              &lt;div class=&quot;step-label&quot;&gt;Academic&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;step-indicator&quot; id=&quot;step3-ind&quot;&gt;
+              &lt;div class=&quot;step-circle&quot;&gt;3&lt;/div&gt;
+              &lt;div class=&quot;step-label&quot;&gt;Confirm&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Step 1: Account --&gt;
+          &lt;div class=&quot;step-panel active&quot; id=&quot;panel1&quot;&gt;
+            &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 1rem;&quot;&gt;1. Account Information&lt;/h3&gt;
+            &lt;div style=&quot;margin-bottom: 1rem;&quot;&gt;
+              &lt;label style=&quot;display:block; font-size:0.85rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Username *&lt;/label&gt;
+              &lt;input type=&quot;text&quot; id=&quot;wizUser&quot; class=&quot;form-input&quot; style=&quot;width:100%; background:#1e293b; border:1px solid #475569; color:#fff; padding:0.65rem; border-radius:6px;&quot; value=&quot;shaik_roshan&quot;&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;label style=&quot;display:block; font-size:0.85rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;College Email *&lt;/label&gt;
+              &lt;input type=&quot;email&quot; id=&quot;wizEmail&quot; class=&quot;form-input&quot; style=&quot;width:100%; background:#1e293b; border:1px solid #475569; color:#fff; padding:0.65rem; border-radius:6px;&quot; value=&quot;roshan@college.edu&quot;&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Step 2: Academic --&gt;
+          &lt;div class=&quot;step-panel&quot; id=&quot;panel2&quot;&gt;
+            &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 1rem;&quot;&gt;2. Academic Credentials&lt;/h3&gt;
+            &lt;div style=&quot;margin-bottom: 1rem;&quot;&gt;
+              &lt;label style=&quot;display:block; font-size:0.85rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Roll Number *&lt;/label&gt;
+              &lt;input type=&quot;text&quot; id=&quot;wizRoll&quot; class=&quot;form-input&quot; style=&quot;width:100%; background:#1e293b; border:1px solid #475569; color:#fff; padding:0.65rem; border-radius:6px;&quot; placeholder=&quot;e.g. 22CS042&quot;&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;label style=&quot;display:block; font-size:0.85rem; color:#94a3b8; margin-bottom:0.3rem;&quot;&gt;Branch / Specialization *&lt;/label&gt;
+              &lt;select id=&quot;wizBranch&quot; style=&quot;width:100%; background:#1e293b; border:1px solid #475569; color:#fff; padding:0.65rem; border-radius:6px;&quot;&gt;
+                &lt;option value=&quot;CSE&quot;&gt;Computer Science &amp; Engineering&lt;/option&gt;
+                &lt;option value=&quot;AI&quot;&gt;AI &amp; Data Science&lt;/option&gt;
+                &lt;option value=&quot;IT&quot;&gt;Information Technology&lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Step 3: Confirmation --&gt;
+          &lt;div class=&quot;step-panel&quot; id=&quot;panel3&quot;&gt;
+            &lt;h3 style=&quot;color: #38bdf8; margin-bottom: 1rem;&quot;&gt;3. Review &amp; Submit&lt;/h3&gt;
+            &lt;div style=&quot;background:#1e293b; padding:1.25rem; border-radius:8px; line-height:1.8; color:#cbd5e1; font-size:0.9rem;&quot; id=&quot;wizSummary&quot;&gt;
+              &lt;!-- Summary populated via JS --&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Actions --&gt;
+          &lt;div class=&quot;wizard-actions&quot;&gt;
+            &lt;button class=&quot;btn btn-secondary&quot; id=&quot;btnPrev&quot; onclick=&quot;prevStep()&quot; disabled&gt;&amp;larr; Previous&lt;/button&gt;
+            &lt;button class=&quot;btn btn-primary&quot; id=&quot;btnNext&quot; onclick=&quot;nextStep()&quot;&gt;Next Step &amp;rarr;&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Source Code Viewer --&gt;
+    &lt;div class=&quot;code-viewer-section&quot;&gt;
+      &lt;div class=&quot;code-viewer-header&quot;&gt;
+        &lt;div class=&quot;code-tabs&quot;&gt;
+          &lt;button class=&quot;code-tab active&quot; data-tab=&quot;js&quot;&gt;JavaScript Implementation&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;code-actions&quot;&gt;
+          &lt;button class=&quot;btn-secondary&quot; id=&quot;copyCodeBtn&quot;&gt;📋 Copy Code&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;code-body&quot;&gt;
+        &lt;pre&gt;&lt;code id=&quot;sourceCode&quot;&gt;let currentStep = 1;
+
+function goToStep(step) {
+  // Hide all panels
+  document.querySelectorAll(&quot;.step-panel&quot;).forEach((p, i) =&gt; {
+    p.classList.toggle(&quot;active&quot;, i + 1 === step);
+  });
+
+  // Update indicators
+  document.querySelectorAll(&quot;.step-indicator&quot;).forEach((ind, i) =&gt; {
+    ind.classList.remove(&quot;active&quot;, &quot;completed&quot;);
+    if (i + 1 === step) ind.classList.add(&quot;active&quot;);
+    if (i + 1 &lt; step) ind.classList.add(&quot;completed&quot;);
+  });
+
+  // Update buttons
+  btnPrev.disabled = (step === 1);
+  btnNext.textContent = (step === 3) ? &quot;Complete &amp; Submit&quot; : &quot;Next Step →&quot;;
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Navigation --&gt;
+    &lt;div class=&quot;program-nav&quot;&gt;
+      &lt;a href=&quot;instant-validation.html&quot; class=&quot;nav-prev&quot;&gt;&amp;larr; FM 08: Instant Validation&lt;/a&gt;
+      &lt;a href=&quot;age-calculator.html&quot; class=&quot;nav-next&quot;&gt;FM 10: Age Calculator &amp;rarr;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;footer-content&quot;&gt;
+      &lt;p&gt;&amp;copy; 2026 Web Technology Practical Laboratory • Prepared by &lt;strong&gt;Shaik Roshan&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;subtext&quot;&gt;Computer Science &amp; Engineering Department&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src=&quot;../../assets/js/code-viewer.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let step = 1;
+
+    const btnPrev = document.getElementById(&quot;btnPrev&quot;);
+    const btnNext = document.getElementById(&quot;btnNext&quot;);
+    const badge = document.getElementById(&quot;stepBadge&quot;);
+
+    function renderStep() {
+      for (let i = 1; i &lt;= 3; i++) {
+        const panel = document.getElementById(`panel${i}`);
+        const ind = document.getElementById(`step${i}-ind`);
+        panel.classList.toggle(&quot;active&quot;, i === step);
+        ind.classList.remove(&quot;active&quot;, &quot;completed&quot;);
+
+        if (i === step) ind.classList.add(&quot;active&quot;);
+        if (i &lt; step) ind.classList.add(&quot;completed&quot;);
+      }
+
+      btnPrev.disabled = (step === 1);
+      btnNext.textContent = (step === 3) ? &quot;Complete &amp; Submit&quot; : &quot;Next Step →&quot;;
+      badge.textContent = `Step ${step} of 3`;
+
+      if (step === 3) {
+        document.getElementById(&quot;wizSummary&quot;).innerHTML = `
+          &lt;strong&gt;Account Username:&lt;/strong&gt; ${document.getElementById(&quot;wizUser&quot;).value}&lt;br&gt;
+          &lt;strong&gt;Email:&lt;/strong&gt; ${document.getElementById(&quot;wizEmail&quot;).value}&lt;br&gt;
+          &lt;strong&gt;Roll Number:&lt;/strong&gt; ${document.getElementById(&quot;wizRoll&quot;).value || &quot;22CS001&quot;}&lt;br&gt;
+          &lt;strong&gt;Branch:&lt;/strong&gt; ${document.getElementById(&quot;wizBranch&quot;).value}
+        `;
+      }
+    }
+
+    function nextStep() {
+      if (step === 1) {
+        if (!document.getElementById(&quot;wizUser&quot;).value || !document.getElementById(&quot;wizEmail&quot;).value) {
+          alert(&quot;Please fill all required account fields!&quot;);
+          return;
+        }
+      } else if (step === 2) {
+        if (!document.getElementById(&quot;wizRoll&quot;).value) {
+          alert(&quot;Please enter roll number!&quot;);
+          return;
+        }
+      } else if (step === 3) {
+        alert(&quot;🎉 Application successfully submitted!&quot;);
+        step = 1;
+        renderStep();
+        return;
+      }
+      step++;
+      renderStep();
+    }
+
+    function prevStep() {
+      if (step &gt; 1) {
+        step--;
+        renderStep();
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let step = 1;
+
+    const btnPrev = document.getElementById(&quot;btnPrev&quot;);
+    const btnNext = document.getElementById(&quot;btnNext&quot;);
+    const badge = document.getElementById(&quot;stepBadge&quot;);
+
+    function renderStep() {
+      for (let i = 1; i &lt;= 3; i++) {
+        const panel = document.getElementById(`panel${i}`);
+        const ind = document.getElementById(`step${i}-ind`);
+        panel.classList.toggle(&quot;active&quot;, i === step);
+        ind.classList.remove(&quot;active&quot;, &quot;completed&quot;);
+
+        if (i === step) ind.classList.add(&quot;active&quot;);
+        if (i &lt; step) ind.classList.add(&quot;completed&quot;);
+      }
+
+      btnPrev.disabled = (step === 1);
+      btnNext.textContent = (step === 3) ? &quot;Complete &amp; Submit&quot; : &quot;Next Step →&quot;;
+      badge.textContent = `Step ${step} of 3`;
+
+      if (step === 3) {
+        document.getElementById(&quot;wizSummary&quot;).innerHTML = `
+          &lt;strong&gt;Account Username:&lt;/strong&gt; ${document.getElementById(&quot;wizUser&quot;).value}&lt;br&gt;
+          &lt;strong&gt;Email:&lt;/strong&gt; ${document.getElementById(&quot;wizEmail&quot;).value}&lt;br&gt;
+          &lt;strong&gt;Roll Number:&lt;/strong&gt; ${document.getElementById(&quot;wizRoll&quot;).value || &quot;22CS001&quot;}&lt;br&gt;
+          &lt;strong&gt;Branch:&lt;/strong&gt; ${document.getElementById(&quot;wizBranch&quot;).value}
+        `;
+      }
+    }
+
+    function nextStep() {
+      if (step === 1) {
+        if (!document.getElementById(&quot;wizUser&quot;).value || !document.getElementById(&quot;wizEmail&quot;).value) {
+          alert(&quot;Please fill all required account fields!&quot;);
+          return;
+        }
+      } else if (step === 2) {
+        if (!document.getElementById(&quot;wizRoll&quot;).value) {
+          alert(&quot;Please enter roll number!&quot;);
+          return;
+        }
+      } else if (step === 3) {
+        alert(&quot;🎉 Application successfully submitted!&quot;);
+        step = 1;
+        renderStep();
+        return;
+      }
+      step++;
+      renderStep();
+    }
+
+    function prevStep() {
+      if (step &gt; 1) {
+        step--;
+        renderStep();
+      }
+    }</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="324-mouse-tracker.html"><small>← Previous</small>Mouse tracker</a><a class="nav-btn" href="326-navigator-screen.html"><small>Next →</small>Navigator screen</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>
