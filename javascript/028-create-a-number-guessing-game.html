@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JS 028 | Create a number guessing game | CodeLab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="codelab-javascript.css"></head><body><nav class="navbar"><div class="nav-inner"><a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span><span>Code<span class="accent">Lab</span></span></a><div class="nav-links"><a href="../index.html">Home</a><a href="index.html" class="active">JavaScript</a><a href="../css/index.html">CSS</a><a href="../html/index.html">HTML</a></div></div></nav><main class="container page"><div class="breadcrumb"><a href="index.html">JavaScript</a> › Practical 028</div><section class="header-card"><div class="practical-no">JAVASCRIPT / PRACTICAL 028</div><h1>Create a number guessing game</h1><div class="question"><strong>Question:</strong> Write a JavaScript program to create a number guessing game.</div></section><section class="section"><div class="section-head"><div class="section-title">▶ Live Output</div><div class="section-meta">Working example</div></div><div class="demo-wrap"><iframe class="demo-frame" title="Live JavaScript practical" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Taj Mahal - Guessing Game&lt;/title&gt;
+&lt;style&gt;
+body{margin:0;font-family:Arial;background:#eaf8ff;text-align:center;padding:50px;color:#063b4c}
+.card{max-width:500px;margin:auto;background:white;padding:35px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+input{padding:12px;border:1px solid #9bcbd8;border-radius:8px}
+button{padding:12px 20px;background:#075b73;color:white;border:0;border-radius:8px;margin-left:5px}
+#result{font-size:20px;font-weight:bold}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;card&quot;&gt;
+&lt;h1&gt;🧭 Island Guessing Game&lt;/h1&gt;
+&lt;p&gt;Guess a number from 1 to 10.&lt;/p&gt;
+
+&lt;input type=&quot;number&quot; id=&quot;guess&quot;&gt;
+&lt;button onclick=&quot;checkGuess()&quot;&gt;Guess&lt;/button&gt;
+
+&lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+let secretNumber = 7;
+
+function checkGuess() {
+    let guess = Number(document.getElementById(&quot;guess&quot;).value);
+
+    if (guess === secretNumber) {
+        document.getElementById(&quot;result&quot;).textContent =
+            &quot;🎉 Correct! You found the island.&quot;;
+    } else if (guess &lt; secretNumber) {
+        document.getElementById(&quot;result&quot;).textContent =
+            &quot;Try a higher number.&quot;;
+    } else {
+        document.getElementById(&quot;result&quot;).textContent =
+            &quot;Try a lower number.&quot;;
+    }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;"></iframe></div></section><section class="section"><div class="section-head"><div class="section-title">JavaScript Code</div><button class="copy" onclick="copyCode(this)">Copy Code</button></div><pre class="code"><code id="jsCode">let secretNumber = 7;
+
+function checkGuess() {
+    let guess = Number(document.getElementById(&quot;guess&quot;).value);
+
+    if (guess === secretNumber) {
+        document.getElementById(&quot;result&quot;).textContent =
+            &quot;🎉 Correct! You found the island.&quot;;
+    } else if (guess &lt; secretNumber) {
+        document.getElementById(&quot;result&quot;).textContent =
+            &quot;Try a higher number.&quot;;
+    } else {
+        document.getElementById(&quot;result&quot;).textContent =
+            &quot;Try a lower number.&quot;;
+    }
+}</code></pre></section><div class="nav-buttons"><a class="nav-btn" href="027-create-a-simple-calculator-using-html-css-and-javascript.html"><small>← Previous</small>Create a simple calculator using html css and javascript</a><a class="nav-btn" href="029-create-a-form-validation-program.html"><small>Next →</small>Create a form validation program</a></div></main><footer class="footer"><div class="container">CodeLab · JavaScript Practical Laboratory · Learn. Code. Experiment.</div></footer><script src="codelab-javascript.js"></script></body></html>
